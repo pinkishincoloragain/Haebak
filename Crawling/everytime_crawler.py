@@ -22,7 +22,7 @@ def tree():
     return defaultdict(tree)
 
 
-driver = webdriver.Chrome('./chromedriver')
+driver = webdriver.Chrome('./Windows/chromedriver')
 driver.implicitly_wait(10)
 driver.get('https://everytime.kr/login')
 
@@ -73,7 +73,7 @@ for url in everytime_link:
 
     try:
         driver.get('https://everytime.kr' + url)
-        time.sleep(5)
+        time.sleep(3)
 
         html = driver.page_source
         soup = BeautifulSoup(html, 'html.parser')
