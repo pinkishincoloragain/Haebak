@@ -44,11 +44,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Landing() {
+function CreateAccount() {
   const classes = useStyles();
   const init = {
     email: "",
-    password: "",
+    passwd: "",
   };
 
   const [inputs, setInputs] = useState(init);
@@ -70,23 +70,16 @@ function Landing() {
     console.log(inputs);
     let data;
     try {
-      if (!newAccount) {
-        await authService.signInWithEmailAndPassword(
-          inputs.email,
-          inputs.password
-        );
-      } else {
+      if (newAccount) {
         data = await authService.createUserWithEmailAndPassword(
           inputs.email,
-          inputs.password
+          inputs.passwd
         );
       }
     } catch (err) {
-      alert(err.message);
+      console.log(err.message);
     }
   };
-
-  const toggleAccount = () => setNewAccount((prev) => !prev);
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -117,9 +110,9 @@ function Landing() {
               fullWidth
               label="Password"
               type="password"
-              id="password"
-              name="password"
-              value={inputs.password}
+              id="passwd"
+              name="passwd"
+              value={inputs.passwd}
               onChange={onChange}
             />
             <Button
@@ -128,15 +121,15 @@ function Landing() {
               variant="contained"
               color="primary"
               className={classes.submit}>
-              {newAccount ? "Create Account" : "LOGIN"}
+              Create Account
             </Button>
-            <Grid className={classes.up}>
-              <Link to="/CreateAccount" variant="body2" onClick={toggleAccount}>
-                {"I already have account."}
+            {/* <Grid className={classes.up}>
+              <Link href="#" variant="body2">
+                {"Join now"}
               </Link>
-            </Grid>
+            </Grid> */}
           </form>
-          <span onClick={toggleAccount}></span>
+          {error}
         </div>
       </Grid>
       <Typography component="h1" variant="h2" className={classes.title}>
@@ -147,4 +140,4 @@ function Landing() {
   );
 }
 
-export default Landing;
+export default CreateAccount;

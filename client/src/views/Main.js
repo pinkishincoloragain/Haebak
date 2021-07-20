@@ -1,6 +1,3 @@
-import React from "react";
-const Home = () => <span>Home</span>;
-export default Home;
 import MainHeader from "../components/MainHeader";
 import MainPaperList from "../components/MainPaperList";
 
