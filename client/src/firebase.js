@@ -1,6 +1,8 @@
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
 
+// fucking API key.
 const firebaseConfig = {
   apiKey: "AIzaSyDhzaHuJLMiTwYXnnLrg7whIx0vUyp68I0",
   authDomain: "knuhouse-9c164.firebaseapp.com",
@@ -12,4 +14,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+// manage login
 export const authService = firebase.auth();
+// manage user info
+export const dbService = firebase.firestore();

@@ -19,8 +19,7 @@ const MenuButton = ({ isHeader, handleShowMenu }) => {
       className={classes.menuButton}
       color="inherit"
       onClick={handleShowMenu}
-      style={{ marginTop: `${!isHeader && "20px"}` }}
-    >
+      style={{ marginTop: `${!isHeader && "20px"}` }}>
       <MenuIcon className={classes.menuIcon} />
     </IconButton>
   );
