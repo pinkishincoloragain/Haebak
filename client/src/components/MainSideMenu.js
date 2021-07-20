@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
+import { Typography, Drawer, List } from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
-import List from "@material-ui/core/List";
 
 import MenuButton from "./MenuButton";
 
@@ -15,11 +14,9 @@ const useStyles = makeStyles({
     marginTop: "30px",
   },
   menuList: {
-    width: "200px",
+    width: "300px",
   },
   menuItem: {
-    fontSize: "2em",
-    fontWeight: "bold",
     marginBottom: "20px",
   },
 });
@@ -37,8 +34,12 @@ const MainSideMenu = () => {
         <div className={classes.menuLayout}>
           <MenuButton handleShowMenu={handleShowMenu} />
           <List className={classes.menuList}>
-            <MenuItem className={classes.menuItem}>MyPage</MenuItem>
-            <MenuItem className={classes.menuItem}>About</MenuItem>
+            <MenuItem className={classes.menuItem}>
+              <Typography variant="h5">MyPage</Typography>
+            </MenuItem>
+            <MenuItem className={classes.menuItem}>
+              <Typography variant="h5">About</Typography>
+            </MenuItem>
           </List>
         </div>
       </Drawer>
