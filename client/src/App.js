@@ -1,14 +1,15 @@
-import "./App.css";
 import { CssBaseline } from "@material-ui/core";
-import Landing from "./views/Landing" 
-import Record from "./components/Record";
+
+import Main from "./views/Main";
+import Landing from "./views/Landing";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      {/* <CssBaseline />
-      <Landing /> */}
-      <Record />
+      <CssBaseline />
+      <Landing />
+      {/* <Main /> */}
     </div>
   );
 }
