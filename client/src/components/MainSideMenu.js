@@ -7,8 +7,8 @@ import MenuButton from "./MenuButton";
 
 const useStyles = makeStyles({
   menuRoot: {
-    position: "absolute",
-    right: "50px",
+    position: "relative",
+    left: "450px",
   },
   menuLayout: {
     marginTop: "30px",
