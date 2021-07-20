@@ -25,6 +25,12 @@ const useStyles = makeStyles((theme) => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
+    title: {
+        margin: theme.spacing(0, 0, 0, 5),
+        display: 'flex',
+        alignItems: 'center',
+        color: '#e53935',
+    }
 }));
 
 function Landing() {
@@ -100,6 +106,10 @@ function Landing() {
                     </form>
                 </div>
             </Grid>
+            <Typography component="h1" variant="h2" className={classes.title}>
+                KNU&nbsp;&nbsp;
+                <span style={{color: 'black'}}>HOUSE</span>
+            </Typography>
         </Grid>
     );
 }
