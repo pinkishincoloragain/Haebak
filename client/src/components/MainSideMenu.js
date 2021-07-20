@@ -8,7 +8,7 @@ import MenuButton from "./MenuButton";
 
 const useStyles = makeStyles({
   menuRoot: {
-    position: "fixed",
+    position: "absolute",
     right: "50px",
   },
   menuLayout: {
@@ -32,7 +32,7 @@ const MainSideMenu = () => {
 
   return (
     <div className={classes.menuRoot}>
-      <MenuButton handleShowMenu={handleShowMenu} />
+      <MenuButton isHeader={true} handleShowMenu={handleShowMenu} />
       <Drawer anchor="right" open={IsShowMenu} onClose={handleShowMenu}>
         <div className={classes.menuLayout}>
           <MenuButton handleShowMenu={handleShowMenu} />

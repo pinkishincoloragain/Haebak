@@ -5,14 +5,13 @@ import MenuIcon from "@material-ui/icons/Menu";
 const useStyles = makeStyles({
   menuButton: {
     marginRight: "auto",
-    marginTop: "30px",
   },
   menuIcon: {
     fontSize: "2em",
   },
 });
 
-const MenuButton = ({ handleShowMenu }) => {
+const MenuButton = ({ isHeader, handleShowMenu }) => {
   const classes = useStyles();
 
   return (
@@ -20,10 +19,15 @@ const MenuButton = ({ handleShowMenu }) => {
       className={classes.menuButton}
       color="inherit"
       onClick={handleShowMenu}
+      style={{ marginTop: `${!isHeader && "20px"}` }}
     >
       <MenuIcon className={classes.menuIcon} />
     </IconButton>
   );
+};
+
+MenuButton.defaultProps = {
+  isHeader: false,
 };
 
 export default MenuButton;
