@@ -132,7 +132,7 @@ function Landing() {
             </Button>
             <Grid className={classes.up}>
               <Link to="/CreateAccount" variant="body2" onClick={toggleAccount}>
-                {"I already have account."}
+                {newAccount ? "I Already have acoount" : "fish"}
               </Link>
             </Grid>
           </form>
