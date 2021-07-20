@@ -10,6 +10,8 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import { authService } from "../firebase";
 
+import Login from "../components/LandingLogin";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",

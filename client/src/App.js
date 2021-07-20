@@ -22,8 +22,8 @@ function App() {
   return (
     <div className="App">
       <CssBaseline />
-      <Landing />
-      {/* <Main /> */}
+      {/* <Landing /> */}
+      <Main />
     </div>
   );
 }
