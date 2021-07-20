@@ -21,7 +21,7 @@ const Main = ({ isLoggedIn, userObj }) => {
 
   // return (
   //   <div>
-  //     <GetRecord />
+  //     <GetRecord userObj={userObj} />
   //   </div>
   // );
 };

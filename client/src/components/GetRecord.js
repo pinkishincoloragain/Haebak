@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { dbService } from "../firebase";
 import Record from "./Record";
-import { v4 as uuid4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import { storageService } from "../firebase";
 
 const GetRecord = ({ userObj }) => {
@@ -30,21 +30,22 @@ const GetRecord = ({ userObj }) => {
     e.preventDefault();
     // uuid makes random name for file link.
     // And put the data to storageService
-    const fileRef = storageService.ref().child(userObj.uid + "/" + uuid4());
+    const fileRef = storageService.ref().child(userObj.uid + "/" + uuidv4());
 
     // return uploadtask -> put to response
     const response = await fileRef.putString(recordData, "data_url");
+    console.log("data_url");
 
-    // // insert data to database
-    // await dbService.collection("knuhouse").add({
-    //   // first record : column name of the data(DB) ------ second record : real data (state)
-    //   record: record,
-    //   createdAt: Date.now(),
-    //   creatorId: userObj.uid,
-    // });
+    // insert data to database
+    await dbService.collection("knuhouse").add({
+      // first record : column name of the data(DB) ------ second record : real data (state)
+      record: record,
+      createdAt: Date.now(),
+      creatorId: userObj.uid,
+    });
 
-    // // flush inputform
-    // setRecord("");
+    // flush inputform
+    setRecord("");
   };
 
   const handleChange = (e) => {
@@ -64,7 +65,7 @@ const GetRecord = ({ userObj }) => {
     const file = files[0];
     console.log(file);
 
-    //  File reader change Rec file
+    //  File reader which change Rec file to url-like thing
     const reader = new FileReader();
 
     // if encoding to URL finish -> onloadend
@@ -92,21 +93,22 @@ const GetRecord = ({ userObj }) => {
         <input
           type="text"
           onChange={handleChange}
-          placeholder="text_placeholder">
-          <input
-            type="file"
-            accept="audio/*"
-            capture
-            onChange={handleFileChange}
-          />
-          <input type="submit" value="record" />
-          {recordData && (
-            <>
-              <audio src={recordData} />
-              <button onClick={handleClear}>다시 녹음 버튼</button>
-            </>
-          )}
-        </input>
+          placeholder="text input test"
+        />
+
+        <input
+          type="file"
+          accept="audio/*"
+          capture
+          onChange={handleFileChange}
+        />
+        <input type="submit" value="녹음 제출하기 !" />
+        {recordData && (
+          <>
+            <audio src={recordData} />
+            <button onClick={handleClear}>다시 녹음 버튼</button>
+          </>
+        )}
       </form>
       <div>
         {/* Show datas using mapping */}
