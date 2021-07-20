@@ -16,5 +16,7 @@ firebase.initializeApp(firebaseConfig);
 
 // manage login
 export const authService = firebase.auth();
-// manage user info
+// manage user info + user data
 export const dbService = firebase.firestore();
+// manage recording file
+export const storageService = firebase.storage();
