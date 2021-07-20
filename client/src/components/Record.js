@@ -1,9 +1,18 @@
 import { useState, useEffect } from "react";
-
+import { makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import MicIcon from '@material-ui/icons/Mic';
 import StopIcon from '@material-ui/icons/Stop';
 import MicRecorder from "mic-recorder-to-mp3";
+import { Grid } from "@material-ui/core";
+import Timer from "./common/Timer";
+import Paper from '@material-ui/core/Paper';
+
+const useStyles = makeStyles({
+    root: {
+      width: '50%'
+    }
+  });
 
 function Record() {
     const [isRecording, setIsRecording] = useState(false);
@@ -12,9 +21,10 @@ function Record() {
     const [recorder, setRecorder] = useState(new MicRecorder({
         bitRate: 128
     }));
+    const classes = useStyles();
 
     useEffect(() => {
-        navigator.getUserMedia({ audio: true }, () => {
+        navigator.getUserMedia({ audio: true }, () => { // 녹음할 수 있는 권한이 있는지 없는지 확인
             console.log("Granted");
             setIsBlocked(false);
         }, () => {
@@ -49,14 +59,23 @@ function Record() {
     };
 
     return (
-        <div>
-            <Fab 
-                color={isRecording ? "secondary" : "primary"}
-                onClick={isRecording ? handleStopRecord : handleRecord}
-            >
-                {isRecording ? <StopIcon /> : <MicIcon />}
-            </Fab>
-            { blobURL && <audio controls src={blobURL}>오디오</audio>}
+        <div className={classes.root}>
+            <Grid container direction="column">
+                <Grid item xs={12}>
+                    <div>
+                        { isRecording && <Timer handleStopRecord={handleStopRecord} />}
+                        { !isRecording && blobURL && <audio controls src={blobURL}>오디오</audio>}
+                    </div>
+                </Grid>
+                <Grid item xs={12}>
+                    <Fab 
+                    color={isRecording ? "secondary" : "primary"}
+                    onClick={isRecording ? handleStopRecord : handleRecord}
+                    >
+                    {isRecording ? <StopIcon /> : <MicIcon />}
+                    </Fab>
+                </Grid>
+            </Grid>
         </div>
     )
 }
