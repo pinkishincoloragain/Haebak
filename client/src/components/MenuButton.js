@@ -5,6 +5,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 const useStyles = makeStyles({
   menuButton: {
     marginRight: "auto",
+    marginTop: "30px",
   },
   menuIcon: {
     fontSize: "2em",
