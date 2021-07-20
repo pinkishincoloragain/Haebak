@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, TextField, Link, Paper, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -27,12 +27,28 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const handleSubmit = () => {
-    
-}
-
 function Landing() {
     const classes = useStyles();
+    const init = {
+        email: "",
+        passwd: "",
+      };
+      
+    const [inputs, setInputs] = useState(init);
+
+    const onChange = (e) => {
+        e.preventDefault();
+        const { name, value } = e.target;
+    
+        setInputs({
+          ...inputs,
+          [name]: value,
+        });
+      };
+
+    const handleSubmit = () => {
+        console.log(inputs)
+    }
 
     return (
         <Grid container component="main" className={classes.root}>
@@ -47,22 +63,25 @@ function Landing() {
                             margin="normal"
                             required
                             fullWidth
-                            id="email"
                             label="Email Address"
+                            type="email"
+                            id="email"
                             name="email"
-                            autoComplete="email"
+                            value={inputs.email}
                             autoFocus
+                            onChange={onChange}
                         />
                         <TextField
                             variant="outlined"
                             margin="normal"
                             required
                             fullWidth
-                            name="password"
                             label="Password"
                             type="password"
-                            id="password"
-                            autoComplete="current-password"
+                            id="passwd"
+                            name="passwd"
+                            value={inputs.passwd}
+                            onChange={onChange}
                         />
                         <Button
                             type="submit"
