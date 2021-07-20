@@ -1,9 +1,19 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  MypageLogo: {
+  LogoRoot: {
     width: "auto !important",
+    height: "auto !important",
+    marginTop: "50px !important",
     position: "relative",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  LogoText: {
+    display: "block",
+    fontWeight: "bold",
+    fontSize: "2.3em",
   },
 }));
 
@@ -12,9 +22,11 @@ const MyPageLogo = () => {
   const logoContent = ["M", "Y", "P", "A", "G", "E"];
 
   return (
-    <div className={classes.MypageLogo}>
+    <div className={classes.LogoRoot}>
       {logoContent.map((word, index) => (
-        <h1 key={index}>{word}</h1>
+        <span key={index} className={classes.LogoText}>
+          {word}
+        </span>
       ))}
     </div>
   );

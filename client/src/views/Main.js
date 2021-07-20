@@ -15,7 +15,7 @@ const Main = () => {
       <MainPaperList />
     </div>
   ) : (
-    <MyPage />
+    <MyPage handleMypage={handleMypage} />
   );
 };
 
