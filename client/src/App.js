@@ -4,7 +4,7 @@ import Main from "./views/Main";
 import Landing from "./views/Landing";
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import Record from "./components/Record_text_ver";
+import GetRecord from "./components/GetRecord";
 import { authService } from "./firebase";
 
 function App() {
@@ -46,7 +46,6 @@ function App() {
           ) : (
             <Main isLoggedIn={isLoggedIn} userObj={userObj} />
           )}
-          <Main />
         </div>
       ) : (
         "Firebase Synchronization 하는 데 시간이 필요합니다 .. 기다리세요 !!"
