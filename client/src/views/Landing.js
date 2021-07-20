@@ -25,8 +25,11 @@ const useStyles = makeStyles((theme) => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
+    up: {
+        textAlign: 'center',
+    },
     title: {
-        margin: theme.spacing(0, 0, 0, 5),
+        margin: theme.spacing(0, 0, 0, 6),
         display: 'flex',
         alignItems: 'center',
         color: '#e53935',
@@ -98,7 +101,7 @@ function Landing() {
                         >
                             LOGIN
                         </Button>
-                        <Grid item>
+                        <Grid className={classes.up}>
                             <Link href="#" variant="body2">
                                 {"Join now"}
                             </Link>
