@@ -4,7 +4,7 @@ import LinkPaper from "./common/LinkPaper";
 
 const useStyles = makeStyles((theme) => ({
   mainPaperList: {
-    width: "80%",
+    width: "1100px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
