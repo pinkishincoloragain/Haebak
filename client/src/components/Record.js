@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import Fab from '@material-ui/core/Fab';
 import MicIcon from '@material-ui/icons/Mic';
 import StopIcon from '@material-ui/icons/Stop';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import MicRecorder from "mic-recorder-to-mp3";
 
 function Record() {
@@ -39,13 +38,13 @@ function Record() {
             const blobURL = URL.createObjectURL(blob);
             setBlobURL(blobURL);
             setIsRecording(false);
-            const file = new File(buffer, 'me-at-thevoice.mp3', {
-                type: blob.type,
-                lastModified: Date.now()
-            });
+            // const file = new File(buffer, 'me-at-thevoice.mp3', {
+            //     type: blob.type,
+            //     lastModified: Date.now()
+            // });
          
-            const player = new Audio(URL.createObjectURL(file));
-            player.play();
+            // const player = new Audio(URL.createObjectURL(file));
+            // player.play();
         }).catch((e) => console.log(e));
     };
 
