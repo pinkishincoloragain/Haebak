@@ -1,3 +1,7 @@
+import { CssBaseline } from "@material-ui/core";
+
+import Main from "./views/Main";
+import Landing from "./views/Landing";
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import { authService } from "./firebase";
@@ -17,18 +21,9 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
+      <CssBaseline />
+      <Landing />
+      {/* <Main /> */}
     </div>
   );
 }
