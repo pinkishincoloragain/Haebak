@@ -107,7 +107,7 @@ function Landing() {
                 </div>
             </Grid>
             <Typography component="h1" variant="h2" className={classes.title}>
-                KNU&nbsp;&nbsp;
+                KNU&nbsp;
                 <span style={{color: 'black'}}>HOUSE</span>
             </Typography>
         </Grid>
