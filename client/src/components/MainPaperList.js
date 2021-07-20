@@ -1,9 +1,9 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-import MainPaper from "./MainPaper";
+import LinkPaper from "./common/LinkPaper";
 
 const useStyles = makeStyles((theme) => ({
-  paperLayout: {
+  mainPaperList: {
     width: "80%",
     display: "flex",
     justifyContent: "center",
@@ -15,13 +15,13 @@ const MainPaperList = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.paperLayout} style={{ width: "100%" }}>
+    <div className={classes.mainPaperList} style={{ width: "100%" }}>
       <div
-        className={classes.paperLayout}
+        className={classes.mainPaperList}
         style={{ justifyContent: "space-between" }}
       >
-        <MainPaper title="질문하기" />
-        <MainPaper title="답변하기" />
+        <LinkPaper title="질문하기" />
+        <LinkPaper title="답변하기" />
       </div>
     </div>
   );
