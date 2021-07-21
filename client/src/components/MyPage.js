@@ -40,7 +40,7 @@ const MyPage = ({ userObj, handleMypage }) => {
           <BackButton type="mypage" action={handleMypage} />
         </div>
         <div style={{ fontSize: "1.6em" }}>
-          <p>학과 : 경북대학교 - 컴퓨터학부</p>
+          <p>학과 : IT대학 - 컴퓨터학부</p>
           <p>이메일 : {userObj.email}</p>
         </div>
         <ActivityRecord />
