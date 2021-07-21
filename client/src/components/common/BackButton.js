@@ -5,7 +5,8 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 const useStyles = makeStyles((theme) => ({
   mypageBackBtn: {
     border: "2px solid",
-    left: "30px",
+    left: "35px",
+    boxShadow: "3px 3px",
   },
 }));
 

@@ -4,7 +4,7 @@ const useStyles = makeStyles((theme) => ({
   LogoRoot: {
     width: "auto !important",
     height: "auto !important",
-    marginTop: "50px !important",
+    marginTop: "60px !important",
     position: "relative",
     display: "flex",
     flexDirection: "column",

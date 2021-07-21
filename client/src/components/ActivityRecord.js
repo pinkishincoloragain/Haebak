@@ -8,15 +8,20 @@ const useStyles = makeStyles({
   },
 });
 
-const ActivityRecord = () => {
+const ActivityRecord = ({ handleMyQuestion }) => {
   const classes = useStyles();
 
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>나의 활동 기록</h1>
       <div className={classes.mypagePaperList}>
-        <LinkPaper type="mypage" title="질문" color="#fbb9b9" />
-        <LinkPaper type="mypage" title="답변" color="#b8fbe4" />
+        <LinkPaper
+          type="mypage"
+          name="question"
+          title="질문"
+          action={handleMyQuestion}
+        />
+        <LinkPaper type="mypage" name="answer" title="답변" />
       </div>
     </div>
   );

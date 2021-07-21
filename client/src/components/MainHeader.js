@@ -8,13 +8,13 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: "50px",
+    paddingTop: "50px",
     marginBottom: "30px",
     fontSize: "1.4em",
   },
 });
 
-const Header = ({ handleMypage }) => {
+const Header = ({ handleMypage, handleAboutpage }) => {
   const classes = useStyles();
 
   return (
@@ -23,7 +23,7 @@ const Header = ({ handleMypage }) => {
         <span style={{ color: "#e53935" }}>KNU&nbsp;</span>
         HOUSE
       </Typography>
-      <MainSideMenu handleMypage={handleMypage} />
+      <MainSideMenu handleMypage={handleMypage} handleAboutpage={handleAboutpage}/>
     </div>
   );
 };
