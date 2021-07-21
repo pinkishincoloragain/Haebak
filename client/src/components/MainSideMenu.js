@@ -31,7 +31,7 @@ const useStyles = makeStyles({
   },
 });
 
-const MainSideMenu = ({ handleMypage }) => {
+const MainSideMenu = ({ handleMypage, handleAboutpage }) => {
   const [IsShowMenu, setIsShowMenu] = useState(false);
   const classes = useStyles();
 
@@ -48,7 +48,7 @@ const MainSideMenu = ({ handleMypage }) => {
               <MenuItem className={classes.menuItem} onClick={handleMypage}>
                 <Typography variant="h5">MyPage</Typography>
               </MenuItem>
-              <MenuItem className={classes.menuItem}>
+              <MenuItem className={classes.menuItem} onClick={handleAboutpage}>
                 <Typography variant="h5">About</Typography>
               </MenuItem>
             </List>

@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
         height: theme.spacing(16),
       },
     },
-    mypagePaper: {
+    aboutpagePaper: {
       width: "500px",
       height: "725px",
       border: "3px solid",
@@ -28,11 +28,11 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const AboutPage = (handleAboutpage) => {
+const AboutPage = ({handleAboutpage}) => {
   const classes = useStyles();
   return (
     <div className={classes.aboutpageRoot}>
-      <Paper elevation={3} className={classes.mypagePaper}>
+      <Paper elevation={3} className={classes.aboutpagePaper}>
         <div style={{ width: "100%" }}>
           <BackButton type="mypage" action={handleAboutpage} />
         </div>

@@ -5,6 +5,7 @@ import MyPageLogo from "./MyPageLogo";
 import ActivityRecord from "./ActivityRecord";
 import BackButton from "./common/BackButton";
 import MypageImage from "../image/MypageImage.png";
+import HelpButton from "./HelpButton";
 
 const useStyles = makeStyles((theme) => ({
   mypageRoot: {
@@ -46,6 +47,7 @@ const MyPage = ({ userObj, handleMypage }) => {
         <ActivityRecord />
       </Paper>
       <MyPageLogo />
+      <HelpButton />
     </div>
   );
 };
