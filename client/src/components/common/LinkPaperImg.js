@@ -15,22 +15,22 @@ const useStyles = makeStyles({
   },
 });
 
-const LinkPaperImg = ({ type, title }) => {
+const LinkPaperImg = ({ type, name }) => {
   const classes = useStyles();
   return (
     <div className={classes.mainPaperImgRoot}>
       {type === "main" ? (
         <img
-          src={title === "질문하기" ? MainQuestionImg : MainAnswerImg}
-          alt={title === "질문하기" ? "Question img" : "Answer img"}
+          src={name === "question" ? MainQuestionImg : MainAnswerImg}
+          alt={name === "answer" ? "Question img" : "Answer img"}
           width="75%"
-          style={{ marginBottom: `${title === "답변하기" && "40px"}` }}
+          style={{ marginBottom: `${name === "answer" && "40px"}` }}
         />
       ) : (
         <img
-          src={title === "질문" ? MypageQuestionImg : MypageAnswerImg}
-          alt={title === "질문" ? "Question img" : "Answer img"}
-          width={title === "질문" ? "75%" : "59%"}
+          src={name === "question" ? MypageQuestionImg : MypageAnswerImg}
+          alt={name === "question" ? "Question img" : "Answer img"}
+          width={name === "question" ? "75%" : "59%"}
         />
       )}
     </div>
