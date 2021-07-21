@@ -39,7 +39,7 @@ function App() {
     <>
       {/* <Record /> */}
       {init ? (
-        <div className="App">
+        <div className="App" style={{ height: "100vh" }}>
           <CssBaseline />
           {!isLoggedIn ? (
             <Landing />

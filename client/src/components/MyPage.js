@@ -4,9 +4,12 @@ import Paper from "@material-ui/core/Paper";
 import MyPageLogo from "./MyPageLogo";
 import ActivityRecord from "./ActivityRecord";
 import BackButton from "./common/BackButton";
+import MypageImage from "../image/MypageImage.png";
 
 const useStyles = makeStyles((theme) => ({
-  MypageRoot: {
+  mypageRoot: {
+    background: `url(${MypageImage}) center center / cover no-repeat`,
+    backgroundAttachment: "fixed",
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",
@@ -16,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
       height: theme.spacing(16),
     },
   },
-  MypagePaper: {
+  mypagePaper: {
     width: "500px",
     height: "725px",
     border: "3px solid",
@@ -31,8 +34,8 @@ const MyPage = ({ userObj, handleMypage }) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.MypageRoot}>
-      <Paper elevation={3} className={classes.MypagePaper}>
+    <div className={classes.mypageRoot}>
+      <Paper elevation={3} className={classes.mypagePaper}>
         <div style={{ width: "100%" }}>
           <BackButton type="mypage" action={handleMypage} />
         </div>
