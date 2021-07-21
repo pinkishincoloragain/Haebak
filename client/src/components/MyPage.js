@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MyPage = ({ handleMypage }) => {
+const MyPage = ({ userObj, handleMypage }) => {
   const classes = useStyles();
 
   return (
@@ -38,7 +38,7 @@ const MyPage = ({ handleMypage }) => {
         </div>
         <div style={{ fontSize: "1.6em" }}>
           <p>학과 : 경북대학교 - 컴퓨터학부</p>
-          <p>이메일 : haebak@knu.ac.kr</p>
+          <p>이메일 : {userObj.email}</p>
         </div>
         <ActivityRecord />
       </Paper>
