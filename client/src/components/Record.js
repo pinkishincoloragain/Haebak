@@ -5,7 +5,7 @@ import MicIcon from '@material-ui/icons/Mic';
 import StopIcon from '@material-ui/icons/Stop';
 import MicRecorder from "mic-recorder-to-mp3";
 import { Grid } from "@material-ui/core";
-import Timer from "./common/Timer";
+import Timer from "./Timer";
 import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles({
