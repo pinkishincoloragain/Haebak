@@ -4,11 +4,22 @@ import Main from "./views/Main";
 import Landing from "./views/Landing";
 import "./App.css";
 import React, { useEffect, useState } from "react";
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import GetRecord from "./components/GetRecord";
 import { authService } from "./firebase";
 import Activity from "./views/Activity";
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
+}));
 
 function App() {
+  const classes = useStyles();
   // initialization for Firebase Firestore
   const [init, setInit] = useState(false);
 
@@ -49,7 +60,9 @@ function App() {
           )}
         </div>
       ) : (
-        "Firebase Synchronization 하는 데 시간이 필요합니다 .. 기다리세요 !!"
+        <Backdrop className={classes.backdrop} open={true} >
+          <CircularProgress color="inherit" />
+        </Backdrop>
       )}
     </>
   );
