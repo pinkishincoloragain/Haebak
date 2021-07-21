@@ -55,7 +55,7 @@ function Landing() {
 
   const [inputs, setInputs] = useState(init);
   const [newAccount, setNewAccount] = useState(true);
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
 
   const onChange = (e) => {
     e.preventDefault();

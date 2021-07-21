@@ -1,33 +1,50 @@
 import { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 
 import MainHeader from "../components/MainHeader";
 import MainPaperList from "../components/MainPaperList";
 import MyPage from "../components/MyPage";
+import AboutPage from "../components/AboutPage";
+import HelpButton from "../components/HelpButton";
 import GetRecord from "../components/GetRecord";
 
-const useStyles = makeStyles({
-  mainRoot: {
-    height: "100%",
-  },
-});
-
 const Main = ({ isLoggedIn, userObj }) => {
-  const classes = useStyles();
-  const [isMypage, setIsMypage] = useState(false);
+  const [isOtherPage, setIsOtherPage] = useState({
+    main: true,
+    mypage: false,
+    about: false,
+  });
 
-  const handleMypage = () => setIsMypage(!isMypage);
+  const handleMypage = () =>
+    setIsOtherPage({
+      ...isOtherPage,
+      main: !isOtherPage.main,
+      mypage: !isOtherPage.mypage,
+    });
+
+  const handleAboutpage = () =>
+    setIsOtherPage({
+      ...isOtherPage,
+      main: !isOtherPage.main,
+      about: !isOtherPage.about,
+    });
 
   return (
-    <div className={classes.mainRoot}>
-      {!isMypage ? (
-        <div>
-          <MainHeader handleMypage={handleMypage} />
+    <div style={{ height: "100%" }}>
+      {isOtherPage.main && (
+        <>
+          <MainHeader
+            handleMypage={handleMypage}
+            handleAboutpage={handleAboutpage}
+          />
           <MainPaperList />
-        </div>
-      ) : (
+        </>
+      )}
+      {isOtherPage.mypage && (
         <MyPage userObj={userObj} handleMypage={handleMypage} />
       )}
+      {isOtherPage.about && <AboutPage handleAboutpage={handleAboutpage} />}
+
+      <HelpButton />
     </div>
   );
 
