@@ -51,6 +51,10 @@ const Login = (props) => {
     var exptext = /^[A-Za-z0-9_\.\-]+@knu+\.ac+\.kr+/;
     return exptext.test(email);
   }
+  function isValid() {
+      if (isKNU(props.userinput.email) & props.userinput.password.length > 6 & props.userinput.name !== "" & props.userinput.department !== "")
+        return true;
+  }
 
   return (
     <div className={classes.root}>
@@ -71,10 +75,10 @@ const Login = (props) => {
           autoFocus
           onChange={props.onch}
           error={
-            props.userinput.email == "" ? false : !isKNU(props.userinput.email)
+            props.userinput.email === "" ? false : !isKNU(props.userinput.email)
           }
           helperText="e.g. name@knu.ac.kr"
-        />
+        /> 
         <TextField
           variant="outlined"
           margin="normal"
@@ -86,6 +90,8 @@ const Login = (props) => {
           name="password"
           value={props.userinput.password}
           onChange={props.onch}
+          error={props.userinput.password.length < 7 & props.userinput.password.length > 0}
+          helperText="Must have at least 7 characters"
         />
         <TextField
           variant="outlined"
@@ -227,24 +233,13 @@ const Login = (props) => {
             <ListSubheader disableSticky={true} className={classes.cate}>글로벌인재학부</ListSubheader>
             <MenuItem value="글로벌인재학부(구)">글로벌인재학부(구)</MenuItem>
           </Select>
-          {/* <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            label="Department"
-            type="text"
-            id="department"
-            name="department"
-            value={props.userinput.department}
-            onChange={props.onch}
-          /> */}
         </FormControl>
         <Button
           type="submit"
           fullWidth
           variant="contained"
           color="primary"
+          disabled={!isValid()}
           className={classes.submit}
         >
           REGISTER
