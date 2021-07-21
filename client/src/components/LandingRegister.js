@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Button, TextField, Link, Grid, Typography } from '@material-ui/core';
+import React from 'react';
+import { Button, TextField, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -29,11 +29,16 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = (props) => {
     const classes = useStyles();
+    function isKNU(input) {        
+        var email = input;
+        var exptext = /^[A-Za-z0-9_\.\-]+@knu+\.ac+\.kr+/;
+        return exptext.test(email);
+    };
 
     return (
         <div className={classes.root}>
             <Typography component="h1" variant="h5">
-                LOGIN
+                CREATE ACCOUNT
             </Typography>
             <form className={classes.form} onSubmit={props.submit} noValidate>
                 <TextField
@@ -48,6 +53,8 @@ const Login = (props) => {
                     value={props.userinput.email}
                     autoFocus
                     onChange={props.onch}
+                    error={props.userinput.email == "" ? false : !isKNU(props.userinput.email)}
+                    helperText="e.g. name@knu.ac.kr"
                 />
                 <TextField
                     variant="outlined"
@@ -56,9 +63,33 @@ const Login = (props) => {
                     fullWidth
                     label="Password"
                     type="password"
-                    id="password"
-                    name="password"
-                    value={props.userinput.password}
+                    id="passwd"
+                    name="passwd"
+                    value={props.userinput.passwd}
+                    onChange={props.onch}
+                />
+                <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    label="Name"
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={props.userinput.name}
+                    onChange={props.onch}
+                />
+                <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    label="Department"
+                    type="text"
+                    id="department"
+                    name="department"
+                    value={props.userinput.department}
                     onChange={props.onch}
                 />
                 <Button
@@ -68,7 +99,7 @@ const Login = (props) => {
                     color="primary"
                     className={classes.submit}
                 >
-                    LOGIN
+                    REGISTER
                 </Button>
             </form>
         </div>
