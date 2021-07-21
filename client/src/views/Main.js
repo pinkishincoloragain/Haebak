@@ -16,7 +16,7 @@ const Main = ({ isLoggedIn, userObj }) => {
       <MainPaperList />
     </div>
   ) : (
-    <MyPage handleMypage={handleMypage} />
+    <MyPage userObj={userObj} handleMypage={handleMypage} />
   );
 
   // return (

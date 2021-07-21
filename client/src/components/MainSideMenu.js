@@ -4,11 +4,18 @@ import { Typography, Drawer, List } from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
 
 import MenuButton from "./MenuButton";
+import LogOut from "./LogOut";
 
 const useStyles = makeStyles({
   menuRoot: {
     position: "relative",
     left: "450px",
+  },
+  menuDrawer: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   menuLayout: {
     marginTop: "30px",
@@ -42,6 +49,7 @@ const MainSideMenu = ({ handleMypage }) => {
             </MenuItem>
           </List>
         </div>
+        <LogOut />
       </Drawer>
     </div>
   );
