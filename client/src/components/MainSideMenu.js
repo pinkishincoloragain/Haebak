@@ -25,7 +25,7 @@ const useStyles = makeStyles({
     width: "300px",
   },
   menuItem: {
-    margin: "0px 17px 20px 17px",
+    margin: "0px 17px 40px 17px",
     border: "2px solid",
     boxShadow: "3px 3px",
   },

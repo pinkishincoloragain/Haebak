@@ -1,6 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Paper } from "@material-ui/core";
 
+import LinkPaperImg from "./LinkPaperImg";
+
 const useStyles = makeStyles((theme) => ({
   paperRoot: {
     display: "flex",
@@ -12,6 +14,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   paper: (props) => ({
+    border: "2px solid",
+    boxShadow: "3px 3px",
     width: `${props.type === "main" ? "480px" : "200px"}`,
     height: `${props.type === "main" ? "500px" : "300px"}`,
     backgroundColor: `${
@@ -21,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: `${
         props.type === "main"
-          ? "#fafafa"
+          ? "#e6e6e6"
           : props.title === "질문"
           ? "#ff9d9d"
           : "#73e8c0"
@@ -46,6 +50,7 @@ const LinkPaper = (props) => {
       <Paper elevation={3} className={classes.paper}>
         <div className={classes.paperContent}>
           <h2>{title}</h2>
+          <LinkPaperImg type={type} title={title} />
           {type === "mypage" && <h2>3</h2>}
         </div>
       </Paper>
