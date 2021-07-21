@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 
 import MainHeader from "../components/MainHeader";
 import MainPaperList from "../components/MainPaperList";
@@ -8,14 +7,7 @@ import AboutPage from "../components/AboutPage";
 import HelpButton from "../components/HelpButton";
 import GetRecord from "../components/GetRecord";
 
-const useStyles = makeStyles({
-  mainRoot: {
-    height: "100%",
-  },
-});
-
 const Main = ({ isLoggedIn, userObj }) => {
-  const classes = useStyles();
   const [isOtherPage, setIsOtherPage] = useState({
     main: true,
     mypage: false,
@@ -37,8 +29,7 @@ const Main = ({ isLoggedIn, userObj }) => {
     });
 
   return (
-    <div className={classes.mainRoot}>
-      {/* Main */}
+    <div style={{ height: "100%" }}>
       {isOtherPage.main && (
         <>
           <MainHeader
@@ -48,11 +39,9 @@ const Main = ({ isLoggedIn, userObj }) => {
           <MainPaperList />
         </>
       )}
-      {/* MyPage */}
       {isOtherPage.mypage && (
         <MyPage userObj={userObj} handleMypage={handleMypage} />
       )}
-      {/* About */}
       {isOtherPage.about && <AboutPage handleAboutpage={handleAboutpage} />}
 
       <HelpButton />
