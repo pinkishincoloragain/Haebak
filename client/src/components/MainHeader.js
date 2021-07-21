@@ -8,7 +8,7 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: "50px",
+    paddingTop: "50px",
     marginBottom: "30px",
     fontSize: "1.4em",
   },

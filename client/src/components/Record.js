@@ -4,12 +4,24 @@ import Fab from '@material-ui/core/Fab';
 import MicIcon from '@material-ui/icons/Mic';
 import StopIcon from '@material-ui/icons/Stop';
 import MicRecorder from "mic-recorder-to-mp3";
-import { Grid } from "@material-ui/core";
-import Timer from "./Timer";
 
 const useStyles = makeStyles({
     root: {
-      width: '50%'
+        display: "flex",
+        flexDirection: "column",
+        height: "150px"
+    },
+    record: {
+      width: '100vw',
+      display: "flex",
+      justifyContent: "center"
+    },
+    player: {
+        height: "75px",
+        width: '100vw',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
     }
   });
 
@@ -58,23 +70,18 @@ function Record() {
     };
 
     return (
-        <div className={classes.root}>
-            <Grid container direction="column">
-                <Grid item xs={12}>
-                    <div>
-                        { isRecording && <Timer />}
-                        { !isRecording && blobURL && <audio controls src={blobURL}>오디오</audio>}
-                    </div>
-                </Grid>
-                <Grid item xs={12}>
-                    <Fab 
+        <div className={classes.root}>     
+            <div className={classes.player}> 
+                { !isRecording && blobURL && <audio controls src={blobURL}>오디오</audio>}
+            </div>
+            <div className={classes.record}>
+                <Fab 
                     color={isRecording ? "secondary" : "primary"}
                     onClick={isRecording ? handleStopRecord : handleRecord}
-                    >
+                >
                     {isRecording ? <StopIcon /> : <MicIcon />}
-                    </Fab>
-                </Grid>
-            </Grid>
+                </Fab>
+            </div>
         </div>
     )
 }

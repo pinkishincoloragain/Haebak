@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import {
+  Button,
+  TextField,
   Link,
   Paper,
   Grid,
@@ -7,8 +9,6 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { authService } from "../firebase";
-import LandingLogin from "../components/LandingLogin";
-import LandingRegister from "../components/LandingRegister";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,13 +44,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Landing() {
+function CreateAccount() {
   const classes = useStyles();
   const init = {
     email: "",
-    password: "",
-    name: "",
-    department: "",
+    passwd: "",
   };
 
   const [inputs, setInputs] = useState(init);
@@ -72,37 +70,66 @@ function Landing() {
     console.log(inputs);
     let data;
     try {
-      if (!newAccount) {
-        await authService.signInWithEmailAndPassword(
-          inputs.email,
-          inputs.password
-        );
-      } else {
+      if (newAccount) {
         data = await authService.createUserWithEmailAndPassword(
           inputs.email,
-          inputs.password,
-          inputs.name,
-          inputs.department
+          inputs.passwd
         );
       }
     } catch (err) {
-      alert(err.message);
+      console.log(err.message);
     }
   };
-
-  const toggleAccount = () => setNewAccount((prev) => !prev);
 
   return (
     <Grid container component="main" className={classes.root}>
       <Grid item xs={8} sm={8} md={3} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          {newAccount ? <LandingRegister userinput={inputs} onch={onChange} submit={handleSubmit}/> : <LandingLogin userinput={inputs} onch={onChange} submit={handleSubmit}/>}
-          <Grid className={classes.up}>
-            <Link to="/CreateAccount" variant="body2" onClick={toggleAccount}>
-              {newAccount ? "I Already have acoount" : "Join now"}
-            </Link>
-          </Grid>
-          <span onClick={toggleAccount}></span>
+          <Typography component="h1" variant="h5">
+            LOGIN
+          </Typography>
+          <form className={classes.form} onSubmit={handleSubmit} noValidate>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              label="Email Address"
+              type="email"
+              id="email"
+              name="email"
+              placeholder="KNU Email"
+              value={inputs.email}
+              autoFocus
+              onChange={onChange}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              label="Password"
+              type="password"
+              id="passwd"
+              name="passwd"
+              value={inputs.passwd}
+              onChange={onChange}
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}>
+              Create Account
+            </Button>
+            {/* <Grid className={classes.up}>
+              <Link href="#" variant="body2">
+                {"Join now"}
+              </Link>
+            </Grid> */}
+          </form>
+          {error}
         </div>
       </Grid>
       <Typography component="h1" variant="h2" className={classes.title}>
@@ -113,4 +140,4 @@ function Landing() {
   );
 }
 
-export default Landing;
+export default CreateAccount;

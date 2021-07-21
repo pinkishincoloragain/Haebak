@@ -4,11 +4,19 @@ import { Typography, Drawer, List } from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
 
 import MenuButton from "./MenuButton";
+import LogOut from "./LogOut";
 
 const useStyles = makeStyles({
   menuRoot: {
-    position: "absolute",
-    right: "50px",
+    position: "relative",
+    left: "450px",
+  },
+  menuDrawer: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center",
+    height: "100%",
   },
   menuLayout: {
     marginTop: "30px",
@@ -17,7 +25,9 @@ const useStyles = makeStyles({
     width: "300px",
   },
   menuItem: {
-    marginBottom: "20px",
+    margin: "0px 17px 40px 17px",
+    border: "2px solid",
+    boxShadow: "3px 3px",
   },
 });
 
@@ -31,16 +41,19 @@ const MainSideMenu = ({ handleMypage }) => {
     <div className={classes.menuRoot}>
       <MenuButton isHeader={true} handleShowMenu={handleShowMenu} />
       <Drawer anchor="right" open={IsShowMenu} onClose={handleShowMenu}>
-        <div className={classes.menuLayout}>
-          <MenuButton handleShowMenu={handleShowMenu} />
-          <List className={classes.menuList}>
-            <MenuItem className={classes.menuItem} onClick={handleMypage}>
-              <Typography variant="h5">MyPage</Typography>
-            </MenuItem>
-            <MenuItem className={classes.menuItem}>
-              <Typography variant="h5">About</Typography>
-            </MenuItem>
-          </List>
+        <div className={classes.menuDrawer}>
+          <div className={classes.menuLayout}>
+            <MenuButton handleShowMenu={handleShowMenu} />
+            <List className={classes.menuList}>
+              <MenuItem className={classes.menuItem} onClick={handleMypage}>
+                <Typography variant="h5">MyPage</Typography>
+              </MenuItem>
+              <MenuItem className={classes.menuItem}>
+                <Typography variant="h5">About</Typography>
+              </MenuItem>
+            </List>
+          </div>
+          <LogOut />
         </div>
       </Drawer>
     </div>

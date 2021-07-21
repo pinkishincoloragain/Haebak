@@ -27,35 +27,15 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Login = () => {
+const Login = (props) => {
     const classes = useStyles();
-    const init = {
-        email: "",
-        passwd: "",
-      };
-      
-    const [inputs, setInputs] = useState(init);
-
-    const onChange = (e) => {
-        e.preventDefault();
-        const { name, value } = e.target;
-    
-        setInputs({
-          ...inputs,
-          [name]: value,
-        });
-      };
-
-    const handleSubmit = () => {
-        console.log(inputs)
-    }
 
     return (
         <div className={classes.root}>
             <Typography component="h1" variant="h5">
                 LOGIN
             </Typography>
-            <form className={classes.form} onSubmit={handleSubmit} noValidate>
+            <form className={classes.form} onSubmit={props.submit} noValidate>
                 <TextField
                     variant="outlined"
                     margin="normal"
@@ -65,9 +45,9 @@ const Login = () => {
                     type="email"
                     id="email"
                     name="email"
-                    value={inputs.email}
+                    value={props.userinput.email}
                     autoFocus
-                    onChange={onChange}
+                    onChange={props.onch}
                 />
                 <TextField
                     variant="outlined"
@@ -76,10 +56,10 @@ const Login = () => {
                     fullWidth
                     label="Password"
                     type="password"
-                    id="passwd"
-                    name="passwd"
-                    value={inputs.passwd}
-                    onChange={onChange}
+                    id="password"
+                    name="password"
+                    value={props.userinput.password}
+                    onChange={props.onch}
                 />
                 <Button
                     type="submit"
@@ -90,11 +70,6 @@ const Login = () => {
                 >
                     LOGIN
                 </Button>
-                <Grid className={classes.up}>
-                    <Link href="#" variant="body2">
-                        {"Join now"}
-                    </Link>
-                </Grid>
             </form>
         </div>
     );
