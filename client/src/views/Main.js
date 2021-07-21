@@ -16,24 +16,46 @@ const useStyles = makeStyles({
 
 const Main = ({ isLoggedIn, userObj }) => {
   const classes = useStyles();
-  const [isMypage, setIsMypage] = useState(false);
-  const [isAbout, setIsAbout] = useState(false);
+  const [isOtherPage, setIsOtherPage] = useState({
+    main: true,
+    mypage: false,
+    about: false,
+  });
 
-  const handleMypage = () => setIsMypage(!isMypage);
-  const handleAboutpage = () => setIsAbout(!isAbout);
+  const handleMypage = () =>
+    setIsOtherPage({
+      ...isOtherPage,
+      main: !isOtherPage.main,
+      mypage: !isOtherPage.mypage,
+    });
+
+  const handleAboutpage = () =>
+    setIsOtherPage({
+      ...isOtherPage,
+      main: !isOtherPage.main,
+      about: !isOtherPage.about,
+    });
 
   return (
     <div className={classes.mainRoot}>
-      {!isMypage ? (!isAbout ? (
-        <div>
-          <MainHeader handleMypage={handleMypage} handleAboutpage={handleAboutpage}/>
+      {/* Main */}
+      {isOtherPage.main && (
+        <>
+          <MainHeader
+            handleMypage={handleMypage}
+            handleAboutpage={handleAboutpage}
+          />
           <MainPaperList />
-          <HelpButton />
-        </div>
-      ) : (
-        <AboutPage handleAboutpage={handleAboutpage} />
-      )) : <MyPage userObj={userObj} handleMypage={handleMypage} />
-      }
+        </>
+      )}
+      {/* MyPage */}
+      {isOtherPage.mypage && (
+        <MyPage userObj={userObj} handleMypage={handleMypage} />
+      )}
+      {/* About */}
+      {isOtherPage.about && <AboutPage handleAboutpage={handleAboutpage} />}
+
+      <HelpButton />
     </div>
   );
 
