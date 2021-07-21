@@ -1,7 +1,7 @@
 import React from "react";
 import { dbService } from "../firebase";
 
-const Record = ({ recordObj, isOwner }) => {
+const RecordService = ({ recordObj, isOwner }) => {
   const handleDeteleClick = async () => {
     const ok = window.confirm("삭제하시겠습니까 ?");
     if (ok) {
@@ -13,6 +13,7 @@ const Record = ({ recordObj, isOwner }) => {
   return (
     <div>
       <h4>{recordObj.record}</h4>
+      {recordObj.Recordurl && <audio src={recordObj.Recordurl} />}
       {/* if isOwner -> render button */}
       {isOwner && (
         <>
@@ -23,4 +24,4 @@ const Record = ({ recordObj, isOwner }) => {
   );
 };
 
-export default Record;
+export default RecordService;

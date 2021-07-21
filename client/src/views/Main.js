@@ -19,11 +19,11 @@ const Main = ({ isLoggedIn, userObj }) => {
     <MyPage handleMypage={handleMypage} />
   );
 
-  // return (
-  //   <div>
-  //     <GetRecord userObj={userObj} />
-  //   </div>
-  // );
+  return (
+    <div>
+      <GetRecord userObj={userObj} />
+    </div>
+  );
 };
 
 export default Main;
