@@ -20,15 +20,14 @@ const useStyles = makeStyles((theme) => ({
     height: `${props.type === "main" ? "500px" : "300px"}`,
     backgroundColor: `${
       props.type === "mypage" &&
-      (props.title === "질문" ? "#fbb9b9" : "#b8fbe4")
+      (props.name === "question" ? "#fbb9b9" : "#b8fbe4")
     }`,
     "&:hover": {
       backgroundColor: `${
         props.type === "main"
           ? "#e6e6e6"
-          : props.title === "질문"
-          ? "#ff9d9d"
-          : "#73e8c0"
+          : props.name === "question" && "#ff9d9d"
+        // : "#73e8c0"
       }`,
     },
   }),
@@ -42,15 +41,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const LinkPaper = (props) => {
-  const { type, title } = props;
+  const { type, name, title } = props;
   const classes = useStyles(props);
 
   return (
-    <div className={classes.paperRoot}>
+    <div className={classes.paperRoot} onClick={props.action && props.action}>
       <Paper elevation={3} className={classes.paper}>
         <div className={classes.paperContent}>
           <h2>{title}</h2>
-          <LinkPaperImg type={type} title={title} />
+          <LinkPaperImg type={type} name={name} />
           {type === "mypage" && <h2>3</h2>}
         </div>
       </Paper>
