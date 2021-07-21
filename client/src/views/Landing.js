@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import {
-  Button,
-  TextField,
   Link,
   Paper,
   Grid,
@@ -9,8 +7,8 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { authService } from "../firebase";
-
-import Login from "../components/LandingLogin";
+import LandingLogin from "../components/LandingLogin";
+import LandingRegister from "../components/LandingRegister";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,6 +49,8 @@ function Landing() {
   const init = {
     email: "",
     password: "",
+    name: "",
+    department: "",
   };
 
   const [inputs, setInputs] = useState(init);
@@ -80,7 +80,9 @@ function Landing() {
       } else {
         data = await authService.createUserWithEmailAndPassword(
           inputs.email,
-          inputs.password
+          inputs.password,
+          inputs.name,
+          inputs.department
         );
       }
     } catch (err) {
@@ -94,50 +96,12 @@ function Landing() {
     <Grid container component="main" className={classes.root}>
       <Grid item xs={8} sm={8} md={3} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <Typography component="h1" variant="h5">
-            LOGIN
-          </Typography>
-          <form className={classes.form} onSubmit={handleSubmit} noValidate>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              label="Email Address"
-              type="email"
-              id="email"
-              name="email"
-              placeholder="KNU Email"
-              value={inputs.email}
-              autoFocus
-              onChange={onChange}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              label="Password"
-              type="password"
-              id="password"
-              name="password"
-              value={inputs.password}
-              onChange={onChange}
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}>
-              {newAccount ? "Create Account" : "LOGIN"}
-            </Button>
-            <Grid className={classes.up}>
-              <Link to="/CreateAccount" variant="body2" onClick={toggleAccount}>
-                {newAccount ? "I Already have acoount" : "fish"}
-              </Link>
-            </Grid>
-          </form>
+          {newAccount ? <LandingRegister userinput={inputs} onch={onChange} submit={handleSubmit}/> : <LandingLogin userinput={inputs} onch={onChange} submit={handleSubmit}/>}
+          <Grid className={classes.up}>
+            <Link to="/CreateAccount" variant="body2" onClick={toggleAccount}>
+              {newAccount ? "I Already have acoount" : "Join now"}
+            </Link>
+          </Grid>
           <span onClick={toggleAccount}></span>
         </div>
       </Grid>
