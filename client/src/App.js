@@ -38,8 +38,8 @@ function App() {
   }, []);
   return (
     <>
-      <Activity />
-      {/* {init ? (
+      {/* <Activity /> */}
+      {init ? (
         <div className="App" style={{ height: "100vh" }}>
           <CssBaseline />
           {!isLoggedIn ? (
@@ -50,7 +50,7 @@ function App() {
         </div>
       ) : (
         "Firebase Synchronization 하는 데 시간이 필요합니다 .. 기다리세요 !!"
-      )} */}
+      )}
     </>
   );
 }

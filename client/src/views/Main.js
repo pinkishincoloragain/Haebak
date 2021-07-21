@@ -4,6 +4,7 @@ import MainHeader from "../components/MainHeader";
 import MainPaperList from "../components/MainPaperList";
 import MyPage from "../components/MyPage";
 import AboutPage from "../components/AboutPage";
+import Activity from "./Activity";
 import HelpButton from "../components/HelpButton";
 import GetRecord from "../components/GetRecord";
 
@@ -12,6 +13,7 @@ const Main = ({ isLoggedIn, userObj }) => {
     main: true,
     mypage: false,
     about: false,
+    activity: false,
   });
 
   const handleMypage = () =>
@@ -28,6 +30,13 @@ const Main = ({ isLoggedIn, userObj }) => {
       about: !isOtherPage.about,
     });
 
+  const handleActivity = () =>
+    setIsOtherPage({
+      ...isOtherPage,
+      main: !isOtherPage.main,
+      activity: !isOtherPage.activity,
+    });
+
   return (
     <div style={{ height: "100%" }}>
       {isOtherPage.main && (
@@ -36,14 +45,14 @@ const Main = ({ isLoggedIn, userObj }) => {
             handleMypage={handleMypage}
             handleAboutpage={handleAboutpage}
           />
-          <MainPaperList />
+          <MainPaperList handleActivity={handleActivity} />
         </>
       )}
       {isOtherPage.mypage && (
         <MyPage userObj={userObj} handleMypage={handleMypage} />
       )}
       {isOtherPage.about && <AboutPage handleAboutpage={handleAboutpage} />}
-
+      {isOtherPage.activity && <Activity handleActivity={handleActivity} />}
       <HelpButton />
     </div>
   );

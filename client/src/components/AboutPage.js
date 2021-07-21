@@ -5,30 +5,30 @@ import BackButton from "./common/BackButton";
 import HelpButton from "./HelpButton";
 
 const useStyles = makeStyles((theme) => ({
-    aboutpageRoot: {
+  aboutpageRoot: {
     //   background: `url(${MypageImage}) center center / cover no-repeat`,
-      backgroundAttachment: "fixed",
-      display: "flex",
-      flexWrap: "wrap",
-      justifyContent: "center",
-      "& > *": {
-        margin: theme.spacing(1),
-        width: theme.spacing(16),
-        height: theme.spacing(16),
-      },
+    backgroundAttachment: "fixed",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    "& > *": {
+      margin: theme.spacing(1),
+      width: theme.spacing(16),
+      height: theme.spacing(16),
     },
-    aboutpagePaper: {
-      width: "500px",
-      height: "725px",
-      border: "3px solid",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "space-around",
-    },
-  }));
+  },
+  aboutpagePaper: {
+    width: "500px",
+    height: "725px",
+    border: "3px solid",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-around",
+  },
+}));
 
-const AboutPage = ({handleAboutpage}) => {
+const AboutPage = ({ handleAboutpage }) => {
   const classes = useStyles();
   return (
     <div className={classes.aboutpageRoot}>
@@ -40,7 +40,6 @@ const AboutPage = ({handleAboutpage}) => {
           <p>WHAT ABOUT?</p>
         </div>
       </Paper>
-      <HelpButton />
     </div>
   );
 };

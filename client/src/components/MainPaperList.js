@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MainPaperList = () => {
+const MainPaperList = ({ handleActivity }) => {
   const classes = useStyles();
 
   return (
@@ -20,8 +20,8 @@ const MainPaperList = () => {
         className={classes.mainPaperList}
         style={{ justifyContent: "space-between" }}
       >
-        <LinkPaper title="질문하기" />
-        <LinkPaper title="답변하기" />
+        <LinkPaper name="question" title="질문하기" action={handleActivity} />
+        <LinkPaper name="answer" title="답변하기" />
       </div>
     </div>
   );
