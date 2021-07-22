@@ -33,7 +33,7 @@ const HelpButton = () => {
   return (
     <>
       <IconButton
-        size="medium"
+        size="small"
         className={classes.Helpbtn}
         onClick={openDialog}
       >
