@@ -30,9 +30,9 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
     },
     fab: {
-        backgroundColor: green[500],
+        backgroundColor: green[700],
         '&:hover': {
-            backgroundColor: green[700],
+            backgroundColor: green[500],
         },
         zIndex: 1,
     },
@@ -48,10 +48,10 @@ const useStyles = makeStyles((theme) => ({
         position: 'absolute',
         top: -6,
         left: -6,
-    },
+    }
   }));
 
-function Record() {
+function Record({ isQuestion, setFile }) {
     const [isRecording, setIsRecording] = useState(false);
     const [blobURL, setBlobURL] = useState("");
     const [isBlocked, setIsBlocked] = useState(true);
@@ -85,13 +85,7 @@ function Record() {
             const blobURL = URL.createObjectURL(blob);
             setBlobURL(blobURL);
             setIsRecording(false);
-            // const file = new File(buffer, 'me-at-thevoice.mp3', {
-            //     type: blob.type,
-            //     lastModified: Date.now()
-            // });
-         
-            // const player = new Audio(URL.createObjectURL(file));
-            // player.play();
+            setFile(blob);
         }).catch((e) => console.log(e));
     };
 

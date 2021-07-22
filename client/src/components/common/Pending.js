@@ -9,10 +9,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Pending = () => {
+const Pending = ({ text }) => {
     const classes = useStyles();
     return (
         <Backdrop className={classes.backdrop} open={true} >
+          <h1>{text}</h1>
           <CircularProgress color="inherit" />
         </Backdrop>
     )

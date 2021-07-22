@@ -50,7 +50,7 @@ function App() {
           )}
         </div>
       ) : (
-        <Pending />
+        <Pending text="로딩중... "/>
       )}
     </>
   );

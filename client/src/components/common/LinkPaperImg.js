@@ -23,14 +23,14 @@ const LinkPaperImg = ({ type, name }) => {
         <img
           src={name === "question" ? MainQuestionImg : MainAnswerImg}
           alt={name === "answer" ? "Question img" : "Answer img"}
-          width="75%"
+          width="70%"
           style={{ marginBottom: `${name === "answer" && "40px"}` }}
         />
       ) : (
         <img
           src={name === "question" ? MypageQuestionImg : MypageAnswerImg}
           alt={name === "question" ? "Question img" : "Answer img"}
-          width={name === "question" ? "75%" : "59%"}
+          width={name === "question" ? "70%" : "59%"}
         />
       )}
     </div>

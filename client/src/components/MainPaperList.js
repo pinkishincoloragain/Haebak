@@ -8,6 +8,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    "@media (max-width:1150px)": {
+      flexDirection: "column",
+      justifyContent: "center",
+    },
   },
 }));
 

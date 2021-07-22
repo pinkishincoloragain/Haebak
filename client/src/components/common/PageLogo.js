@@ -1,24 +1,24 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
-  LogoRoot: {
+const useStyles = makeStyles({
+  LogoRoot: ({ responsive }) => ({
     width: "auto !important",
     height: "auto !important",
-    marginTop: "60px !important",
+    marginBottom: "300px !important",
     position: "relative",
-    display: "flex",
+    display: `${responsive && "content"}`,
     flexDirection: "column",
     alignItems: "center",
-  },
+  }),
   LogoText: {
     display: "block",
     fontWeight: "bold",
     fontSize: "2.3em",
   },
-}));
+});
 
-const PageLogo = ({ logoName }) => {
-  const classes = useStyles();
+const PageLogo = ({ logoName, responsive }) => {
+  const classes = useStyles({ responsive });
   const logoContent = logoName.split("");
 
   return (
