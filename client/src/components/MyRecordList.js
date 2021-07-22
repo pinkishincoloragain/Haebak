@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { dbService } from "../firebase.js";
