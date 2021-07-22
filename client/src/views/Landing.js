@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { debounce } from "lodash";
 import { makeStyles } from "@material-ui/core/styles";
 import { Paper, Typography } from "@material-ui/core";
 import swal from "@sweetalert/with-react";
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     "@media (max-height:517px)": {
-      height: "auto !important"
+      height: "auto !important",
     },
   },
   paper: {
@@ -69,6 +70,17 @@ function Landing() {
   };
   const [inputs, setInputs] = useState(init);
   const [newAccount, setNewAccount] = useState(true);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = debounce(() => {
+      setWindowWidth(window.innerWidth);
+    }, 100);
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
 
   const onChange = (e) => {
     e.preventDefault();
@@ -131,11 +143,15 @@ function Landing() {
     setInputs(init);
     setNewAccount((prev) => !prev);
   };
-
+  console.log(windowWidth);
   return (
     <div
       className={classes.root}
-      style={{ height: `${newAccount ? "100vh" : "auto"}` }}
+      style={{
+        height: `${
+          !newAccount && windowWidth <= 625 ? "auto" : "100vh"
+        }`,
+      }}
     >
       <Paper className={classes.paper}>
         {!newAccount ? (
