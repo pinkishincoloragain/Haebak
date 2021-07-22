@@ -51,13 +51,15 @@ export default function CustomizedDialogs(props) {
         open={true}
       >
         <DialogTitle id="customized-dialog-title" onClose={props.func}>
-            <span style={{fontFamily: "FingerPaint"}}>HELP</span>
+          <span style={{ fontFamily: "FingerPaint" }}>HELP</span>
         </DialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
             당신의 목소리로 직접 질문하거나 답변해보세요 !
           </Typography>
-          <Typography gutterBottom>욕은 하지 말아주세요 ... ㅎ</Typography>
+          <Typography gutterBottom>
+            텍스트가 아닌 서로의 목소리로 소통하세요 !
+          </Typography>
         </DialogContent>
       </Dialog>
     </div>

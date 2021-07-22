@@ -40,8 +40,8 @@ const QandA = ({ doc }) => {
 
         <div className={classes.audioBox}>
           <h3>답변</h3>{" "}
-          {doc.answered ? (
-            <audio controls className={classes.audio}></audio>
+          {doc.answerURL !== "" ? (
+            <audio src={doc.answerURL} controls className={classes.audio}></audio>
           ) : (
             <div style={{ width: "300px", textAlign: "center" }}>
               답변이 없습니다
