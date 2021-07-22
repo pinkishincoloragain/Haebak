@@ -135,9 +135,9 @@ function Landing() {
             submit={handleSubmit}
           />
         )}
-        <Link to="/CreateAccount" variant="body2" onClick={toggleAccount}>
+        <span style={{color:"blue"}} onClick={toggleAccount}>
           {!newAccount ? "계정이 있어요" : "계정이 없어요"}
-        </Link>
+        </span>
         <span onClick={toggleAccount}></span>
       </Paper>
       <div className={classes.titleBox}>
