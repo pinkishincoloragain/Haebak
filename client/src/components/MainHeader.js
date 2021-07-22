@@ -10,7 +10,8 @@ const useStyles = makeStyles({
     alignItems: "center",
     fontSize: "1.4em",
     overflowY: "scroll",
-    "@media (max-width:520px)": {
+    marginBottom: "50px",
+    "@media (max-width:1150px)": {
       marginBottom: "20px !important",
     },
   },

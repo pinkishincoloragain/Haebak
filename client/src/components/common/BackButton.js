@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "3px 3px",
   },
   mypageBackBtn: {
+    top: "10px",
     left: "35px",
   },
   activityBackBtn: {
