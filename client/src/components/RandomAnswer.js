@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const RandomAnswer = ({ userInfoObj, userObj, submited, setGotQuestion }) => {
+const RandomAnswer = ({ userInfoObj, userObj, setGotQuestion }) => {
     const classes = useStyles();
     const [pending, setPending] = useState(true);
     const [question, setQuestion] = useState(null);
@@ -31,11 +31,11 @@ const RandomAnswer = ({ userInfoObj, userObj, submited, setGotQuestion }) => {
 
     useEffect(() => {
         return () => {
-            if(!submited && question) {
+            if(question) {
                 dbService.collection('question').doc(question.id).update({answered: false});
             }
         }
-    }, [question, submited]);
+    }, [question]);
 
     async function fetchRandomQuestion() {
         await dbService.collection('question').where("creatorDepartment", "==", userInfoObj.department).where("answered", "==", false).where("creatorId", "!=", userObj.uid)

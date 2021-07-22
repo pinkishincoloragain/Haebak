@@ -5,9 +5,9 @@ import "firebase/storage";
 // fucking API key.
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_KEY,
-  authDomain: "knuhouse-9c164.firebaseapp.com",
+  authDomain: `${process.env.REACT_APP_PROJECT_ID}.firebaseapp.com`,
   projectId: process.env.REACT_APP_PROJECT_ID,
-  storageBucket: "knuhouse-9c164.appspot.com",
+  storageBucket: `${process.env.REACT_APP_PROJECT_ID}.appspot.com`,
   messagingSenderId: "96455573988",
   appId: process.env.REACT_APP_APP_ID,
 };

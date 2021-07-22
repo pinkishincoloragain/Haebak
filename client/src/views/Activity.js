@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { v4 as uuidv4 } from "uuid";
 
@@ -10,7 +10,6 @@ import Fade from "@material-ui/core/Fade";
 
 import { dbService, storageService } from "../firebase.js";
 import Pending from "../components/common/Pending";
-import RandomAnswer from "../components/RandomAnswer";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -33,14 +32,52 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "3rem",
     color: "white",
   },
+  answer: {
+    background: "rgba(0, 0, 0, 0.4)",
+    width: "100vw",
+    position: "fixed",
+    top: "15vh",
+    display: "flex",
+    height: "80px",
+    color: "white",
+    justifyContent: "center",
+    textAlign: "center",
+    alignItems: "center"
+  },
 }));
 
 const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
+  const classes = useStyles();
   const [file, setFile] = useState(null);
   const [pending, setPending] = useState(false);
-  const [submited, setSubmited] = useState(false);
-  const [gotQuestion, setGotQuestion] = useState(null);
-  const classes = useStyles();
+  const [question, setQuestion] = useState(null);
+  const [available, setAvailable] = useState(false);
+    
+  useEffect(() => {
+      fetchRandomQuestion();
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if(question) {
+        dbService.collection('question').doc(question.id).update({using: false});
+      }
+    }
+  }, [question]);
+
+  async function fetchRandomQuestion() {
+      await dbService.collection('question').where("creatorDepartment", "==", userInfoObj.department).where("answered", "==", false).where("creatorId", "!=", userObj.uid)
+      .get().then((querySnapshot) => {
+       if (querySnapshot.size) {
+          const rand = Math.floor(Math.random() * querySnapshot.size);
+          const selected = querySnapshot.docs[rand];
+          dbService.collection('question').doc(selected.id).update({using: true});
+          setQuestion(selected);
+          setAvailable(true);
+      }
+    }).finally(setPending(false));
+  }
+
 
   async function handleSubmit() {
     setPending(true);
@@ -59,11 +96,10 @@ const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
         answered: false,
         answerId: "",
         answerURL: "",
+        using: false
       });
     } else {
-      console.log(gotQuestion);
-      await dbService.collection('question').doc(gotQuestion.id).update({ answerId: userObj.uid, answerURL: recordURL });
-      setSubmited(true);
+      await dbService.collection('question').doc(question.id).update({ answerId: userObj.uid, answerURL: recordURL, answered: true });
     }
     setFile(null);
     handleActivity();
@@ -79,16 +115,16 @@ const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
         {isQuestion ? (
           <Record setFile={setFile} />
         ) : (
-          gotQuestion && <Record setFile={setFile} />
+          question && <Record setFile={setFile} />
         )}
         {!isQuestion && (
-          <RandomAnswer
-            userInfoObj={userInfoObj}
-            userObj={userObj}
-            setGotQuestion={setGotQuestion}
-            file={file}
-            submited={submited}
-          />
+          <div className={classes.answer}>
+            {pending && question && <Pending text="무작위 질문을 검색중 입니다..." />}
+            {!pending && question && available ? 
+            <audio controls src={question.data().recordURL}>질문</audio> :
+            <h1>존재하는 질문이 없습니다!</h1>
+            }
+          </div>
         )}
       </div>
       {file && !pending && (
