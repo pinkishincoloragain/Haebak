@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SuccSnackbar = () => {
+const SuccSnackbar = (props) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
@@ -28,8 +28,8 @@ const SuccSnackbar = () => {
   return (
     <div className={classes.root}>
       <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success">
-          질문 제출이 완료되었습니다!
+        <Alert onClose={handleClose} severity={props.type}>
+          {props.content}
         </Alert>
       </Snackbar>
     </div>

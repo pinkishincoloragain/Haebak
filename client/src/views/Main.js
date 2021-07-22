@@ -8,8 +8,6 @@ import AboutPage from "../components/AboutPage";
 import Activity from "./Activity";
 import HelpButton from "../components/HelpButton";
 import SuccSnackbar from "../components/common/SuccSnackbar";
-import GetRecord from "../components/GetRecord";
-import { dbService } from "../firebase";
 
 const useStyles = makeStyles({
   mainFrame: {
@@ -87,15 +85,9 @@ const Main = ({ userObj, userInfoObj }) => {
         />
       )}
       <HelpButton />
-      {snackOpen && <SuccSnackbar />}
+      {snackOpen && <SuccSnackbar content="니 좆같은 목소리 잘 들어볼게!" type="success"/>}
     </div>
   );
-
-  // return (
-  //   <div>
-  //     <GetRecord userObj={userObj} />
-  //   </div>
-  // );
 };
 
 export default Main;
