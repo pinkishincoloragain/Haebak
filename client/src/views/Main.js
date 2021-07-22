@@ -7,8 +7,6 @@ import MyPage from "../components/MyPage";
 import AboutPage from "../components/AboutPage";
 import Activity from "./Activity";
 import HelpButton from "../components/HelpButton";
-import GetRecord from "../components/GetRecord";
-import { dbService } from "../firebase";
 
 const useStyles = makeStyles({
   mainFrame: {
@@ -82,12 +80,6 @@ const Main = ({ isLoggedIn, userObj, userInfoObj }) => {
       <HelpButton />
     </div>
   );
-
-  // return (
-  //   <div>
-  //     <GetRecord userObj={userObj} />
-  //   </div>
-  // );
 };
 
 export default Main;

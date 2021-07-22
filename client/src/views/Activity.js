@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
   const classes = useStyles();
   const [file, setFile] = useState(null);
-  const [pending, setPending] = useState(false);
+  const [pending, setPending] = useState(true);
   const [question, setQuestion] = useState(null);
   const [available, setAvailable] = useState(false);
     
@@ -109,7 +109,7 @@ const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
 
   return (
     <div>
-      {pending && <Pending text={isQuestion ? "질문하는 중..." : "답변하는 중..."} />}
+      {pending && <Pending text={isQuestion ? "질문하는 중..." : question ? "답변하는 중..." : "질문 가져오는 중..."} />}
       <BackButton type="activity" action={handleActivity} />
       <div className={classes.container}>
         <ActivityImage state={isQuestion} />
