@@ -59,7 +59,7 @@ const Login = (props) => {
   return (
     <div className={classes.root}>
       <Typography component="h1" variant="h5">
-        CREATE ACCOUNT
+        계정 생성
       </Typography>
       <form className={classes.form} onSubmit={props.submit} noValidate>
         <TextField
@@ -67,7 +67,7 @@ const Login = (props) => {
           margin="normal"
           required
           fullWidth
-          label="Email Address"
+          label="이메일"
           type="email"
           id="email"
           name="email"
@@ -77,28 +77,28 @@ const Login = (props) => {
           error={
             props.userinput.email === "" ? false : !isKNU(props.userinput.email)
           }
-          helperText="e.g. name@knu.ac.kr"
+          helperText="예) name@knu.ac.kr"
         /> 
         <TextField
           variant="outlined"
           margin="normal"
           required
           fullWidth
-          label="Password"
+          label="비밀번호"
           type="password"
           id="password"
           name="password"
           value={props.userinput.password}
           onChange={props.onch}
           error={props.userinput.password.length < 7 & props.userinput.password.length > 0}
-          helperText="Must have at least 7 characters"
+          helperText="7문자 이상 입력해주세요"
         />
         <TextField
           variant="outlined"
           margin="normal"
           required
           fullWidth
-          label="Name"
+          label="이름"
           type="text"
           id="name"
           name="name"
@@ -106,10 +106,10 @@ const Login = (props) => {
           onChange={props.onch}
         />
         <FormControl variant="outlined" fullWidth className={classes.study} required>
-          <InputLabel>Department</InputLabel>
-          <Select defaultValue="" id="department" label="Department" value={props.userinput.department} name="department" onChange={props.onch}>
+          <InputLabel>학과</InputLabel>
+          <Select defaultValue="" id="department" label="학과" value={props.userinput.department} name="department" onChange={props.onch}>
             <MenuItem value="">
-              <em>None</em>
+              <em>학과 선택</em>
             </MenuItem>
             <ListSubheader disableSticky={true} className={classes.cate}>인문대학</ListSubheader>
             <MenuItem value="국어국문학과">국어국문학과</MenuItem>
@@ -242,7 +242,7 @@ const Login = (props) => {
           disabled={!isValid()}
           className={classes.submit}
         >
-          REGISTER
+          생성
         </Button>
       </form>
     </div>
