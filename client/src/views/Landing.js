@@ -79,7 +79,7 @@ function Landing() {
     console.log(inputs);
     let data;
     try {
-      if (!newAccount) {
+      if (newAccount) {
         await authService.signInWithEmailAndPassword(
           inputs.email,
           inputs.password
@@ -112,21 +112,21 @@ function Landing() {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        {newAccount ? (
-          <LandingLogin
+        {!newAccount ? (
+          <LandingRegister
             userinput={inputs}
             onch={onChange}
             submit={handleSubmit}
           />
         ) : (
-          <LandingRegister
+          <LandingLogin
             userinput={inputs}
             onch={onChange}
             submit={handleSubmit}
           />
         )}
         <Link to="/CreateAccount" variant="body2" onClick={toggleAccount}>
-          {newAccount ? "계정이 없어요" : "계정이 있어요"}
+          {!newAccount ? "계정이 있어요" : "계정이 없어요"}
         </Link>
         <span onClick={toggleAccount}></span>
       </Paper>
