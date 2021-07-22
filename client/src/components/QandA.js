@@ -20,17 +20,17 @@ const useStyles = makeStyles({
   },
 });
 
-const QandA = () => {
+const QandA = ({ doc }) => {
   const classes = useStyles();
-
+  
   return (
     <div className={classes.audioRoot}>
       <div className={classes.audioBox}>
-        <h3>질문</h3> <audio controls className={classes.audio}></audio>
+        <h3>질문</h3> <audio src={doc.recordURL} controls className={classes.audio}></audio>
       </div>
-      <div className={classes.audioBox}>
+      {/* <div className={classes.audioBox}>
         <h3>답변</h3> <audio controls className={classes.audio}></audio>
-      </div>
+      </div> */}
     </div>
   );
 };
