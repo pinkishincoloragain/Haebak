@@ -2,7 +2,7 @@ import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 
-import MyPageLogo from "./MyPageLogo";
+import PageLogo from "./common/PageLogo";
 import ActivityRecord from "./ActivityRecord";
 import BackButton from "./common/BackButton";
 import MypageImage from "../image/MypageImage.png";
@@ -30,6 +30,13 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "space-around",
   },
+  mypageContent: {
+    height: "80%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-around",
+    alignItems: "center",
+  },
 }));
 
 const MyPage = ({ userObj, handleMypage }) => {
@@ -47,19 +54,21 @@ const MyPage = ({ userObj, handleMypage }) => {
             action={isMypage ? handleMypage : handleMyQuestion}
           />
         </div>
-        {isMypage ? (
-          <>
-            <div style={{ fontSize: "1.6em" }}>
-              <p>학과 : IT대학 - 컴퓨터학부</p>
-              <p>이메일 : {userObj.email}</p>
-            </div>
-            <ActivityRecord handleMyQuestion={handleMyQuestion} />
-          </>
-        ) : (
-          <MyRecordList />
-        )}
+        <div className={classes.mypageContent}>
+          {isMypage ? (
+            <>
+              <div style={{ fontSize: "1.6em" }}>
+                <p>학과 : IT대학 - 컴퓨터학부</p>
+                <p>이메일 : {userObj.email}</p>
+              </div>
+              <ActivityRecord handleMyQuestion={handleMyQuestion} />
+            </>
+          ) : (
+            <MyRecordList />
+          )}
+        </div>
       </Paper>
-      <MyPageLogo />
+      <PageLogo logoName="MYPAGE" />
     </div>
   );
 };
