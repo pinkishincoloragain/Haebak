@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "3em",
       },
     },
+    "@media (max-height:517px)": {
+      height: "auto !important"
+    },
   },
   paper: {
     width: "350px",

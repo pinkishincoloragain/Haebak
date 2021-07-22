@@ -9,6 +9,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    "@media (max-height:517px)": {
+      marginBottom: "0 !important"
+    },
   },
   form: {
     width: "100%",
