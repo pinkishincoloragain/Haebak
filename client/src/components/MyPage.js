@@ -42,7 +42,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   mypageContent: (isMypage) => ({
-    height: "80%",
+    width: "100%",
+    height: "90%",
     display: "flex",
     flexDirection: "column",
     justifyContent: `${isMypage ? "space-around" : "flex-start"}`,

@@ -4,7 +4,7 @@ import LinkPaper from "./common/LinkPaper";
 
 const useStyles = makeStyles((theme) => ({
   mainlistRoot: {
-    width: "100%",
+    width: "80%",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -25,7 +25,7 @@ const MainPaperList = ({ handleActivity }) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.mainPaperList}>
+    <div className={classes.mainlistRoot}>
       <div className={classes.mainPaperList}>
         <LinkPaper
           name="question"

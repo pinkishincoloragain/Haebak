@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "3px 3px",
   },
   mypageBackBtn: {
+    top: "10px",
     left: "35px",
   },
   activityBackBtn: {
@@ -21,7 +22,7 @@ const BackButton = ({ type, action }) => {
   const classes = useStyles();
   let btnClass = "";
 
-  type === "mypage" && (btnClass = classes.mypageBackBtn);
+  (type === "mypage" || type === "aboutpage") && (btnClass = classes.mypageBackBtn);
   type === "activity" && (btnClass = classes.activityBackBtn);
 
   return (
