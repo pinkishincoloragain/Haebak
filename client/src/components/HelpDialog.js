@@ -54,10 +54,13 @@ const HelpDialog = (props) => {
         </DialogTitle>
         <DialogContent dividers>
           <h3>
-            당신의 목소리로 직접 질문하거나 답변해보세요 !
+            당신의 목소리로 질문해보세요. <span style={{ color: "red" }}>같은 학과</span>의 다른 친구들이 답을 해줄거에요.
           </h3>
           <h3>
-            텍스트가 아닌 서로의 목소리로 소통하세요 !
+            같은 학과의 친구들의 고민을 들어주세요. 질문은  <span style={{ color: "red" }}>랜덤</span>으로 받을 수 있어요.
+          </h3>
+          <h3 style={{ fontSize: "1.3rem" }}>
+            텍스트가 아닌 서로의 목소리로 소통해보세요 !
           </h3>
         </DialogContent>
       </Dialog>
