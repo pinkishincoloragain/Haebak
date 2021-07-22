@@ -66,7 +66,7 @@ const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
   }, [question]);
 
   async function fetchRandomQuestion() {
-      await dbService.collection('question').where("creatorDepartment", "==", userInfoObj.department).where("answered", "==", false).where("creatorId", "!=", userObj.uid)
+      await dbService.collection('question').where("creatorDepartment", "==", userInfoObj.department).where("answered", "==", false).where("creatorId", "!=", userObj.uid).where("using", "==", false)
       .get().then((querySnapshot) => {
        if (querySnapshot.size) {
           const rand = Math.floor(Math.random() * querySnapshot.size);
