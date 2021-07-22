@@ -7,10 +7,7 @@ import MyPage from "../components/MyPage";
 import AboutPage from "../components/AboutPage";
 import Activity from "./Activity";
 import HelpButton from "../components/HelpButton";
-<<<<<<< HEAD
-=======
 import SuccSnackbar from "../components/common/SuccSnackbar";
->>>>>>> 1c8935ec512f4669ec451cfebcc02b1d2c329688
 
 const useStyles = makeStyles({
   mainFrame: {

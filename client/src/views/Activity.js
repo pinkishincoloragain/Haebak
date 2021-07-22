@@ -34,15 +34,16 @@ const useStyles = makeStyles((theme) => ({
   },
   answer: {
     background: "rgba(0, 0, 0, 0.4)",
-    width: "100vw",
+    width: "350px",
     position: "fixed",
-    top: "15vh",
+    top: "20vh",
     display: "flex",
     height: "80px",
     color: "white",
     justifyContent: "center",
     textAlign: "center",
-    alignItems: "center"
+    alignItems: "center",
+    borderRadius: "30px"
   },
 }));
 
