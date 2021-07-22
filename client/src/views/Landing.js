@@ -53,14 +53,8 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "FingerPaint",
     backgroundColor: "#fafafa",
     height: "fit-content",
-<<<<<<< HEAD
-    border: "2px solid black",
-    boxShadow: "3px 3px black",
-    padding: "10px",
-=======
     padding: "15px",
     boxShadow: "2px 2px lightgrey"
->>>>>>> 24b8361548d4551b7e66b594b3a55a334fa3ab6c
   },
 }));
 
@@ -139,7 +133,6 @@ function Landing() {
         <span style={{color:"blue", cursor: "pointer"}} onClick={toggleAccount}>
           {!newAccount ? "계정이 있어요" : "계정이 없어요"}
         </span>
-        {/* <span onClick={toggleAccount}></span> */}
       </Paper>
       <div className={classes.titleBox}>
         <Typography component="h1" variant="h2" className={classes.title}>
