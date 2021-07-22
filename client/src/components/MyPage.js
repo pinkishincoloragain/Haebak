@@ -8,7 +8,6 @@ import ActivityRecord from "./ActivityRecord";
 import BackButton from "./common/BackButton";
 import MypageImage from "../assets/image/MypageImage.png";
 import MyRecordList from "./MyRecordList";
-import { dbService } from "../firebase";
 
 const useStyles = makeStyles((theme) => ({
   mypageRoot: {

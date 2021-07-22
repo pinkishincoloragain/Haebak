@@ -34,22 +34,23 @@ const useStyles = makeStyles((theme) => ({
   },
   answer: {
     background: "rgba(0, 0, 0, 0.4)",
-    width: "100vw",
+    width: "350px",
     position: "fixed",
-    top: "15vh",
+    top: "20vh",
     display: "flex",
     height: "80px",
     color: "white",
     justifyContent: "center",
     textAlign: "center",
-    alignItems: "center"
+    alignItems: "center",
+    borderRadius: "30px"
   },
 }));
 
-const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
+const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity, handleSnack }) => {
   const classes = useStyles();
   const [file, setFile] = useState(null);
-  const [pending, setPending] = useState(false);
+  const [pending, setPending] = useState(true);
   const [question, setQuestion] = useState(null);
   const [available, setAvailable] = useState(false);
     
@@ -69,10 +70,9 @@ const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
       await dbService.collection('question').where("creatorDepartment", "==", userInfoObj.department).where("answered", "==", false).where("using", "==", false)
       .get().then((querySnapshot) => {
         const filtered = querySnapshot.docs.filter(d => d.data().creatorId !== userObj.uid);
-       if (filtered.size) {
-          const rand = Math.floor(Math.random() * filtered.size);
+       if (filtered.length) {
+          const rand = Math.floor(Math.random() * filtered.length);
           const selected = filtered[rand];
-          console.log(selected);
           dbService.collection('question').doc(selected.id).update({using: true});
           setQuestion(selected);
           setAvailable(true);
@@ -105,12 +105,13 @@ const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
     }
     setFile(null);
     handleActivity();
+    handleSnack();
     setPending(false);
   }
 
   return (
     <div>
-      {pending && <Pending text={isQuestion ? "질문하는 중..." : "답변하는 중..."} />}
+      {pending && <Pending text={isQuestion ? "질문하는 중..." : question ? "답변하는 중..." : "질문 가져오는 중..."} />}
       <BackButton type="activity" action={handleActivity} />
       <div className={classes.container}>
         <ActivityImage state={isQuestion} />
@@ -121,7 +122,6 @@ const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
         )}
         {!isQuestion && (
           <div className={classes.answer}>
-            {pending && question && <Pending text="무작위 질문을 검색중 입니다..." />}
             {!pending && question && available ? 
             <audio controls src={question.data().recordURL}>질문</audio> :
             <h1>존재하는 질문이 없습니다!</h1>
