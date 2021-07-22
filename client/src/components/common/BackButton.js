@@ -22,7 +22,7 @@ const BackButton = ({ type, action }) => {
   const classes = useStyles();
   let btnClass = "";
 
-  type === "mypage" && (btnClass = classes.mypageBackBtn);
+  (type === "mypage" || type === "aboutpage") && (btnClass = classes.mypageBackBtn);
   type === "activity" && (btnClass = classes.activityBackBtn);
 
   return (

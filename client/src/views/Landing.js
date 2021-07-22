@@ -1,12 +1,7 @@
 import React, { useState } from "react";
-import {
-  Link,
-  Paper,
-  Grid,
-  Typography,
-} from "@material-ui/core";
+import { Link, Paper, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { authService } from "../firebase";
+import { authService, dbService } from "../firebase";
 import LandingLogin from "../components/LandingLogin";
 import LandingRegister from "../components/LandingRegister";
 
@@ -80,11 +75,17 @@ function Landing() {
       } else {
         data = await authService.createUserWithEmailAndPassword(
           inputs.email,
-          inputs.password,
-          inputs.name,
-          inputs.department
+          inputs.password
         );
       }
+
+      const userInfoObj = {
+        department: inputs.department,
+        email: inputs.email,
+        name: inputs.name,
+      };
+      dbService.collection("userInfo").add(userInfoObj);
+
       setInputs(init);
     } catch (err) {
       alert(err.message);
@@ -93,14 +94,26 @@ function Landing() {
 
   const toggleAccount = () => {
     setInputs(init);
-    setNewAccount((prev) => !prev)
+    setNewAccount((prev) => !prev);
   };
 
   return (
     <Grid container component="main" className={classes.root}>
       <Grid item xs={8} sm={8} md={3} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          {newAccount ? <LandingRegister userinput={inputs} onch={onChange} submit={handleSubmit}/> : <LandingLogin userinput={inputs} onch={onChange} submit={handleSubmit}/>}
+          {newAccount ? (
+            <LandingRegister
+              userinput={inputs}
+              onch={onChange}
+              submit={handleSubmit}
+            />
+          ) : (
+            <LandingLogin
+              userinput={inputs}
+              onch={onChange}
+              submit={handleSubmit}
+            />
+          )}
           <Grid className={classes.up}>
             <Link to="/CreateAccount" variant="body2" onClick={toggleAccount}>
               {newAccount ? "I Already have acoount" : "Join now"}

@@ -31,7 +31,7 @@ const HelpButton = () => {
 
   return (
     <>
-      <IconButton size="large" className={classes.Helpbtn} onClick={openDialog}>
+      <IconButton size="medium" className={classes.Helpbtn} onClick={openDialog}>
         <HelpOutlineIcon fontSize="large" />
       </IconButton>
       {show ? <HelpDialog func={closeDialog} /> : ""}
