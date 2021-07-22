@@ -4,7 +4,7 @@ import { Paper } from "@material-ui/core";
 import PageLogo from "./common/PageLogo";
 import BackButton from "./common/BackButton";
 import AboutList from "./common/AboutList";
-import MypageImage from "../assets/image/MypageImage.png";
+import MypageImage from "../assets/image/paper.jpeg";
 
 const useStyles = makeStyles((theme) => ({
   aboutpageRoot: {
