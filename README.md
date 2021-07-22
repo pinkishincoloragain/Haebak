@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="#">
-    <img src="/client/src/assets/image/mainPage.png" alt="Logo" width="80" height="80">
+    <img src="/client/src/assets/image/mainPage.png" alt="Logo">
   </a>
 
   <h1 align="center">KNU HOUSE</h1>
