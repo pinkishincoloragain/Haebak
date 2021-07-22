@@ -132,10 +132,10 @@ function Landing() {
             submit={handleSubmit}
           />
         )}
-        <span style={{color:"blue"}} onClick={toggleAccount}>
+        <span style={{color:"blue", cursor: "pointer"}} onClick={toggleAccount}>
           {!newAccount ? "계정이 있어요" : "계정이 없어요"}
         </span>
-        <span onClick={toggleAccount}></span>
+        {/* <span onClick={toggleAccount}></span> */}
       </Paper>
       <div className={classes.titleBox}>
         <Typography component="h1" variant="h2" className={classes.title}>
