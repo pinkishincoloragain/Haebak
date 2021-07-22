@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-function Record({ isQuestion, setFile }) {
+function Record({ setFile }) {
     const [isRecording, setIsRecording] = useState(false);
     const [blobURL, setBlobURL] = useState("");
     const [isBlocked, setIsBlocked] = useState(true);
@@ -74,6 +74,7 @@ function Record({ isQuestion, setFile }) {
         if (isBlocked) {
             console.log('Permission Denied');
           } else {
+            setFile(null);
             recorder.start().then(() => {
                 setIsRecording(true);
             }).catch((e) => console.error(e));

@@ -6,9 +6,11 @@ import Record from "../components/Record";
 import ActivityImage from "../components/common/ActivityImage";
 import BackButton from "../components/common/BackButton";
 import Button from '@material-ui/core/Button';
+import Fade from '@material-ui/core/Fade';
 
 import { dbService, storageService } from "../firebase.js";
 import Pending from "../components/common/Pending";
+import RandomAnswer from "../components/RandomAnswer";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -36,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 const Activity = ({ userObj, isQuestion, handleActivity }) => {
   const [file, setFile] = useState(null);
   const [pending, setPending] = useState(false);
+  const [record, setRecord] = useState(isQuestion);
   const classes = useStyles();
 
   async function handleSubmit() {
@@ -64,19 +67,18 @@ const Activity = ({ userObj, isQuestion, handleActivity }) => {
       <BackButton type="activity" action={handleActivity} />
       <div className={classes.container}>
         <ActivityImage state={isQuestion} />
-        {isQuestion ? 
-        <Record state={isQuestion} setFile={setFile} /> 
-        :
-        <div>
-          <audio controls></audio>
-          <Button></Button>
-        </div>
+        {record && <Record setFile={setFile} /> }
+        {!isQuestion && 
+          <RandomAnswer />
         }
       </div>
-      { file && !pending &&
-      <Button className={classes.submit} onClick={handleSubmit} variant="contained">
-        질문하기
-      </Button>}
+      { file &&
+        <Fade in={true}>
+          <Button className={classes.submit} onClick={handleSubmit} variant="contained">
+            질문하기
+          </Button>
+        </Fade>
+      }
     </div>
   );
 };
