@@ -32,7 +32,7 @@ function App() {
       else {
         setIsLoggedIn(false);
       }
-
+      
       // database not ready
       setInit(true);
     });
