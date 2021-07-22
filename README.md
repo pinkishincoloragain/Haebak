@@ -10,7 +10,7 @@
   <p align="center">
     경북대학교 SW 해커톤
     <br />
-    <a href="#"><strong>GO WEBSITE »</strong></a>
+    <a href="https://knuhouse.netlify.app/"><strong>GO WEBSITE »</strong></a>
     <br />
     <br />
   </p>
