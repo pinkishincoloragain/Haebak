@@ -30,7 +30,7 @@ const LinkPaperImg = ({ type, name }) => {
         <img
           src={name === "question" ? MypageQuestionImg : MypageAnswerImg}
           alt={name === "question" ? "Question img" : "Answer img"}
-          width={name === "question" ? "70%" : "59%"}
+          width={name === "question" ? "70%" : "54.5%"}
         />
       )}
     </div>

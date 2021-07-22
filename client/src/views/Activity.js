@@ -5,8 +5,8 @@ import { v4 as uuidv4 } from "uuid";
 import Record from "../components/Record";
 import ActivityImage from "../components/common/ActivityImage";
 import BackButton from "../components/common/BackButton";
-import Button from '@material-ui/core/Button';
-import Fade from '@material-ui/core/Fade';
+import Button from "@material-ui/core/Button";
+import Fade from "@material-ui/core/Fade";
 
 import { dbService, storageService } from "../firebase.js";
 import Pending from "../components/common/Pending";
@@ -52,7 +52,7 @@ const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
     await dbService.collection("question").add({
       createdAt: Date.now(),
       creatorId: userObj.uid,
-      creatorDepartmnet: userInfoObj.department,
+      creatorDepartment: userInfoObj.department,
       recordURL,
       answered: false,
       answerId: "",
@@ -68,18 +68,22 @@ const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
       <BackButton type="activity" action={handleActivity} />
       <div className={classes.container}>
         <ActivityImage state={isQuestion} />
-        {record && <Record setFile={setFile} /> }
-        {!isQuestion && 
+        {record && <Record setFile={setFile} />}
+        {!isQuestion && (
           <RandomAnswer userInfoObj={userInfoObj} userObj={userObj} />
-        }
+        )}
       </div>
-      { file &&
+      {file && (
         <Fade in={true}>
-          <Button className={classes.submit} onClick={handleSubmit} variant="contained">
+          <Button
+            className={classes.submit}
+            onClick={handleSubmit}
+            variant="contained"
+          >
             질문하기
           </Button>
         </Fade>
-      }
+      )}
     </div>
   );
 };
