@@ -24,13 +24,12 @@ const DialogTitle = withStyles(styles)((props) => {
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
       <Typography variant="h6">{children}</Typography>
       {onClose ? (
-        <IconButton
-          className={classes.closeButton}
-          onClick={onClose}
-        >
+        <IconButton className={classes.closeButton} onClick={onClose}>
           <CloseIcon />
         </IconButton>
-      ) : ""}
+      ) : (
+        ""
+      )}
     </MuiDialogTitle>
   );
 });
@@ -44,25 +43,41 @@ const DialogContent = withStyles((theme) => ({
 const HelpDialog = (props) => {
   return (
     <div>
-      <Dialog
-        onClose={props.func}
-        open={true}
-      >
+      <Dialog onClose={props.func} open={true}>
         <DialogTitle onClose={props.func}>
-          <span style={{ fontFamily: "FingerPaint", color: "red" }}>KNU</span>
-          <span style={{ fontFamily: "FingerPaint"}}>HOUSE is ...</span>
+          <span
+            style={{
+              fontFamily: "FingerPaint",
+              color: "red",
+            }}
+          >
+            KNU
+          </span>
+          <span style={{ fontFamily: "FingerPaint" }}>HOUSE is ...</span>
         </DialogTitle>
         <DialogContent dividers>
           <h3>
-            당신의 목소리로 직접 질문하거나 답변해보세요 !
+            당신의 목소리로 질문해보세요. <p />
+            <span style={{ color: "red" }}>같은 학과</span>의 다른 친구들이 답을
+            해 줄 거에요.
           </h3>
           <h3>
-            텍스트가 아닌 서로의 목소리로 소통하세요 !
+            같은 학과의 친구들의 고민을 들어주세요. 질문은{" "}
+            <span style={{ color: "red" }}>랜덤</span>으로 받을 수 있어요.
+          </h3>
+          <h3
+            style={{
+              fontSize: "2.2rem",
+              textAlign: "center",
+              fontFamily: "NanumPenScript",
+            }}
+          >
+            텍스트가 아닌 서로의 목소리로 소통해보세요 !
           </h3>
         </DialogContent>
       </Dialog>
     </div>
   );
-}
+};
 
 export default HelpDialog;

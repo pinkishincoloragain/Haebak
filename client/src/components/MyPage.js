@@ -7,7 +7,7 @@ import MyRecordList from "./MyRecordList";
 import MypageContent from "./MyPageContent";
 import PageLogo from "./common/PageLogo";
 import BackButton from "./common/BackButton";
-import MypageImage from "../assets/image/MypageImage.png";
+import MypageImage from "../assets/image/paper.jpeg";
 
 import { dbService } from "../firebase";
 

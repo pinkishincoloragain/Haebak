@@ -6,6 +6,7 @@ import swal from "@sweetalert/with-react";
 import "./App.css";
 import Main from "./views/Main";
 import Landing from "./views/Landing";
+import "./App.css";
 import Pending from "./components/common/Pending";
 
 function App() {
@@ -26,11 +27,11 @@ function App() {
 
     authService.onAuthStateChanged((user) => {
       // user is logged in
-      console.log(user);
       if (user) {
         fetchUserData(user);
         setUserObj(user);
         setIsLoggedIn(true);
+<<<<<<< HEAD
         console.log(user.emailVerified);
         if (user.emailVerified !== true) {
           swal({
@@ -49,6 +50,10 @@ function App() {
               </div>
             ),
           });
+=======
+        if (user.emailVerified !== true) {
+          alert("check your email!");
+>>>>>>> f0baddd2bea9a17568e44eae7ced77f1be8f10f8
           authService.signOut();
         }
       }
