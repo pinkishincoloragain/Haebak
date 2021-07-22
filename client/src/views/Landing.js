@@ -11,7 +11,6 @@ import LandingImage from "../assets/image/paper.jpeg";
 const useStyles = makeStyles((theme) => ({
   root: {
     background: `url(${LandingImage}) center center / cover no-repeat`,
-    height: "100vh",
     width: "100%",
     display: "flex",
     flexWrap: "wrap",
@@ -65,7 +64,6 @@ function Landing() {
     name: "",
     department: "",
   };
-
   const [inputs, setInputs] = useState(init);
   const [newAccount, setNewAccount] = useState(true);
 
@@ -133,7 +131,10 @@ function Landing() {
   };
 
   return (
-    <div className={classes.root}>
+    <div
+      className={classes.root}
+      style={{ height: `${newAccount ? "100vh" : "auto"}` }}
+    >
       <Paper className={classes.paper}>
         {!newAccount ? (
           <LandingRegister

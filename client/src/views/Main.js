@@ -13,7 +13,6 @@ import MainImage from "../assets/image/paper.jpeg"
 const useStyles = makeStyles({
   mainFrame: {
     width:"100%",
-    height: "100%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",

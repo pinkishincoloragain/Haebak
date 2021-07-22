@@ -7,7 +7,7 @@ import HelpDialog from "./HelpDialog";
 
 const useStyles = makeStyles((theme) => ({
   Helpbtn: {
-    position: "absolute",
+    position: "fixed",
     right: "4.5%",
     bottom: "4%",
     color: "black",
