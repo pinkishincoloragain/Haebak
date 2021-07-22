@@ -25,13 +25,12 @@ const DialogTitle = withStyles(styles)((props) => {
       <Typography variant="h6">{children}</Typography>
       {onClose ? (
         <IconButton
-          aria-label="close"
           className={classes.closeButton}
           onClick={onClose}
         >
           <CloseIcon />
         </IconButton>
-      ) : null}
+      ) : ""}
     </MuiDialogTitle>
   );
 });
@@ -42,16 +41,15 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
-export default function CustomizedDialogs(props) {
+const HelpDialog = (props) => {
   return (
     <div>
       <Dialog
         onClose={props.func}
-        aria-labelledby="customized-dialog-title"
         open={true}
       >
-        <DialogTitle id="customized-dialog-title" onClose={props.func}>
-          <span style={{ fontFamily: "FingerPaint" }}>HELP</span>
+        <DialogTitle onClose={props.func}>
+          <span style={{ fontFamily: "FingerPaint" }}>KNUHOUSE is ...</span>
         </DialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
@@ -65,3 +63,5 @@ export default function CustomizedDialogs(props) {
     </div>
   );
 }
+
+export default HelpDialog;
