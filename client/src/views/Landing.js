@@ -32,8 +32,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     padding: "0 30px 15px 30px",
-    border: "2px solid black",
-    boxShadow: "3px 3px black",
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -55,9 +53,14 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "FingerPaint",
     backgroundColor: "#fafafa",
     height: "fit-content",
+<<<<<<< HEAD
     border: "2px solid black",
     boxShadow: "3px 3px black",
     padding: "10px",
+=======
+    padding: "15px",
+    boxShadow: "2px 2px lightgrey"
+>>>>>>> 24b8361548d4551b7e66b594b3a55a334fa3ab6c
   },
 }));
 
