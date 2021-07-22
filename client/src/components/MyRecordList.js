@@ -29,17 +29,26 @@ const MyRecordList = ({ userObj }) => {
       .collection("question")
       .where("creatorId", "==", userObj.uid)
       .get();
-    const transformedData = querySnapshot.docs.map((doc) => doc.data());
+    const transformedData = querySnapshot.docs.map((doc) => doc);
     setData(transformedData);
     setPending(false);
   }
+
+  const handleDeleteRecord = (id) => {};
 
   return (
     <>
       {pending && <Pending text="질문 가져오는 중..." />}
       <h1 style={{ textAlign: "center" }}>나의 질문 목록</h1>
       <div className={classes.listFrame}>
-        {!pending && data.map((doc, idx) => <QandA key={idx} doc={doc} />)}
+        {!pending &&
+          data.map((doc, idx) => (
+            <QandA
+              key={idx}
+              doc={doc}
+              handleDeleteRecord={handleDeleteRecord}
+            />
+          ))}
       </div>
     </>
   );
