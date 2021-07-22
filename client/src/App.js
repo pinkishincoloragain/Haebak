@@ -47,7 +47,8 @@ function App() {
     await dbService
       .collection("userInfo")
       .where("email", "==", user.email)
-      .get().then((d) => setUserInfoObj(d.docs[0].data()));
+      .get()
+      .then((d) => setUserInfoObj(d.docs[0].data()));
   }
 
   return (
