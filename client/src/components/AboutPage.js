@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
+import { Paper } from "@material-ui/core";
 
 import PageLogo from "./common/PageLogo";
 import BackButton from "./common/BackButton";
@@ -30,11 +30,12 @@ const useStyles = makeStyles((theme) => ({
   },
   aboutpageContent: {
     width: "100%",
-    height: "80%",
+    height: "90%",
     display: "flex",
+    padding: "0px 5px 0px 5px",
     flexDirection: "column",
-    // justifyContent: "space-around",
     alignItems: "center",
+    justifyContent: "space-around",
   },
 }));
 
@@ -45,10 +46,7 @@ const AboutPage = ({ handleAboutpage }) => {
     <div className={classes.aboutpageRoot}>
       <Paper elevation={3} className={classes.aboutpagePaper}>
         <div style={{ width: "100%" }}>
-          <BackButton
-            type="aboutpage"
-            action={handleAboutpage}
-          />
+          <BackButton type="aboutpage" action={handleAboutpage} />
         </div>
         <div className={classes.aboutpageContent}>
           <AboutList />

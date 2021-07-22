@@ -6,44 +6,48 @@ import {
   ListItemAvatar,
   Avatar,
   Typography,
+  Button,
 } from "@material-ui/core";
-import GitHubIcon from "@material-ui/icons/GitHub";
-import { grey } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
+  btn: {
+    backgroundColor: "white",
+    border: "2px solid",
+    boxShadow: "3px 3px",
+    borderRadius: "4px",
+    margin: "8px 0px",
+  },
   inline: {
     display: "inline",
   },
 }));
 
-export default function AlignItemsList({ img, info, name, git }) {
+export default function AlignItemsList({ img, info, name }) {
   const classes = useStyles();
-  const gitlink = "https://github.com/" + git;
 
   return (
-    <ListItem alignItems="flex-start">
-      <ListItemAvatar>
-        <Avatar sizes="large" variant="square" alt={name} src={img} />
-      </ListItemAvatar>
-      <ListItemText
-        primary={name}
-        secondary={
-          <React.Fragment>
-            <Typography
-              component="span"
-              variant="body2"
-              className={classes.inline}
-              color="textPrimary"
-            >
-              {info}
-              <a href={gitlink}>
-                <GitHubIcon style={{ color: grey[500] }}/>
-              </a>
-            </Typography>
-            <br></br>
-          </React.Fragment>
-        }
-      />
-    </ListItem>
+    <Button variant="contained" className={classes.btn}>
+      <ListItem alignItems="flex-start">
+        <ListItemAvatar>
+          <Avatar sizes="large" variant="square" alt={name} src={img} />
+        </ListItemAvatar>
+        <ListItemText
+          primary={name}
+          secondary={
+            <React.Fragment>
+              <Typography
+                component="span"
+                variant="body2"
+                className={classes.inline}
+                color="textPrimary"
+              >
+                {info}
+              </Typography>
+              <br></br>
+            </React.Fragment>
+          }
+        />
+      </ListItem>
+    </Button>
   );
 }

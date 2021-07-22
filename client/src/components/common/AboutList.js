@@ -1,32 +1,52 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { List, Divider } from "@material-ui/core";
+import { List, Button } from "@material-ui/core";
 
 import kdg from "../../image/kdg.png";
 import bsu from "../../image/bsu.png";
 import smb from "../../image/smb.png";
 import cjw from "../../image/cjw.png";
+import GitHubIcon from "@material-ui/icons/GitHub";
 import AboutListItem from "../common/AboutListItem";
 
 const useStyles = makeStyles((theme) => ({
-    title: {
+  section: {
     textAlign: "center",
-    background: 'linear-gradient(45deg, #ffffff 0%, #000000 100%)',
+    "& > a": {
+      color: "black",
+      textDecoration: "none",
+    },
+  },
+  title: {
+    textAlign: "center",
+    background: "linear-gradient(20deg, #ffffff 0%, #000000 100%)",
     border: 0,
     borderRadius: 3,
     boxShadow: "0 3px 5px 2px rgba(0, 0, 0, .3)",
     color: "white",
     paddingLeft: "1rem",
     paddingRight: "1rem",
+    margin: "0",
   },
-  root: {
+  list: {
+    textAlign: "center",
     width: "100%",
-    backgroundColor: "#eeeeee",
     border: 0,
     borderRadius: 3,
+    "& > a": {
+      color: "black",
+      textDecoration: "none",
+    },
   },
   inline: {
     display: "inline",
+  },
+  btn: {
+    backgroundColor: "white",
+    border: "2px solid",
+    boxShadow: "3px 3px",
+    borderRadius: "4px",
+    margin: "8px 0px",
   },
 }));
 
@@ -35,38 +55,46 @@ export default function AlignItemsList() {
 
   return (
     <>
-      <h1 className={classes.title}>DEVELOPERS</h1>
-      <List className={classes.root}>
-        <AboutListItem
-          img={kdg}
-          info="경북대 컴퓨터학부 17학번"
-          name="김동규"
-          git="KingDonggyu"
-        />
-        <Divider variant="inset" component="li" />
-        <AboutListItem
-          img={bsu}
-          info="경북대 컴퓨터학부 17학번"
-          name="백성욱"
-          git="SeongukBaek"
-        />
-        <Divider variant="inset" component="li" />
-        <AboutListItem
-          img={smb}
-          info="경북대 컴퓨터학부 17학번"
-          name="손명빈"
-          git="pinkishincoloragain"
-        />
-        <Divider variant="inset" component="li" />
-        <AboutListItem
-          img={cjw}
-          info="경북대 컴퓨터학부 17학번"
-          name="정재웅"
-          git="woong-jae"
-        />
+      <header className={classes.section}>
+        <h1 className={classes.title}>DEVELOPERS</h1>
+      </header>
+      <List className={classes.list}>
+        <a href="https://github.com/KingDonggyu">
+          <AboutListItem
+            img={kdg}
+            info="경북대 컴퓨터학부 17학번"
+            name="김동규"
+          />
+        </a>
+        <a href="https://github.com/SeongukBaek">
+          <AboutListItem
+            img={bsu}
+            info="경북대 컴퓨터학부 17학번"
+            name="백성욱"
+          />
+        </a>
+        <a href="https://github.com/pinkishincoloragain">
+          <AboutListItem
+            img={smb}
+            info="경북대 컴퓨터학부 17학번"
+            name="손명빈"
+          />
+        </a>
+        <a href="https://github.com/woong-jae">
+          <AboutListItem
+            img={cjw}
+            info="경북대 컴퓨터학부 17학번"
+            name="정재웅"
+          />
+        </a>
       </List>
-      <h1 className={classes.title}>GITHUB</h1>
-
+      <footer className={classes.section}>
+        <a href="https://github.com/pinkishincoloragain/Haebak">
+          <Button variant="contained" className={classes.btn}>
+            <GitHubIcon />
+          </Button>
+        </a>
+      </footer>
     </>
   );
 }
