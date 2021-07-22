@@ -86,10 +86,8 @@ function Landing() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputs);
-    let data;
     try {
-      if (newAccount) {
+      if (!newAccount) {
         const userInfoObj = {
           department: inputs.department,
           email: inputs.email,
@@ -97,12 +95,12 @@ function Landing() {
         };
         await dbService.collection("userInfo").add(userInfoObj);
 
-        await authService.signInWithEmailAndPassword(
+        await authService.createUserWithEmailAndPassword(
           inputs.email,
           inputs.password
         );
       } else {
-        data = await authService.createUserWithEmailAndPassword(
+        await authService.signInWithEmailAndPassword(
           inputs.email,
           inputs.password
         );

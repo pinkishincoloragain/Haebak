@@ -32,9 +32,9 @@ function App() {
       // user is logged in
       console.log(user);
       if (user) {
-        setIsLoggedIn(true);
         fetchUserData(user);
         setUserObj(user);
+        setIsLoggedIn(true);
       }
       // user is not logged in
       else {
@@ -47,26 +47,10 @@ function App() {
   }, []);
 
   async function fetchUserData(user) {
-    const data = await dbService
+    await dbService
       .collection("userInfo")
       .where("email", "==", user.email)
-      .get();
-    console.log(data);
-    setUserInfoObj(data.docs[0].data());
-
-    // dbService
-    //   .collection("userInfo")
-    //   .where("email", "==", user.email)
-    //   .onSnapshot((querySnapshot) => {
-    //     var department = [];
-    //     querySnapshot.forEach((doc) => {
-    //       department.push(doc.data().name);
-    //     });
-    //     console.log("department", department);
-    //   });
-
-    // console.log(data.docs[0].data());
-    // console.log(data.docs[0].get("department"));
+      .get().then((d) => setUserInfoObj(d.docs[0].data()));
   }
 
   return (
