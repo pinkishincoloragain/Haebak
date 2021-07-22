@@ -39,20 +39,20 @@ const MyPage = ({ userObj, handleMypage }) => {
 
   const handleMyQuestion = () => setIsMypage(!isMypage);
 
-  useEffect(() => {
-    getQuestionAnswers;
-  }, []);
+  // useEffect(() => {
+  //   getQuestionAnswers;
+  // }, []);
 
-  const getQuestionAnswers = async () => {
-    // filtering = where
-    // 내 레코드 다 가져와
-    const RecordData = await dbService
-      .collection("Record")
-      .where("creatorId", "==", userObj.uid)
-      .orderBy("createdAt")
-      .get();
-    console.log(records.docs.map((doc) => doc.data()));
-  };
+  // const getQuestionAnswers = async () => {
+  //   // filtering = where
+  //   // 내 레코드 다 가져와
+  //   const RecordData = await dbService
+  //     .collection("Record")
+  //     .where("creatorId", "==", userObj.uid)
+  //     .orderBy("createdAt")
+  //     .get();
+  //   console.log(records.docs.map((doc) => doc.data()));
+  // };
 
   return (
     <div className={classes.mypageRoot}>

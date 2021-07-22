@@ -37,25 +37,25 @@ const Main = ({ isLoggedIn, userObj }) => {
       activity: !isOtherPage.activity,
     });
 
-  return (
-    <div style={{ height: "100%" }}>
-      {isOtherPage.main && (
-        <>
-          <MainHeader
-            handleMypage={handleMypage}
-            handleAboutpage={handleAboutpage}
-          />
-          <MainPaperList handleActivity={handleActivity} />
-        </>
-      )}
-      {isOtherPage.mypage && (
-        <MyPage userObj={userObj} handleMypage={handleMypage} />
-      )}
-      {isOtherPage.about && <AboutPage handleAboutpage={handleAboutpage} />}
-      {isOtherPage.activity && <Activity handleActivity={handleActivity} />}
-      <HelpButton />
-    </div>
-  );
+  // return (
+  //   <div style={{ height: "100%" }}>
+  //     {isOtherPage.main && (
+  //       <>
+  //         <MainHeader
+  //           handleMypage={handleMypage}
+  //           handleAboutpage={handleAboutpage}
+  //         />
+  //         <MainPaperList handleActivity={handleActivity} />
+  //       </>
+  //     )}
+  //     {isOtherPage.mypage && (
+  //       <MyPage userObj={userObj} handleMypage={handleMypage} />
+  //     )}
+  //     {isOtherPage.about && <AboutPage handleAboutpage={handleAboutpage} />}
+  //     {isOtherPage.activity && <Activity handleActivity={handleActivity} />}
+  //     <HelpButton />
+  //   </div>
+  // );
 
   return (
     <div>

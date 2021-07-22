@@ -12,6 +12,20 @@ const GetRecord = ({ userObj }) => {
   // record file
   const [recordData, setRecordData] = useState(null);
 
+  // useEffect(() => {
+  //   // onSnapshot -> detect change from DB
+  //   dbService.collection("records").onSnapshot((snapshot) => {
+  //     // console.log(snapshot.docs);
+
+  //     // create arr of data.
+  //     const recordArr = snapshot.docs.map((doc) => ({
+  //       id: doc,
+  //       ...doc.data(),
+  //     }));
+  //     // console.log(recordArr);
+  //   });
+  // }, []);
+
   useEffect(() => {
     // onSnapshot -> detect change from DB
     dbService.collection("records").onSnapshot((snapshot) => {
@@ -22,6 +36,9 @@ const GetRecord = ({ userObj }) => {
         id: doc,
         ...doc.data(),
       }));
+
+      const data = dbService.collection("record").doc("iZafwEYsl6G5W9XCnbeL");
+      console.log(data);
       // console.log(recordArr);
     });
   }, []);
@@ -48,6 +65,7 @@ const GetRecord = ({ userObj }) => {
 
     // insert data to database
     await dbService.collection("knuhouse").add(recordObj);
+    console.log(recordObj.RecordUrl);
 
     // flush inputform
     setRecord("");
@@ -86,6 +104,7 @@ const GetRecord = ({ userObj }) => {
 
     // read data and make URL
     reader.readAsDataURL(file);
+    console.log(file);
   };
 
   const handleClear = () => {
@@ -125,7 +144,8 @@ const GetRecord = ({ userObj }) => {
             // Obj for record
             recordObj={record}
             // check if the user(logged in) is creator of record
-            isOwner={record.creatorId === userObj.uid}></RecordService>
+            isOwner={record.creatorId === userObj.uid}
+          ></RecordService>
         ))}
       </div>
     </div>
