@@ -4,11 +4,8 @@ import Main from "./views/Main";
 import Landing from "./views/Landing";
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import GetRecord from "./components/GetRecord";
 import { authService, dbService } from "./firebase";
-import Activity from "./views/Activity";
 import Pending from "./components/common/Pending";
-import { useReducer } from "react";
 import firebase from "firebase/app";
 
 function App() {
