@@ -82,7 +82,7 @@ const MyPage = ({ userObj, handleMypage, userInfoObj }) => {
       window.removeEventListener("resize", handleResize);
     };
   });
-  console.log(userInfoObj);
+
   return (
     <div className={classes.mypageRoot}>
       <Paper elevation={3} className={classes.mypagePaper}>

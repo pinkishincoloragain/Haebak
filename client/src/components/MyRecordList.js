@@ -25,7 +25,10 @@ const MyRecordList = ({ userObj }) => {
   }, []);
 
   async function fetchData() {
-    const querySnapshot = await dbService.collection('question').where('creatorId', "==", userObj.uid).get();
+    const querySnapshot = await dbService
+      .collection("question")
+      .where("creatorId", "==", userObj.uid)
+      .get();
     const transformedData = querySnapshot.docs.map((doc) => doc.data());
     setData(transformedData);
     setPending(false);
