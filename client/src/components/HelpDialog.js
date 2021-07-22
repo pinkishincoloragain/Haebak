@@ -49,15 +49,16 @@ const HelpDialog = (props) => {
         open={true}
       >
         <DialogTitle onClose={props.func}>
-          <span style={{ fontFamily: "FingerPaint" }}>KNUHOUSE is ...</span>
+          <span style={{ fontFamily: "FingerPaint", color: "red" }}>KNU</span>
+          <span style={{ fontFamily: "FingerPaint"}}>HOUSE is ...</span>
         </DialogTitle>
         <DialogContent dividers>
-          <Typography gutterBottom>
+          <h3>
             당신의 목소리로 직접 질문하거나 답변해보세요 !
-          </Typography>
-          <Typography gutterBottom>
+          </h3>
+          <h3>
             텍스트가 아닌 서로의 목소리로 소통하세요 !
-          </Typography>
+          </h3>
         </DialogContent>
       </Dialog>
     </div>
