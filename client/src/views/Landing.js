@@ -85,17 +85,16 @@ function Landing() {
     e.preventDefault();
     try {
       if (!newAccount) {
+        await authService.createUserWithEmailAndPassword(
+          inputs.email,
+          inputs.password
+        );
         const userInfoObj = {
           department: inputs.department,
           email: inputs.email,
           name: inputs.name,
         };
         await dbService.collection("userInfo").add(userInfoObj);
-
-        await authService.createUserWithEmailAndPassword(
-          inputs.email,
-          inputs.password
-        );
       } else {
         await authService.signInWithEmailAndPassword(
           inputs.email,
