@@ -86,7 +86,7 @@ const MyPage = ({ userObj, handleMypage }) => {
               <ActivityRecord handleMyQuestion={handleMyQuestion} />
             </>
           ) : (
-            <MyRecordList />
+            <MyRecordList userObj={userObj} />
           )}
         </div>
       </Paper>
