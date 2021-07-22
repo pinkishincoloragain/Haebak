@@ -90,10 +90,7 @@ const MyPage = ({ userObj, handleMypage }) => {
           )}
         </div>
       </Paper>
-      <PageLogo
-        logoName="MYPAGE"
-        responsive={`${windowWidth <= 410 ? true : false}`}
-      />
+      <PageLogo logoName="MYPAGE" windowWidth={windowWidth} />
     </div>
   );
 };

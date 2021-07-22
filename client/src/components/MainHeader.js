@@ -8,14 +8,14 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: "70px",
     fontSize: "1.4em",
+    overflowY: "scroll",
     "@media (max-width:520px)": {
       marginBottom: "20px !important",
     },
   },
   headerLogo: {
-    "@media (max-width:520px)": {
+    "@media (max-width:1150px)": {
       fontSize: "1.5em",
     },
   },
