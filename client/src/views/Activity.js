@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
+const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity, handleSnack }) => {
   const classes = useStyles();
   const [file, setFile] = useState(null);
   const [pending, setPending] = useState(true);
@@ -104,6 +104,7 @@ const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
     }
     setFile(null);
     handleActivity();
+    handleSnack();
     setPending(false);
   }
 
