@@ -46,6 +46,8 @@ const useStyles = makeStyles((theme) => ({
     color: "#e53935",
     marginLeft: "50px",
     fontFamily: "FingerPaint",
+    backgroundColor: "white",
+    height: "fit-content",
   },
 }));
 
@@ -129,7 +131,7 @@ function Landing() {
         <span onClick={toggleAccount}></span>
       </Paper>
       <Typography component="h1" variant="h2" className={classes.title}>
-        KNU&nbsp;
+        KNU
         <span style={{ color: "black" }}>HOUSE</span>
       </Typography>
     </div>

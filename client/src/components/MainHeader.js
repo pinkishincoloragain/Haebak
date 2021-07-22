@@ -28,7 +28,7 @@ const Header = ({ handleMypage, handleAboutpage }) => {
   return (
     <div className={classes.headerRoot}>
       <Typography component="h1" variant="h2" className={classes.headerLogo}>
-        <span style={{ color: "#e53935" }}>KNU&nbsp;</span>
+        <span style={{ color: "#e53935" }}>KNU</span>
         HOUSE
       </Typography>
       <MainSideMenu
