@@ -121,7 +121,6 @@ const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity, handleSnac
         )}
         {!isQuestion && (
           <div className={classes.answer}>
-            {pending && question && <Pending text="무작위 질문을 검색중 입니다..." />}
             {!pending && question && available ? 
             <audio controls src={question.data().recordURL}>질문</audio> :
             <h1>존재하는 질문이 없습니다!</h1>
