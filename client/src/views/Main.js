@@ -85,7 +85,7 @@ const Main = ({ userObj, userInfoObj }) => {
         />
       )}
       <HelpButton />
-      {snackOpen && <SuccSnackbar content="니 좆같은 목소리 잘 들어볼게!" type="success"/>}
+      {snackOpen && <SuccSnackbar content="전송이 완료되었습니다!" type="success"/>}
     </div>
   );
 };
