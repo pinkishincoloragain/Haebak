@@ -156,9 +156,9 @@ function Landing() {
             submit={handleSubmit}
           />
         )}
-        <button onClick={toggleAccount}>
+        <span style={{color:"black", cursor:"pointer"}} onClick={toggleAccount}>
           {!newAccount ? "계정이 있어요" : "계정이 없어요"}
-        </button>
+        </span>
         <span onClick={toggleAccount}></span>
       </Paper>
       <div className={classes.titleBox}>
