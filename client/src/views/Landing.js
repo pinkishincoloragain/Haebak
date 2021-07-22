@@ -88,18 +88,17 @@ function Landing() {
               .createUserWithEmailAndPassword(inputs.email, inputs.password)
               .then((userCredential) => {
                 // send verification mail.
+                const userInfoObj = {
+                  department: inputs.department,
+                  email: inputs.email,
+                  name: inputs.name,
+                };
+                dbService.collection("userInfo").add(userInfoObj);
                 userCredential.user.sendEmailVerification();
                 authService.signOut();
               })
           )
           .catch(alert);
-        const userInfoObj = {
-          department: inputs.department,
-          email: inputs.email,
-          name: inputs.name,
-        };
-
-        await dbService.collection("userInfo").add(userInfoObj);
       } else {
         await authService
           .setPersistence("session")
