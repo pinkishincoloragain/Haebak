@@ -34,14 +34,14 @@ const GetRecord = ({ userObj }) => {
 
     // return uploadtask -> put to response
     const response = await fileRef.putString(recordData, "data_url");
-    console.log("data_url");
+    const recordURL = await response.ref.getDownloadURL();
 
     // insert data to database
     await dbService.collection("knuhouse").add({
       // first record : column name of the data(DB) ------ second record : real data (state)
-      record: record,
       createdAt: Date.now(),
       creatorId: userObj.uid,
+      recordURL,
     });
 
     // flush inputform
