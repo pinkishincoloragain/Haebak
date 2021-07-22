@@ -2,15 +2,14 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
-
 // fucking API key.
 const firebaseConfig = {
-  apiKey: "AIzaSyDhzaHuJLMiTwYXnnLrg7whIx0vUyp68I0",
+  apiKey: process.env.REACT_APP_FIREBASE_KEY,
   authDomain: "knuhouse-9c164.firebaseapp.com",
-  projectId: "knuhouse-9c164",
+  projectId: process.env.REACT_APP_PROJECT_ID,
   storageBucket: "knuhouse-9c164.appspot.com",
   messagingSenderId: "96455573988",
-  appId: "1:96455573988:web:4dc3a901b3ee1352f707f1",
+  appId: process.env.REACT_APP_APP_ID,
 };
 
 firebase.initializeApp(firebaseConfig);
