@@ -1,14 +1,12 @@
-import { CssBaseline } from "@material-ui/core";
-
-import Main from "./views/Main";
-import Landing from "./views/Landing";
-import "./App.css";
 import React, { useEffect, useState } from "react";
 import { authService, dbService } from "./firebase";
-import Activity from "./views/Activity";
+import { CssBaseline } from "@material-ui/core";
+import swal from "@sweetalert/with-react";
+
+import "./App.css";
+import Main from "./views/Main";
+import Landing from "./views/Landing";
 import Pending from "./components/common/Pending";
-import { useReducer } from "react";
-import firebase from "firebase/app";
 
 function App() {
   // initialization for Firebase Firestore
@@ -34,8 +32,23 @@ function App() {
         setUserObj(user);
         setIsLoggedIn(true);
         console.log(user.emailVerified);
-        if (user.emailVerified != true) {
-          alert("check your email!");
+        if (user.emailVerified !== true) {
+          swal({
+            title: "이메일 인증을 해주세요.",
+            buttons: {
+              cancel: "닫기",
+            },
+            content: (
+              <div style={{ color: "black" }}>
+                <a
+                  href="https://mail.knu.ac.kr"
+                  style={{ textDecoration: "none", color: "blue", fontSize: "1.5em" }}
+                >
+                  인증하러 가기
+                </a>
+              </div>
+            ),
+          });
           authService.signOut();
         }
       }

@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Paper, Typography } from "@material-ui/core";
+import swal from "@sweetalert/with-react";
 
 import { authService, dbService } from "../firebase";
 import LandingLogin from "../components/LandingLogin";
 import LandingRegister from "../components/LandingRegister";
-import SuccSnackbar from "../components/common/SuccSnackbar";
 import LandingImage from "../assets/image/paper.jpeg";
-
-import firebase from "firebase";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,8 +33,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     padding: "0 30px 15px 30px",
-    border: "2px solid black",
-    boxShadow: "3px 3px black",
+    // border: "2px solid black",
+    // boxShadow: "3px 3px black",
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -74,7 +72,7 @@ function Landing() {
 
   const [inputs, setInputs] = useState(init);
   const [newAccount, setNewAccount] = useState(true);
-  const [snackOpen, setSnackOpen] = useState(false);
+
   // const [error, setError] = useState("");
 
   const onChange = (e) => {
@@ -100,7 +98,6 @@ function Landing() {
                 // send verification mail.
                 userCredential.user.sendEmailVerification();
                 authService.signOut();
-                alert("Email sent");
               })
           )
           .catch(alert);
@@ -119,8 +116,10 @@ function Landing() {
               .signInWithEmailAndPassword(inputs.email, inputs.password)
               .catch((error) => {
                 // Handle Errors here.
-                setSnackOpen(true);
-                // alert(error);
+                swal({
+                  title: "잘못된 이메일 또는 비밀번호입니다.",
+                  buttons: { cancel: "닫기" },
+                });
               });
           })
           .catch((error) => {
@@ -128,7 +127,6 @@ function Landing() {
             alert(error);
           });
       }
-
       setInputs(init);
     } catch (err) {
       alert(err.message);
@@ -156,7 +154,10 @@ function Landing() {
             submit={handleSubmit}
           />
         )}
-        <span style={{color:"blue", cursor:"pointer"}} onClick={toggleAccount}>
+        <span
+          style={{ color: "blue", cursor: "pointer" }}
+          onClick={toggleAccount}
+        >
           {!newAccount ? "계정이 있어요" : "계정이 없어요"}
         </span>
         <span onClick={toggleAccount}></span>
@@ -167,12 +168,6 @@ function Landing() {
           <span style={{ color: "black" }}>HOUSE</span>
         </Typography>
       </div>
-      {snackOpen && (
-        <SuccSnackbar
-          content="너 뭔가 잘못 친 거 같은데 ? 다시 한번 확인해줘"
-          type="error"
-        />
-      )}
     </div>
   );
 }
