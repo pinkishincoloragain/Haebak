@@ -34,11 +34,15 @@ const MyRecordList = ({ userObj }) => {
     setPending(false);
   }
 
-  const handleDeleteRecord = (id) => {};
+  const handleDeleteRecord = async (id) => {
+    setPending(true);
+    await dbService.collection('question').doc(id).delete();
+    setPending(false);
+  };
 
   return (
     <>
-      {pending && <Pending text="질문 가져오는 중..." />}
+      {pending && <Pending text="로딩 중..." />}
       <h1 style={{ textAlign: "center" }}>나의 질문 목록</h1>
       <div className={classes.listFrame}>
         {!pending &&
