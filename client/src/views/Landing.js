@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   titleBox: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   title: {
     display: "flex",
@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     height: "fit-content",
     border: "2px solid black",
     boxShadow: "3px 3px black",
-    padding: "10px"
+    padding: "10px",
   },
 }));
 
@@ -90,17 +90,17 @@ function Landing() {
     let data;
     try {
       if (newAccount) {
-        await authService.signInWithEmailAndPassword(
-          inputs.email,
-          inputs.password
-        );
-
         const userInfoObj = {
           department: inputs.department,
           email: inputs.email,
           name: inputs.name,
         };
-        dbService.collection("userInfo").add(userInfoObj);
+        await dbService.collection("userInfo").add(userInfoObj);
+
+        await authService.signInWithEmailAndPassword(
+          inputs.email,
+          inputs.password
+        );
       } else {
         data = await authService.createUserWithEmailAndPassword(
           inputs.email,

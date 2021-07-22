@@ -30,9 +30,10 @@ function App() {
     authService.setPersistence(firebase.auth.Auth.Persistence.SESSION);
     authService.onAuthStateChanged((user) => {
       // user is logged in
+      console.log(user);
       if (user) {
         setIsLoggedIn(true);
-        fetchUserData(authService.currentUser);
+        fetchUserData(user);
         setUserObj(user);
       }
       // user is not logged in
@@ -50,6 +51,8 @@ function App() {
       .collection("userInfo")
       .where("email", "==", user.email)
       .get();
+    console.log(data);
+    setUserInfoObj(data.docs[0].data());
 
     // dbService
     //   .collection("userInfo")
@@ -62,9 +65,8 @@ function App() {
     //     console.log("department", department);
     //   });
 
-    console.log(data.docs[0].data());
-    console.log(data.docs[0].get("department"));
-    setUserInfoObj(data.docs[0].data());
+    // console.log(data.docs[0].data());
+    // console.log(data.docs[0].get("department"));
   }
 
   return (
