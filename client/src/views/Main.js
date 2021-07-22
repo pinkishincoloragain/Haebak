@@ -14,6 +14,7 @@ const Main = ({ isLoggedIn, userObj }) => {
     mypage: false,
     about: false,
     activity: false,
+    isQuestion: true,
   });
 
   const handleMypage = () =>
@@ -30,11 +31,12 @@ const Main = ({ isLoggedIn, userObj }) => {
       about: !isOtherPage.about,
     });
 
-  const handleActivity = () =>
+  const handleActivity = (isQ) =>
     setIsOtherPage({
       ...isOtherPage,
       main: !isOtherPage.main,
       activity: !isOtherPage.activity,
+      isQuestion: isQ,
     });
 
   return (
@@ -52,7 +54,12 @@ const Main = ({ isLoggedIn, userObj }) => {
         <MyPage userObj={userObj} handleMypage={handleMypage} />
       )}
       {isOtherPage.about && <AboutPage handleAboutpage={handleAboutpage} />}
-      {isOtherPage.activity && <Activity handleActivity={handleActivity} />}
+      {isOtherPage.activity && (
+        <Activity
+          isQ={isOtherPage.isQuestion}
+          handleActivity={handleActivity}
+        />
+      )}
       <HelpButton />
     </div>
   );

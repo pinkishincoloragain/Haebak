@@ -15,8 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Activity = ({ handleActivity }) => {
-  const [isQuestion, setIsQuestion] = useState(true);
+const Activity = ({ isQuestion, handleActivity }) => {
   const classes = useStyles();
   
   return (

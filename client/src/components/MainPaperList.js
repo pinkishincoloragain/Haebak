@@ -20,8 +20,16 @@ const MainPaperList = ({ handleActivity }) => {
         className={classes.mainPaperList}
         style={{ justifyContent: "space-between" }}
       >
-        <LinkPaper name="question" title="질문하기" action={handleActivity} />
-        <LinkPaper name="answer" title="답변하기" />
+        <LinkPaper
+          name="question"
+          title="질문하기"
+          action={() => handleActivity(true)}
+        />
+        <LinkPaper
+          name="answer"
+          title="답변하기"
+          action={() => handleActivity(false)}
+        />
       </div>
     </div>
   );
