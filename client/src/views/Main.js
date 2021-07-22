@@ -39,8 +39,6 @@ const Main = ({ isLoggedIn, userObj }) => {
       isQuestion: isQ,
     });
 
-<<<<<<< HEAD
-=======
   return (
     <div style={{ height: "100%" }}>
       {isOtherPage.main && (
@@ -56,43 +54,16 @@ const Main = ({ isLoggedIn, userObj }) => {
         <MyPage userObj={userObj} handleMypage={handleMypage} />
       )}
       {isOtherPage.about && <AboutPage handleAboutpage={handleAboutpage} />}
-      {isOtherPage.activity && (
-        <Activity
-          userObj={userObj}
-          isQuestion={isOtherPage.isQuestion}
-          handleActivity={handleActivity}
-        />
-      )}
+      {isOtherPage.activity && <Activity handleActivity={handleActivity} />}
       <HelpButton />
     </div>
   );
 
->>>>>>> e925ab6b5df4aa893e20d8ad5e2f495a604dec07
   // return (
-  //   <div style={{ height: "100%" }}>
-  //     {isOtherPage.main && (
-  //       <>
-  //         <MainHeader
-  //           handleMypage={handleMypage}
-  //           handleAboutpage={handleAboutpage}
-  //         />
-  //         <MainPaperList handleActivity={handleActivity} />
-  //       </>
-  //     )}
-  //     {isOtherPage.mypage && (
-  //       <MyPage userObj={userObj} handleMypage={handleMypage} />
-  //     )}
-  //     {isOtherPage.about && <AboutPage handleAboutpage={handleAboutpage} />}
-  //     {isOtherPage.activity && <Activity handleActivity={handleActivity} />}
-  //     <HelpButton />
+  //   <div>
+  //     <GetRecord userObj={userObj} />
   //   </div>
   // );
-
-  return (
-    <div>
-      <GetRecord userObj={userObj} />
-    </div>
-  );
 };
 
 export default Main;

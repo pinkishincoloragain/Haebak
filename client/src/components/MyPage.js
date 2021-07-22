@@ -70,20 +70,6 @@ const MyPage = ({ userObj, handleMypage }) => {
             action={isMypage ? handleMypage : handleMyQuestion}
           />
         </div>
-<<<<<<< HEAD
-        +
-        {isMypage ? (
-          <>
-            <div style={{ fontSize: "1.6em" }}>
-              <p>학과 : IT대학 - 컴퓨터학부</p>
-              <p>이메일 : {userObj.email}</p>
-            </div>
-            <ActivityRecord handleMyQuestion={handleMyQuestion} />
-          </>
-        ) : (
-          <MyRecordList />
-        )}
-=======
         <div className={classes.mypageContent}>
           {isMypage ? (
             <>
@@ -97,7 +83,6 @@ const MyPage = ({ userObj, handleMypage }) => {
             <MyRecordList />
           )}
         </div>
->>>>>>> e925ab6b5df4aa893e20d8ad5e2f495a604dec07
       </Paper>
       <PageLogo logoName="MYPAGE" />
     </div>
