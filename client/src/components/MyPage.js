@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { debounce } from "lodash";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 
@@ -10,11 +11,14 @@ import MyRecordList from "./MyRecordList";
 
 const useStyles = makeStyles((theme) => ({
   mypageRoot: {
+    width: "100%",
+    height: "100%",
     background: `url(${MypageImage}) center center / cover no-repeat`,
     backgroundAttachment: "fixed",
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",
+    alignItems: "center",
     "& > *": {
       margin: theme.spacing(1),
       width: theme.spacing(16),
@@ -29,21 +33,39 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-around",
+    "@media (max-width:610px)": {
+      width: "440px",
+    },
+    "@media (max-width:500px)": {
+      width: "350px",
+    },
   },
-  mypageContent: {
+  mypageContent: (isMypage) => ({
     height: "80%",
     display: "flex",
     flexDirection: "column",
-    justifyContent: "space-around",
+    justifyContent: `${isMypage ? "space-around" : "flex-start"}`,
     alignItems: "center",
-  },
+    overflowY: `${!isMypage && "scroll"}`,
+  }),
 }));
 
 const MyPage = ({ userObj, handleMypage }) => {
-  const classes = useStyles();
   const [isMypage, setIsMypage] = useState(true);
-
+  const classes = useStyles(isMypage);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const handleMyQuestion = () => setIsMypage(!isMypage);
+
+  useEffect(() => {
+    const handleResize = debounce(() => {
+      setWindowWidth(window.innerWidth);
+    }, 100);
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
 
   return (
     <div className={classes.mypageRoot}>
@@ -68,7 +90,10 @@ const MyPage = ({ userObj, handleMypage }) => {
           )}
         </div>
       </Paper>
-      <PageLogo logoName="MYPAGE" />
+      <PageLogo
+        logoName="MYPAGE"
+        responsive={`${windowWidth <= 410 ? true : false}`}
+      />
     </div>
   );
 };

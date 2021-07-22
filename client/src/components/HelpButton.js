@@ -8,9 +8,12 @@ import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 const useStyles = makeStyles((theme) => ({
   Helpbtn: {
     position: "absolute",
-    bottom: theme.spacing(3),
-    right: theme.spacing(7),
+    right: "4%",
+    bottom: "0%",
     color: "black",
+    "@media (max-width:520px)": {
+      bottom: "-1% !important",
+    },
   },
 }));
 

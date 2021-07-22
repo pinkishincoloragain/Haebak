@@ -30,6 +30,10 @@ const useStyles = makeStyles((theme) => ({
         // : "#73e8c0"
       }`,
     },
+    "@media (max-width:1150px)": {
+      width: `${props.type === "main" ? "300px" : "150px"}`,
+      height: `${props.type === "main" ? "320px" : "250px"}`,
+    },
   }),
   paperContent: {
     height: "100%",
