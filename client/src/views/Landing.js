@@ -6,6 +6,7 @@ import { authService, dbService } from "../firebase";
 import LandingLogin from "../components/LandingLogin";
 import LandingRegister from "../components/LandingRegister";
 import LandingImage from "../assets/image/LandingImage.png";
+import firebase from "firebase";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -86,45 +87,42 @@ function Landing() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputs);
     try {
-      if (newAccount) {
-        const userInfoObj = {
-          department: inputs.department,
-          email: inputs.email,
-          name: inputs.name,
-        };
-
+      if (!newAccount) {
         await authService
-          .createUserWithEmailAndPassword(inputs.email, inputs.password)
-          .then((userCredential) => {
-            // send verification mail.
-            userCredential.user.sendEmailVerification();
-            authService.signOut();
-            alert("Email sent");
-          })
+          .setPersistence("session")
+          .then(() =>
+            authService
+              .createUserWithEmailAndPassword(inputs.email, inputs.password)
+              .then((userCredential) => {
+                // send verification mail.
+                userCredential.user.sendEmailVerification();
+                authService.signOut();
+                alert("Email sent");
+              })
+          )
           .catch(alert);
-        await dbService.collection("userInfo").add(userInfoObj);
-        var emailUser = authService.currentUser;
-
-        console.log("emailUser의 값은 : ", emailUser);
-        emailUser
-          .sendEmailVerification()
-          .then(function () {
-            console.log("이메일이 전송됨");
-          })
-          .catch("email not sent");
-      } else {
         const userInfoObj = {
           department: inputs.department,
           email: inputs.email,
           name: inputs.name,
         };
 
-        await authService.signInWithEmailAndPassword(
-          inputs.email,
-          inputs.password
-        );
+        await dbService.collection("userInfo").add(userInfoObj);
+      } else {
+        await authService
+          .setPersistence("session")
+          .then(() => {
+            authService.signInWithEmailAndPassword(
+              inputs.email,
+              inputs.password
+            );
+          })
+          .catch((error) => {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+          });
       }
 
       setInputs(init);

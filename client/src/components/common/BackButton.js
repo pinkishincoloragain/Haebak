@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+import {Button, Tooltip} from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,13 +26,15 @@ const BackButton = ({ type, action }) => {
   type === "activity" && (btnClass = classes.activityBackBtn);
 
   return (
-    <Button
-      variant="outlined"
-      className={`${classes.defaultBackBtn} ${btnClass}`}
-      onClick={action}
-    >
-      <ArrowBackIcon />
-    </Button>
+    <Tooltip title="뒤로 가기">
+      <Button
+        variant="outlined"
+        className={`${classes.defaultBackBtn} ${btnClass}`}
+        onClick={action}
+      >
+        <ArrowBackIcon />
+      </Button>
+    </Tooltip>
   );
 };
 

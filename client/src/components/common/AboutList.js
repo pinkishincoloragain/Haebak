@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { List, Button } from "@material-ui/core";
+import { List, Button, Tooltip } from "@material-ui/core";
 import GitHubIcon from "@material-ui/icons/GitHub";
 
 import kdg from "../../assets/image/kdg.png";
@@ -91,9 +91,11 @@ export default function AlignItemsList() {
       </List>
       <footer className={classes.section}>
         <a href="https://github.com/pinkishincoloragain/Haebak">
-          <Button variant="contained" className={classes.btn}>
-            <GitHubIcon />
-          </Button>
+          <Tooltip title="KNUHOUSE의 GITHUB로 가기">
+            <Button variant="contained" className={classes.btn}>
+              <GitHubIcon />
+            </Button>
+          </Tooltip>
         </a>
       </footer>
     </>
