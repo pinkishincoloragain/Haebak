@@ -22,7 +22,7 @@
   <summary></summary>
   <ol>
     <li>
-      <a href="#about-the-project">About the KNUhouse</a>
+      <a href="#about-the-project">About the KNUHOUSE</a>
       <ul>
         <li><a href="#built-with">Purpose</a></li>
         <li><a href="#built-with">Tech stack</a></li>
