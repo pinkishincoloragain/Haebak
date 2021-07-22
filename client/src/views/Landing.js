@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     "@media (max-width:970px)": {
       flexDirection: "column-reverse",
-      "& > h1": {
+      "& > div > h1": {
         margin: "0 0 30px 0 !important",
         fontSize: "3em",
       },
@@ -32,12 +32,19 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     padding: "0 30px 15px 30px",
+    border: "2px solid black",
+    boxShadow: "3px 3px black",
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
   up: {
     textAlign: "center",
+  },
+  titleBox: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
   },
   title: {
     display: "flex",
@@ -46,8 +53,11 @@ const useStyles = makeStyles((theme) => ({
     color: "#e53935",
     marginLeft: "50px",
     fontFamily: "FingerPaint",
-    backgroundColor: "white",
+    backgroundColor: "#fafafa",
     height: "fit-content",
+    border: "2px solid black",
+    boxShadow: "3px 3px black",
+    padding: "10px"
   },
 }));
 
@@ -130,10 +140,12 @@ function Landing() {
         </Link>
         <span onClick={toggleAccount}></span>
       </Paper>
-      <Typography component="h1" variant="h2" className={classes.title}>
-        KNU
-        <span style={{ color: "black" }}>HOUSE</span>
-      </Typography>
+      <div className={classes.titleBox}>
+        <Typography component="h1" variant="h2" className={classes.title}>
+          KNU
+          <span style={{ color: "black" }}>HOUSE</span>
+        </Typography>
+      </div>
     </div>
   );
 }
