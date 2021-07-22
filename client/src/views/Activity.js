@@ -50,7 +50,7 @@ const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
     const response = await fileRef.put(file);
     const recordURL = await response.ref.getDownloadURL();
 
-    if(isQuestion) {
+    if (isQuestion) {
       await dbService.collection("question").add({
         createdAt: Date.now(),
         creatorId: userObj.uid,
@@ -76,13 +76,20 @@ const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
       <BackButton type="activity" action={handleActivity} />
       <div className={classes.container}>
         <ActivityImage state={isQuestion} />
-        {isQuestion ? 
-        <Record setFile={setFile} /> : 
-        gotQuestion && <Record setFile={setFile} />
-        }
-        {!isQuestion && 
-          <RandomAnswer userInfoObj={userInfoObj} userObj={userObj} setGotQuestion={setGotQuestion} file={file} submited={submited} />
-        }
+        {isQuestion ? (
+          <Record setFile={setFile} />
+        ) : (
+          gotQuestion && <Record setFile={setFile} />
+        )}
+        {!isQuestion && (
+          <RandomAnswer
+            userInfoObj={userInfoObj}
+            userObj={userObj}
+            setGotQuestion={setGotQuestion}
+            file={file}
+            submited={submited}
+          />
+        )}
       </div>
       {file && !pending && (
         <Fade in={true}>
