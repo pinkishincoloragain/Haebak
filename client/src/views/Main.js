@@ -7,8 +7,9 @@ import AboutPage from "../components/AboutPage";
 import Activity from "./Activity";
 import HelpButton from "../components/HelpButton";
 import GetRecord from "../components/GetRecord";
+import { dbService } from "../firebase";
 
-const Main = ({ isLoggedIn, userObj }) => {
+const Main = ({ isLoggedIn, userObj, userInfoObj }) => {
   const [isOtherPage, setIsOtherPage] = useState({
     main: true,
     mypage: false,
@@ -51,7 +52,11 @@ const Main = ({ isLoggedIn, userObj }) => {
         </>
       )}
       {isOtherPage.mypage && (
-        <MyPage userObj={userObj} handleMypage={handleMypage} />
+        <MyPage
+          userObj={userObj}
+          userInfoObj={userInfoObj}
+          handleMypage={handleMypage}
+        />
       )}
       {isOtherPage.about && <AboutPage handleAboutpage={handleAboutpage} />}
       {isOtherPage.activity && (

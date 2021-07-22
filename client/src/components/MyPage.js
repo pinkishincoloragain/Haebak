@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MyPage = ({ userObj, handleMypage }) => {
+const MyPage = ({ userObj, handleMypage, userInfoObj }) => {
   const classes = useStyles();
   const [isMypage, setIsMypage] = useState(true);
 
@@ -74,7 +74,7 @@ const MyPage = ({ userObj, handleMypage }) => {
           {isMypage ? (
             <>
               <div style={{ fontSize: "1.6em" }}>
-                <p>학과 : IT대학 - 컴퓨터학부</p>
+                <p>학과 : {userInfoObj.department}</p>
                 <p>이메일 : {userObj.email}</p>
               </div>
               <ActivityRecord handleMyQuestion={handleMyQuestion} />
