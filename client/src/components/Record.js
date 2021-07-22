@@ -7,53 +7,6 @@ import MicRecorder from "mic-recorder-to-mp3";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { green, deepOrange } from '@material-ui/core/colors';
 
-<<<<<<< HEAD
-const useStyles = makeStyles({
-  root: {
-    display: "flex",
-    flexDirection: "column",
-    height: "150px",
-  },
-  record: {
-    width: "100vw",
-    display: "flex",
-    justifyContent: "center",
-  },
-  player: {
-    height: "75px",
-    width: "100vw",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
-
-function Record() {
-  const [isRecording, setIsRecording] = useState(false);
-  const [blobURL, setBlobURL] = useState("");
-  const [isBlocked, setIsBlocked] = useState(true);
-  const [recorder, setRecorder] = useState(
-    new MicRecorder({
-      bitRate: 128,
-    })
-  );
-  const classes = useStyles();
-
-  useEffect(() => {
-    navigator.getUserMedia(
-      { audio: true },
-      () => {
-        // 녹음할 수 있는 권한이 있는지 없는지 확인
-        console.log("Granted");
-        setIsBlocked(false);
-      },
-      () => {
-        console.log("Denied");
-        setIsBlocked(true);
-      }
-    );
-  }, []);
-=======
 const useStyles = makeStyles((theme) => ({
     root: {
         display: "flex",
@@ -106,7 +59,6 @@ function Record({ isQuestion, setFile }) {
         bitRate: 128
     }));
     const classes = useStyles();
->>>>>>> e925ab6b5df4aa893e20d8ad5e2f495a604dec07
 
   const handleRecord = () => {
     if (isBlocked) {
@@ -134,32 +86,6 @@ function Record({ isQuestion, setFile }) {
         //     lastModified: Date.now()
         // });
 
-<<<<<<< HEAD
-        // const player = new Audio(URL.createObjectURL(file));
-        // player.play();
-      })
-      .catch((e) => console.log(e));
-  };
-
-  return (
-    <div className={classes.root}>
-      <div className={classes.player}>
-        {!isRecording && blobURL && (
-          <audio controls src={blobURL}>
-            오디오
-          </audio>
-        )}
-      </div>
-      <div className={classes.record}>
-        <Fab
-          color={isRecording ? "secondary" : "primary"}
-          onClick={isRecording ? handleStopRecord : handleRecord}>
-          {isRecording ? <StopIcon /> : <MicIcon />}
-        </Fab>
-      </div>
-    </div>
-  );
-=======
     const handleStopRecord = () => {
         recorder.stop().getMp3().then(([buffer, blob]) => {
             const blobURL = URL.createObjectURL(blob);
@@ -188,7 +114,6 @@ function Record({ isQuestion, setFile }) {
             </div>
         </div>
     )
->>>>>>> e925ab6b5df4aa893e20d8ad5e2f495a604dec07
 }
 
 export default Record;
