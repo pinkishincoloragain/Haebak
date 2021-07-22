@@ -52,7 +52,7 @@ const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
     await dbService.collection("question").add({
       createdAt: Date.now(),
       creatorId: userObj.uid,
-      creatorDepartmnet: userInfoObj.department,
+      creatorDepartment: userInfoObj.department,
       recordURL,
       answered: false,
       answerId: "",
