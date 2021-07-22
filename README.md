@@ -12,7 +12,7 @@
     <br />
     <a href="https://knuhouse.netlify.app/"><strong>GO WEBSITE »</strong></a>
     <br />
-    <a href="#"><strong>VIEW DEMO »</strong></a>
+    <a href="https://youtu.be/TtNB2HZGskw"><strong>VIEW DEMO »</strong></a>
     <br />
   </p>
 </p>
