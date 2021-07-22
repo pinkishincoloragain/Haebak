@@ -69,10 +69,9 @@ const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
       await dbService.collection('question').where("creatorDepartment", "==", userInfoObj.department).where("answered", "==", false).where("using", "==", false)
       .get().then((querySnapshot) => {
         const filtered = querySnapshot.docs.filter(d => d.data().creatorId !== userObj.uid);
-       if (filtered.size) {
-          const rand = Math.floor(Math.random() * filtered.size);
+       if (filtered.length) {
+          const rand = Math.floor(Math.random() * filtered.length);
           const selected = filtered[rand];
-          console.log(selected);
           dbService.collection('question').doc(selected.id).update({using: true});
           setQuestion(selected);
           setAvailable(true);
