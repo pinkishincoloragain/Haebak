@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import GetRecord from "./components/GetRecord";
 import { authService } from "./firebase";
 import Activity from "./views/Activity";
+import Pending from "./components/common/Pending";
 
 function App() {
   // initialization for Firebase Firestore
@@ -49,7 +50,7 @@ function App() {
           )}
         </div>
       ) : (
-        "Firebase Synchronization 하는 데 시간이 필요합니다 .. 기다리세요 !!"
+        <Pending />
       )}
     </>
   );
