@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 
 const QandA = ({ doc }) => {
   const classes = useStyles();
-  
+
   return (
     <div className={classes.audioRoot}>
       <div className={classes.audioBox}>

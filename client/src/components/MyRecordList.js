@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import QandA from "./QandA";
-import { dbService, storageService } from "../firebase.js";
+import { dbService } from "../firebase.js";
 import Pending from "./common/Pending";
 
 const MyRecordList = ({ userObj }) => {
@@ -8,22 +8,24 @@ const MyRecordList = ({ userObj }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    dbService.collection('question').where('creatorId', "==", userObj.uid).get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        setData([...data, doc.data()]);
-        console.log(doc.id, " => ", doc.data());
-      });
-    }).finally(setPending(false));
+    fetchData();
   }, []);
 
+  async function fetchData() {
+    const querySnapshot = await dbService.collection('question').where('creatorId', "==", userObj.uid).get();
+    const transformedData = await querySnapshot.docs.map((doc) => doc.data());
+    setData(transformedData);
+    setPending(false);
+  }
+
   return (
-    <>
+    <div>
       {pending && <Pending text="질문 가져오는 중..." />}
       <h1 style={{ textAlign: "center" }}>나의 질문 목록</h1>
       <div style={{ width: "100%" }}>
-        {!pending && data.map((doc) => <QandA doc={doc} />)}
+        {!pending && data.map((doc, idx) => <QandA key={idx} doc={doc} />)}
       </div>
-    </>
+    </div>
   );
 };
 
