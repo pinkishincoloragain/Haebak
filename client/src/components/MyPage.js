@@ -48,7 +48,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: `${isMypage ? "space-around" : "flex-start"}`,
     alignItems: "center",
-    overflowY: `${!isMypage && "scroll"}`,
   }),
 }));
 

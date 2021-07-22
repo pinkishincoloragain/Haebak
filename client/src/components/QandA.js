@@ -40,7 +40,7 @@ const QandA = ({ doc }) => {
 
         <div className={classes.audioBox}>
           <h3>답변</h3>{" "}
-          {doc.answered ? (
+          {doc.answerURL !== "" ? (
             <audio controls className={classes.audio}></audio>
           ) : (
             <div style={{ width: "300px", textAlign: "center" }}>
