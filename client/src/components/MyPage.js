@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 
@@ -7,6 +7,7 @@ import ActivityRecord from "./ActivityRecord";
 import BackButton from "./common/BackButton";
 import MypageImage from "../image/MypageImage.png";
 import MyRecordList from "./MyRecordList";
+import { dbService } from "../firebase";
 
 const useStyles = makeStyles((theme) => ({
   mypageRoot: {
@@ -38,6 +39,21 @@ const MyPage = ({ userObj, handleMypage }) => {
 
   const handleMyQuestion = () => setIsMypage(!isMypage);
 
+  useEffect(() => {
+    getQuestionAnswers;
+  }, []);
+
+  const getQuestionAnswers = async () => {
+    // filtering = where
+    // 내 레코드 다 가져와
+    const RecordData = await dbService
+      .collection("Record")
+      .where("creatorId", "==", userObj.uid)
+      .orderBy("createdAt")
+      .get();
+    console.log(records.docs.map((doc) => doc.data()));
+  };
+
   return (
     <div className={classes.mypageRoot}>
       <Paper elevation={3} className={classes.mypagePaper}>
@@ -47,6 +63,7 @@ const MyPage = ({ userObj, handleMypage }) => {
             action={isMypage ? handleMypage : handleMyQuestion}
           />
         </div>
+        +
         {isMypage ? (
           <>
             <div style={{ fontSize: "1.6em" }}>
