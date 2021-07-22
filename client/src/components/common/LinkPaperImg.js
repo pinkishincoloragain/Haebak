@@ -1,9 +1,9 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-import MainQuestionImg from "../../image/MainQuestion.png";
-import MainAnswerImg from "../../image/MainAnswer.png";
-import MypageQuestionImg from "../../image/MypageQuestion.png";
-import MypageAnswerImg from "../../image/MypageAnswer.png";
+import MainQuestionImg from "../../assets/image/MainQuestion.png";
+import MainAnswerImg from "../../assets/image/MainAnswer.png";
+import MypageQuestionImg from "../../assets/image/MypageQuestion.png";
+import MypageAnswerImg from "../../assets/image/MypageAnswer.png";
 
 const useStyles = makeStyles({
   mainPaperImgRoot: {

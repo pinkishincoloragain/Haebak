@@ -6,7 +6,7 @@ import Paper from "@material-ui/core/Paper";
 import PageLogo from "./common/PageLogo";
 import ActivityRecord from "./ActivityRecord";
 import BackButton from "./common/BackButton";
-import MypageImage from "../image/MypageImage.png";
+import MypageImage from "../assets/image/MypageImage.png";
 import MyRecordList from "./MyRecordList";
 import { dbService } from "../firebase";
 

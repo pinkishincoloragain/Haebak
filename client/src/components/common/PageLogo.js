@@ -13,6 +13,7 @@ const useStyles = makeStyles({
     display: "block",
     fontWeight: "bold",
     fontSize: "2.3em",
+    fontFamily: "FingerPaint",
   },
 });
 

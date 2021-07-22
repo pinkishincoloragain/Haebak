@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link, Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link, Paper, Typography } from "@material-ui/core";
+
 import { authService, dbService } from "../firebase";
 import LandingLogin from "../components/LandingLogin";
 import LandingRegister from "../components/LandingRegister";
-import LandingImage from "../image/LandingImage.png";
+import LandingImage from "../assets/image/LandingImage.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,10 +33,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     padding: "0 30px 15px 30px",
   },
-  form: {
-    width: "100%",
-    marginTop: theme.spacing(1),
-  },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
@@ -48,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     color: "#e53935",
     marginLeft: "50px",
+    fontFamily: "FingerPaint",
   },
 }));
 

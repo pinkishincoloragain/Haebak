@@ -7,6 +7,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+
 import { authService } from "../firebase";
 
 const useStyles = makeStyles((theme) => ({

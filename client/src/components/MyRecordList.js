@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
-import QandA from "./QandA";
 import { dbService } from "../firebase.js";
+import QandA from "./QandA";
 import Pending from "./common/Pending";
 
 const useStyles = makeStyles({

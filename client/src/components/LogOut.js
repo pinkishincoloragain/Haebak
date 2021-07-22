@@ -9,6 +9,7 @@ const useStyles = makeStyles({
     border: "2px solid",
     marginBottom: "100px",
     boxShadow: "3px 3px",
+    fontFamily: "FingerPaint",
   },
 });
 

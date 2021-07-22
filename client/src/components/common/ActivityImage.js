@@ -1,8 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
-import MainQuestion from '../../image/MainQuestion.png';
-import MainAnswer from '../../image/MainAnswer.png';
+import MainQuestion from '../../assets/image/MainQuestion.png';
+import MainAnswer from '../../assets/image/MainAnswer.png';
 
 const useStyles = makeStyles({
     question:{

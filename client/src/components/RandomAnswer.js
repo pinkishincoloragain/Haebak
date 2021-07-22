@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import Pending from "./common/Pending.js";
 import { makeStyles } from "@material-ui/core/styles";
 
+import Pending from "./common/Pending.js";
 import { dbService } from "../firebase.js";
 
 const useStyles = makeStyles((theme) => ({
