@@ -56,7 +56,7 @@ const Main = ({ isLoggedIn, userObj }) => {
       {isOtherPage.about && <AboutPage handleAboutpage={handleAboutpage} />}
       {isOtherPage.activity && (
         <Activity
-          isQ={isOtherPage.isQuestion}
+          isQuestion={isOtherPage.isQuestion}
           handleActivity={handleActivity}
         />
       )}
