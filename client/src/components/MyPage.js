@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-import { useEffect, useState } from "react";
-=======
 import { useState, useEffect } from "react";
 import { debounce } from "lodash";
->>>>>>> 6b6b069ec2619301354e9674c0f1ab53ea4e46ce
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 
@@ -55,18 +51,12 @@ const useStyles = makeStyles((theme) => ({
   }),
 }));
 
-<<<<<<< HEAD
 const MyPage = ({ userObj, handleMypage, userInfoObj }) => {
-  const classes = useStyles();
-=======
-const MyPage = ({ userObj, handleMypage }) => {
->>>>>>> 6b6b069ec2619301354e9674c0f1ab53ea4e46ce
   const [isMypage, setIsMypage] = useState(true);
   const classes = useStyles(isMypage);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const handleMyQuestion = () => setIsMypage(!isMypage);
 
-<<<<<<< HEAD
   // useEffect(() => {
   //   getQuestionAnswers;
   // }, []);
@@ -81,7 +71,6 @@ const MyPage = ({ userObj, handleMypage }) => {
   //     .get();
   //   console.log(records.docs.map((doc) => doc.data()));
   // };
-=======
   useEffect(() => {
     const handleResize = debounce(() => {
       setWindowWidth(window.innerWidth);
@@ -92,7 +81,6 @@ const MyPage = ({ userObj, handleMypage }) => {
       window.removeEventListener("resize", handleResize);
     };
   });
->>>>>>> 6b6b069ec2619301354e9674c0f1ab53ea4e46ce
 
   return (
     <div className={classes.mypageRoot}>
