@@ -84,19 +84,19 @@ function Landing() {
           inputs.email,
           inputs.password
         );
+
+        const userInfoObj = {
+          department: inputs.department,
+          email: inputs.email,
+          name: inputs.name,
+        };
+        dbService.collection("userInfo").add(userInfoObj);
       } else {
         data = await authService.createUserWithEmailAndPassword(
           inputs.email,
           inputs.password
         );
       }
-
-      const userInfoObj = {
-        department: inputs.department,
-        email: inputs.email,
-        name: inputs.name,
-      };
-      dbService.collection("userInfo").add(userInfoObj);
 
       setInputs(init);
     } catch (err) {
