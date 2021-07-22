@@ -8,6 +8,7 @@ import BackButton from "../components/common/BackButton";
 import Button from '@material-ui/core/Button';
 
 import { dbService, storageService } from "../firebase.js";
+import Pending from "../components/common/Pending";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -34,9 +35,11 @@ const useStyles = makeStyles((theme) => ({
 
 const Activity = ({ userObj, isQuestion, handleActivity }) => {
   const [file, setFile] = useState(null);
+  const [pending, setPending] = useState(false);
   const classes = useStyles();
 
   async function handleSubmit() {
+    setPending(true);
     const fileRef = storageService.ref().child(userObj.uid + "/" + uuidv4());
 
     // return uploadtask -> put to response
@@ -52,10 +55,12 @@ const Activity = ({ userObj, isQuestion, handleActivity }) => {
     });
     setFile(null);
     handleActivity();
+    setPending(false);
   }
 
   return (
     <div>
+      {pending && <Pending text="질문하는 중..." />}
       <BackButton type="activity" action={handleActivity} />
       <div className={classes.container}>
         <ActivityImage state={isQuestion} />
@@ -68,7 +73,7 @@ const Activity = ({ userObj, isQuestion, handleActivity }) => {
         </div>
         }
       </div>
-      { file && 
+      { file && !pending &&
       <Button className={classes.submit} onClick={handleSubmit} variant="contained">
         질문하기
       </Button>}
