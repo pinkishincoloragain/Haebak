@@ -74,8 +74,6 @@ const ActivityImage = (props) => {
             <div className={`${classes.borderContainer} ${classes.bottom}`}>
                 <div className={`${classes.border} ${classes.rb}`}></div>
             </div>
-            {/* <div></div>
-            <div></div> */}
         </div>
     )
 }
