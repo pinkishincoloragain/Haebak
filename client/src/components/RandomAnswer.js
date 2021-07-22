@@ -19,11 +19,10 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const RandomAnswer = ({ userInfoObj, userObj }) => {
+const RandomAnswer = ({ userInfoObj, userObj, submited, setGotQuestion }) => {
     const classes = useStyles();
     const [pending, setPending] = useState(true);
     const [question, setQuestion] = useState(null);
-    const [submited, setSumited] = useState(false);
     const [available, setAvailable] = useState(false);
     
     useEffect(() => {
@@ -48,6 +47,7 @@ const RandomAnswer = ({ userInfoObj, userObj }) => {
                 dbService.collection('question').doc(selected.id).update({answered: true});
                 setQuestion(selected);
                 setAvailable(true);
+                setGotQuestion(true);
             }
         }).finally(setPending(false));
     }

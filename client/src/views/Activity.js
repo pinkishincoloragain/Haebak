@@ -38,7 +38,8 @@ const useStyles = makeStyles((theme) => ({
 const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
   const [file, setFile] = useState(null);
   const [pending, setPending] = useState(false);
-  const [record, setRecord] = useState(isQuestion);
+  const [submited, setSubmited] = useState(false);
+  const [gotQuestion, setGotQuestion] = useState(false);
   const classes = useStyles();
 
   async function handleSubmit() {
@@ -49,14 +50,20 @@ const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
     const response = await fileRef.put(file);
     const recordURL = await response.ref.getDownloadURL();
 
-    await dbService.collection("question").add({
-      createdAt: Date.now(),
-      creatorId: userObj.uid,
-      creatorDepartment: userInfoObj.department,
-      recordURL,
-      answered: false,
-      answerId: "",
-    });
+    if(isQuestion) {
+      await dbService.collection("question").add({
+        createdAt: Date.now(),
+        creatorId: userObj.uid,
+        creatorDepartment: userInfoObj.department,
+        recordURL,
+        answered: false,
+        answerId: "",
+        answerURL: "",
+      });
+      setSubmited(true);
+    } else {
+      await dbService.collection('question').doc(gotQuestion.id).update({answerId: userObj.uid, answerURL: recordURL});
+    }
     setFile(null);
     handleActivity();
     setPending(false);
@@ -64,14 +71,17 @@ const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
 
   return (
     <div>
-      {pending && <Pending text="질문하는 중..." />}
+      {pending && <Pending text={isQuestion? "질문하는 중..." : "답변하는 중..."} />}
       <BackButton type="activity" action={handleActivity} />
       <div className={classes.container}>
         <ActivityImage state={isQuestion} />
-        {record && <Record setFile={setFile} />}
-        {!isQuestion && (
-          <RandomAnswer userInfoObj={userInfoObj} userObj={userObj} />
-        )}
+        {isQuestion ? 
+        <Record setFile={setFile} /> : 
+        gotQuestion && <Record setFile={setFile} />
+        }
+        {!isQuestion && 
+          <RandomAnswer userInfoObj={userInfoObj} userObj={userObj} setGotQuestion={setGotQuestion} file={file} submited={submited} />
+        }
       </div>
       {file && !pending && (
         <Fade in={true}>
