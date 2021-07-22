@@ -5,6 +5,7 @@ import { Link, Paper, Typography } from "@material-ui/core";
 import { authService, dbService } from "../firebase";
 import LandingLogin from "../components/LandingLogin";
 import LandingRegister from "../components/LandingRegister";
+import SuccSnackbar from "../components/common/SuccSnackbar";
 import LandingImage from "../assets/image/LandingImage.png";
 import firebase from "firebase";
 
@@ -73,6 +74,7 @@ function Landing() {
 
   const [inputs, setInputs] = useState(init);
   const [newAccount, setNewAccount] = useState(true);
+  const [snackOpen, setSnackOpen] = useState(false);
   // const [error, setError] = useState("");
 
   const onChange = (e) => {
@@ -113,15 +115,17 @@ function Landing() {
         await authService
           .setPersistence("session")
           .then(() => {
-            authService.signInWithEmailAndPassword(
-              inputs.email,
-              inputs.password
-            );
+            authService
+              .signInWithEmailAndPassword(inputs.email, inputs.password)
+              .catch((error) => {
+                // Handle Errors here.
+                setSnackOpen(true);
+                // alert(error);
+              });
           })
           .catch((error) => {
             // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
+            alert(error);
           });
       }
 
@@ -163,6 +167,12 @@ function Landing() {
           <span style={{ color: "black" }}>HOUSE</span>
         </Typography>
       </div>
+      {snackOpen && (
+        <SuccSnackbar
+          content="너 뭔가 잘못 친 거 같은데 ? 다시 한번 확인해줘"
+          type="error"
+        />
+      )}
     </div>
   );
 }
