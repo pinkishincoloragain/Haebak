@@ -39,7 +39,7 @@ const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
   const [file, setFile] = useState(null);
   const [pending, setPending] = useState(false);
   const [submited, setSubmited] = useState(false);
-  const [gotQuestion, setGotQuestion] = useState(false);
+  const [gotQuestion, setGotQuestion] = useState(null);
   const classes = useStyles();
 
   async function handleSubmit() {
@@ -60,12 +60,10 @@ const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
         answerId: "",
         answerURL: "",
       });
-      setSubmited(true);
     } else {
-      await dbService
-        .collection("question")
-        .doc(gotQuestion.id)
-        .update({ answerId: userObj.uid, answerURL: recordURL });
+      console.log(gotQuestion);
+      await dbService.collection('question').doc(gotQuestion.id).update({ answerId: userObj.uid, answerURL: recordURL });
+      setSubmited(true);
     }
     setFile(null);
     handleActivity();
@@ -74,9 +72,7 @@ const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
 
   return (
     <div>
-      {pending && (
-        <Pending text={isQuestion ? "질문하는 중..." : "답변하는 중..."} />
-      )}
+      {pending && <Pending text={isQuestion ? "질문하는 중..." : "답변하는 중..."} />}
       <BackButton type="activity" action={handleActivity} />
       <div className={classes.container}>
         <ActivityImage state={isQuestion} />
@@ -102,7 +98,7 @@ const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
             onClick={handleSubmit}
             variant="contained"
           >
-            질문하기
+            { isQuestion ? "질문하기" : "답변하기" }
           </Button>
         </Fade>
       )}
