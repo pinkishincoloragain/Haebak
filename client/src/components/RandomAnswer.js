@@ -32,7 +32,6 @@ const RandomAnswer = ({ userInfoObj, userObj, submited, setGotQuestion }) => {
     useEffect(() => {
         return () => {
             if(!submited && question) {
-                console.log(question);
                 dbService.collection('question').doc(question.id).update({answered: false});
             }
         }
@@ -46,8 +45,8 @@ const RandomAnswer = ({ userInfoObj, userObj, submited, setGotQuestion }) => {
                 const selected = querySnapshot.docs[rand];
                 dbService.collection('question').doc(selected.id).update({answered: true});
                 setQuestion(selected);
+                setGotQuestion(selected);
                 setAvailable(true);
-                setGotQuestion(true);
             }
         }).finally(setPending(false));
     }
