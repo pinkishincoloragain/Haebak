@@ -3,10 +3,17 @@ import Button from "@material-ui/core/Button";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 const useStyles = makeStyles((theme) => ({
-  mypageBackBtn: {
+  defaultBackBtn: {
     border: "2px solid",
-    left: "35px",
     boxShadow: "3px 3px",
+  },
+  mypageBackBtn: {
+    left: "35px",
+  },
+  activityBackBtn: {
+    position: "absolute",
+    top: "6%",
+    left: "11%",
   },
 }));
 
@@ -14,10 +21,15 @@ const BackButton = ({ type, action }) => {
   const classes = useStyles();
   let btnClass = "";
 
-  if (type === "mypage") btnClass = classes.mypageBackBtn;
+  type === "mypage" && (btnClass = classes.mypageBackBtn);
+  type === "activity" && (btnClass = classes.activityBackBtn);
 
   return (
-    <Button variant="outlined" className={btnClass} onClick={action}>
+    <Button
+      variant="outlined"
+      className={`${classes.defaultBackBtn} ${btnClass}`}
+      onClick={action}
+    >
       <ArrowBackIcon />
     </Button>
   );
