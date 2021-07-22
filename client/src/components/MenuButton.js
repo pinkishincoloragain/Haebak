@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
 const useStyles = makeStyles({
   menuButton: (isHeader) => ({
@@ -23,9 +23,11 @@ const MenuButton = ({ isHeader, handleShowMenu, isShowMenu }) => {
       color="inherit"
       onClick={handleShowMenu}
     >
-    { isShowMenu ? 
-      <ArrowForwardIosIcon className={classes.menuIcon} />
-    : <MenuIcon className={classes.menuIcon} />}
+      {isShowMenu ? (
+        <ArrowForwardIosIcon className={classes.menuIcon} />
+      ) : (
+        <MenuIcon className={classes.menuIcon} />
+      )}
     </IconButton>
   );
 };
