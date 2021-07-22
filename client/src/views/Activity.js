@@ -68,6 +68,17 @@ const Activity = ({
   }, []);
 
   useEffect(() => {
+    window.addEventListener("beforeunload", () => {  
+      if (question) {
+        dbService
+          .collection("question")
+          .doc(question.id)
+          .update({ using: false });
+      }
+      window.opener = null;
+      window.open("", "_self");
+      window.close();
+    });
     return () => {
       if (question) {
         dbService

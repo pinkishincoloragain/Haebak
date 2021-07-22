@@ -72,7 +72,7 @@ function Record({ setFile }) {
 
     const handleRecord = () => {
         if (isBlocked) {
-            console.log('Permission Denied');
+            window.alert('음성 녹음을 허용해주세요');
           } else {
             setFile(null);
             recorder.start().then(() => {

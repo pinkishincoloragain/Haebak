@@ -6,11 +6,11 @@ const QandAHeader = ({ doc, handleDeleteRecord }) => {
   let questionDate = new Date(doc.data().createdAt);
   questionDate =
     questionDate.getFullYear().toString() +
-    " / " +
+    "-" +
     (questionDate.getMonth() + 1).toString() +
-    " / " +
+    "-" +
     questionDate.getDate().toString() +
-    " - " +
+    " " +
     questionDate.getHours().toString() +
     ":" +
     questionDate.getMinutes().toString() +
