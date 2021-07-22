@@ -32,6 +32,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     padding: "0 30px 15px 30px",
+    border: "2px solid black",
+    boxShadow: "3px 3px black",
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -53,8 +55,9 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "FingerPaint",
     backgroundColor: "#fafafa",
     height: "fit-content",
-    padding: "15px",
-    boxShadow: "2px 2px lightgrey"
+    border: "2px solid black",
+    boxShadow: "3px 3px black",
+    padding: "10px",
   },
 }));
 
@@ -83,20 +86,41 @@ function Landing() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(inputs);
     try {
-      if (!newAccount) {
+      if (newAccount) {
         const userInfoObj = {
           department: inputs.department,
           email: inputs.email,
           name: inputs.name,
         };
-        await dbService.collection("userInfo").add(userInfoObj);
 
-        await authService.createUserWithEmailAndPassword(
-          inputs.email,
-          inputs.password
-        );
+        await authService
+          .createUserWithEmailAndPassword(inputs.email, inputs.password)
+          .then((userCredential) => {
+            // send verification mail.
+            userCredential.user.sendEmailVerification();
+            authService.signOut();
+            alert("Email sent");
+          })
+          .catch(alert);
+        await dbService.collection("userInfo").add(userInfoObj);
+        var emailUser = authService.currentUser;
+
+        console.log("emailUser의 값은 : ", emailUser);
+        emailUser
+          .sendEmailVerification()
+          .then(function () {
+            console.log("이메일이 전송됨");
+          })
+          .catch("email not sent");
       } else {
+        const userInfoObj = {
+          department: inputs.department,
+          email: inputs.email,
+          name: inputs.name,
+        };
+
         await authService.signInWithEmailAndPassword(
           inputs.email,
           inputs.password
@@ -130,9 +154,10 @@ function Landing() {
             submit={handleSubmit}
           />
         )}
-        <span style={{color:"blue", cursor: "pointer"}} onClick={toggleAccount}>
+        <button onClick={toggleAccount}>
           {!newAccount ? "계정이 있어요" : "계정이 없어요"}
-        </span>
+        </button>
+        <span onClick={toggleAccount}></span>
       </Paper>
       <div className={classes.titleBox}>
         <Typography component="h1" variant="h2" className={classes.title}>
