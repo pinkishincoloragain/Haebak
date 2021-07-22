@@ -20,11 +20,12 @@ const HelpButton = () => {
 
   const openDialog = () => {
     setShow(true);
-  }
+  };
 
   const closeDialog = () => {
     setShow(false);
   };
+  
   return (
     <>
       <IconButton size="large" className={classes.Helpbtn} onClick={openDialog}>
