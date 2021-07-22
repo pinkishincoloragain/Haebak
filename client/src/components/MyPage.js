@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import { useEffect, useState } from "react";
+=======
+import { useState, useEffect } from "react";
+import { debounce } from "lodash";
+>>>>>>> 6b6b069ec2619301354e9674c0f1ab53ea4e46ce
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 
@@ -11,11 +16,14 @@ import { dbService } from "../firebase";
 
 const useStyles = makeStyles((theme) => ({
   mypageRoot: {
+    width: "100%",
+    height: "100%",
     background: `url(${MypageImage}) center center / cover no-repeat`,
     backgroundAttachment: "fixed",
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",
+    alignItems: "center",
     "& > *": {
       margin: theme.spacing(1),
       width: theme.spacing(16),
@@ -30,22 +38,35 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-around",
+    "@media (max-width:610px)": {
+      width: "440px",
+    },
+    "@media (max-width:500px)": {
+      width: "350px",
+    },
   },
-  mypageContent: {
+  mypageContent: (isMypage) => ({
     height: "80%",
     display: "flex",
     flexDirection: "column",
-    justifyContent: "space-around",
+    justifyContent: `${isMypage ? "space-around" : "flex-start"}`,
     alignItems: "center",
-  },
+    overflowY: `${!isMypage && "scroll"}`,
+  }),
 }));
 
+<<<<<<< HEAD
 const MyPage = ({ userObj, handleMypage, userInfoObj }) => {
   const classes = useStyles();
+=======
+const MyPage = ({ userObj, handleMypage }) => {
+>>>>>>> 6b6b069ec2619301354e9674c0f1ab53ea4e46ce
   const [isMypage, setIsMypage] = useState(true);
-
+  const classes = useStyles(isMypage);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const handleMyQuestion = () => setIsMypage(!isMypage);
 
+<<<<<<< HEAD
   // useEffect(() => {
   //   getQuestionAnswers;
   // }, []);
@@ -60,6 +81,18 @@ const MyPage = ({ userObj, handleMypage, userInfoObj }) => {
   //     .get();
   //   console.log(records.docs.map((doc) => doc.data()));
   // };
+=======
+  useEffect(() => {
+    const handleResize = debounce(() => {
+      setWindowWidth(window.innerWidth);
+    }, 100);
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
+>>>>>>> 6b6b069ec2619301354e9674c0f1ab53ea4e46ce
 
   return (
     <div className={classes.mypageRoot}>
@@ -80,11 +113,11 @@ const MyPage = ({ userObj, handleMypage, userInfoObj }) => {
               <ActivityRecord handleMyQuestion={handleMyQuestion} />
             </>
           ) : (
-            <MyRecordList />
+            <MyRecordList userObj={userObj} />
           )}
         </div>
       </Paper>
-      <PageLogo logoName="MYPAGE" />
+      <PageLogo logoName="MYPAGE" windowWidth={windowWidth} />
     </div>
   );
 };

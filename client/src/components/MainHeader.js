@@ -8,9 +8,16 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: "50px",
-    marginBottom: "30px",
     fontSize: "1.4em",
+    overflowY: "scroll",
+    "@media (max-width:520px)": {
+      marginBottom: "20px !important",
+    },
+  },
+  headerLogo: {
+    "@media (max-width:1150px)": {
+      fontSize: "1.5em",
+    },
   },
 });
 
@@ -19,11 +26,14 @@ const Header = ({ handleMypage, handleAboutpage }) => {
 
   return (
     <div className={classes.headerRoot}>
-      <Typography component="h1" variant="h2">
+      <Typography component="h1" variant="h2" className={classes.headerLogo}>
         <span style={{ color: "#e53935" }}>KNU&nbsp;</span>
         HOUSE
       </Typography>
-      <MainSideMenu handleMypage={handleMypage} handleAboutpage={handleAboutpage}/>
+      <MainSideMenu
+        handleMypage={handleMypage}
+        handleAboutpage={handleAboutpage}
+      />
     </div>
   );
 };

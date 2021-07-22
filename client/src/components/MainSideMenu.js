@@ -8,8 +8,8 @@ import LogOut from "./LogOut";
 
 const useStyles = makeStyles({
   menuRoot: {
-    position: "relative",
-    left: "450px",
+    position: "absolute",
+    right: "4%",
   },
   menuDrawer: {
     display: "flex",
@@ -43,7 +43,10 @@ const MainSideMenu = ({ handleMypage, handleAboutpage }) => {
       <Drawer anchor="right" open={IsShowMenu} onClose={handleShowMenu}>
         <div className={classes.menuDrawer}>
           <div className={classes.menuLayout}>
-            <MenuButton isShowMenu={IsShowMenu} handleShowMenu={handleShowMenu} />
+            <MenuButton
+              isShowMenu={IsShowMenu}
+              handleShowMenu={handleShowMenu}
+            />
             <List className={classes.menuList}>
               <MenuItem className={classes.menuItem} onClick={handleMypage}>
                 <Typography variant="h5">MyPage</Typography>

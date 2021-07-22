@@ -8,9 +8,12 @@ import HelpDialog from "./HelpDialog";
 const useStyles = makeStyles((theme) => ({
   Helpbtn: {
     position: "absolute",
-    bottom: theme.spacing(3),
-    right: theme.spacing(3),
+    right: "4%",
+    bottom: "0%",
     color: "black",
+    "@media (max-width:520px)": {
+      bottom: "-1% !important",
+    },
   },
 }));
 
@@ -25,13 +28,13 @@ const HelpButton = () => {
   const closeDialog = () => {
     setShow(false);
   };
-  
+
   return (
     <>
       <IconButton size="large" className={classes.Helpbtn} onClick={openDialog}>
         <HelpOutlineIcon fontSize="large" />
       </IconButton>
-      {show ? <HelpDialog func={closeDialog}/> : ""}
+      {show ? <HelpDialog func={closeDialog} /> : ""}
     </>
   );
 };

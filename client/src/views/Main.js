@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 
 import MainHeader from "../components/MainHeader";
 import MainPaperList from "../components/MainPaperList";
@@ -9,7 +10,18 @@ import HelpButton from "../components/HelpButton";
 import GetRecord from "../components/GetRecord";
 import { dbService } from "../firebase";
 
+const useStyles = makeStyles({
+  mainFrame: {
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
+
 const Main = ({ isLoggedIn, userObj, userInfoObj }) => {
+  const classes = useStyles();
   const [isOtherPage, setIsOtherPage] = useState({
     main: true,
     mypage: false,
@@ -41,7 +53,7 @@ const Main = ({ isLoggedIn, userObj, userInfoObj }) => {
     });
 
   return (
-    <div style={{ height: "100%" }}>
+    <div className={classes.mainFrame}>
       {isOtherPage.main && (
         <>
           <MainHeader

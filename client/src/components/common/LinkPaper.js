@@ -27,8 +27,11 @@ const useStyles = makeStyles((theme) => ({
         props.type === "main"
           ? "#e6e6e6"
           : props.name === "question" && "#ff9d9d"
-        // : "#73e8c0"
       }`,
+    },
+    "@media (max-width:1150px)": {
+      width: `${props.type === "main" ? "300px" : "150px"}`,
+      height: `${props.type === "main" ? "320px" : "250px"}`,
     },
   }),
   paperContent: {
