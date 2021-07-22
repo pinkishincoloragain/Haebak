@@ -5,8 +5,8 @@ import { v4 as uuidv4 } from "uuid";
 import Record from "../components/Record";
 import ActivityImage from "../components/common/ActivityImage";
 import BackButton from "../components/common/BackButton";
-import Button from '@material-ui/core/Button';
-import Fade from '@material-ui/core/Fade';
+import Button from "@material-ui/core/Button";
+import Fade from "@material-ui/core/Fade";
 
 import { dbService, storageService } from "../firebase.js";
 import Pending from "../components/common/Pending";
@@ -83,13 +83,17 @@ const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
           <RandomAnswer userInfoObj={userInfoObj} userObj={userObj} setGotQuestion={setGotQuestion} file={file} submited={submited} />
         }
       </div>
-      { file && !pending &&
+      {file && !pending && (
         <Fade in={true}>
-          <Button className={classes.submit} onClick={handleSubmit} variant="contained">
+          <Button
+            className={classes.submit}
+            onClick={handleSubmit}
+            variant="contained"
+          >
             질문하기
           </Button>
         </Fade>
-      }
+      )}
     </div>
   );
 };

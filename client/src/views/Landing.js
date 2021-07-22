@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { Link, Paper, Grid, Typography } from "@material-ui/core";
+import { Link, Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { authService, dbService } from "../firebase";
 import LandingLogin from "../components/LandingLogin";
 import LandingRegister from "../components/LandingRegister";
+import LandingImage from "../image/LandingImage.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    background: `url(${LandingImage}) center center / cover no-repeat`,
     height: "100vh",
     width: "100%",
     display: "flex",
@@ -14,12 +16,21 @@ const useStyles = makeStyles((theme) => ({
     boxSizing: "border-box",
     alignContent: "space-around",
     justifyContent: "center",
+    "@media (max-width:970px)": {
+      flexDirection: "column-reverse",
+      "& > h1": {
+        margin: "0 0 30px 0 !important",
+        fontSize: "3em",
+      },
+    },
   },
   paper: {
-    margin: theme.spacing(6, 3),
+    width: "350px",
+    height: "auto",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    padding: "0 30px 15px 30px",
   },
   form: {
     width: "100%",
@@ -32,10 +43,11 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
   title: {
-    margin: theme.spacing(0, 0, 0, 6),
     display: "flex",
     alignItems: "center",
+    justifyContent: "center",
     color: "#e53935",
+    marginLeft: "50px",
   },
 }));
 
@@ -67,7 +79,7 @@ function Landing() {
     console.log(inputs);
     let data;
     try {
-      if (!newAccount) {
+      if (newAccount) {
         await authService.signInWithEmailAndPassword(
           inputs.email,
           inputs.password
@@ -98,35 +110,31 @@ function Landing() {
   };
 
   return (
-    <Grid container component="main" className={classes.root}>
-      <Grid item xs={8} sm={8} md={3} component={Paper} elevation={6} square>
-        <div className={classes.paper}>
-          {newAccount ? (
-            <LandingRegister
-              userinput={inputs}
-              onch={onChange}
-              submit={handleSubmit}
-            />
-          ) : (
-            <LandingLogin
-              userinput={inputs}
-              onch={onChange}
-              submit={handleSubmit}
-            />
-          )}
-          <Grid className={classes.up}>
-            <Link to="/CreateAccount" variant="body2" onClick={toggleAccount}>
-              {newAccount ? "I Already have acoount" : "Join now"}
-            </Link>
-          </Grid>
-          <span onClick={toggleAccount}></span>
-        </div>
-      </Grid>
+    <div className={classes.root}>
+      <Paper className={classes.paper}>
+        {!newAccount ? (
+          <LandingRegister
+            userinput={inputs}
+            onch={onChange}
+            submit={handleSubmit}
+          />
+        ) : (
+          <LandingLogin
+            userinput={inputs}
+            onch={onChange}
+            submit={handleSubmit}
+          />
+        )}
+        <Link to="/CreateAccount" variant="body2" onClick={toggleAccount}>
+          {!newAccount ? "계정이 있어요" : "계정이 없어요"}
+        </Link>
+        <span onClick={toggleAccount}></span>
+      </Paper>
       <Typography component="h1" variant="h2" className={classes.title}>
         KNU&nbsp;
         <span style={{ color: "black" }}>HOUSE</span>
       </Typography>
-    </Grid>
+    </div>
   );
 }
 

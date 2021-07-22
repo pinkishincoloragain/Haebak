@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        width: "100%",
         margin: theme.spacing(6, 3),
         display: 'flex',
         flexDirection: 'column',
@@ -33,7 +34,7 @@ const Login = (props) => {
     return (
         <div className={classes.root}>
             <Typography component="h1" variant="h5">
-                LOGIN
+                로그인
             </Typography>
             <form className={classes.form} onSubmit={props.submit} noValidate>
                 <TextField
@@ -41,25 +42,27 @@ const Login = (props) => {
                     margin="normal"
                     required
                     fullWidth
-                    label="Email Address"
+                    label="이메일"
                     type="email"
                     id="email"
                     name="email"
                     value={props.userinput.email}
                     autoFocus
                     onChange={props.onch}
+                    className={classes.input}
                 />
                 <TextField
                     variant="outlined"
                     margin="normal"
                     required
                     fullWidth
-                    label="Password"
+                    label="비밀번호"
                     type="password"
                     id="password"
                     name="password"
                     value={props.userinput.password}
                     onChange={props.onch}
+                    className={classes.input}
                 />
                 <Button
                     type="submit"
@@ -68,7 +71,7 @@ const Login = (props) => {
                     color="primary"
                     className={classes.submit}
                 >
-                    LOGIN
+                    로그인
                 </Button>
             </form>
         </div>
