@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 const Activity = ({ handleActivity }) => {
   const [isQuestion, setIsQuestion] = useState(true);
   const classes = useStyles();
-
+  
   return (
     <div>
       <BackButton type="activity" action={handleActivity} />
