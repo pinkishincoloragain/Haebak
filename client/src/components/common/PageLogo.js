@@ -1,15 +1,14 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
-  LogoRoot: ({ responsive }) => ({
+  LogoRoot: {
     width: "auto !important",
     height: "auto !important",
     marginBottom: "300px !important",
     position: "relative",
-    display: `${responsive && "content"}`,
     flexDirection: "column",
     alignItems: "center",
-  }),
+  },
   LogoText: {
     display: "block",
     fontWeight: "bold",
@@ -17,12 +16,15 @@ const useStyles = makeStyles({
   },
 });
 
-const PageLogo = ({ logoName, responsive }) => {
-  const classes = useStyles({ responsive });
+const PageLogo = ({ logoName, windowWidth }) => {
+  const classes = useStyles();
   const logoContent = logoName.split("");
 
   return (
-    <div className={classes.LogoRoot}>
+    <div
+      className={classes.LogoRoot}
+      style={{ display: `${windowWidth >= 410 ? "flex" : "none"}` }}
+    >
       {logoContent.map((word, index) => (
         <span key={index} className={classes.LogoText}>
           {word}

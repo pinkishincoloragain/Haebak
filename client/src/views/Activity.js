@@ -22,8 +22,8 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     background: "rgba(0, 0, 0, 0.4)",
-    '&:hover': {
-      background: "rgba(0, 0, 0, 0.8)"
+    "&:hover": {
+      background: "rgba(0, 0, 0, 0.8)",
     },
     width: "100vw",
     position: "fixed",
@@ -31,11 +31,11 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     height: "100px",
     fontSize: "3rem",
-    color: "white"
-  }
+    color: "white",
+  },
 }));
 
-const Activity = ({ userObj, isQuestion, handleActivity }) => {
+const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
   const [file, setFile] = useState(null);
   const [pending, setPending] = useState(false);
   const [record, setRecord] = useState(isQuestion);
@@ -54,7 +54,7 @@ const Activity = ({ userObj, isQuestion, handleActivity }) => {
       creatorId: userObj.uid,
       recordURL,
       answered: false,
-      answerId: ""
+      answerId: "",
     });
     setFile(null);
     handleActivity();
@@ -69,7 +69,7 @@ const Activity = ({ userObj, isQuestion, handleActivity }) => {
         <ActivityImage state={isQuestion} />
         {record && <Record setFile={setFile} /> }
         {!isQuestion && 
-          <RandomAnswer />
+          <RandomAnswer userInfoObj={userInfoObj} userObj={userObj} />
         }
       </div>
       { file &&

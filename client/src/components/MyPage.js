@@ -8,6 +8,7 @@ import ActivityRecord from "./ActivityRecord";
 import BackButton from "./common/BackButton";
 import MypageImage from "../image/MypageImage.png";
 import MyRecordList from "./MyRecordList";
+import { dbService } from "../firebase";
 
 const useStyles = makeStyles((theme) => ({
   mypageRoot: {
@@ -50,12 +51,26 @@ const useStyles = makeStyles((theme) => ({
   }),
 }));
 
-const MyPage = ({ userObj, handleMypage }) => {
+const MyPage = ({ userObj, handleMypage, userInfoObj }) => {
   const [isMypage, setIsMypage] = useState(true);
   const classes = useStyles(isMypage);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const handleMyQuestion = () => setIsMypage(!isMypage);
 
+  // useEffect(() => {
+  //   getQuestionAnswers;
+  // }, []);
+
+  // const getQuestionAnswers = async () => {
+  //   // filtering = where
+  //   // 내 레코드 다 가져와
+  //   const RecordData = await dbService
+  //     .collection("Record")
+  //     .where("creatorId", "==", userObj.uid)
+  //     .orderBy("createdAt")
+  //     .get();
+  //   console.log(records.docs.map((doc) => doc.data()));
+  // };
   useEffect(() => {
     const handleResize = debounce(() => {
       setWindowWidth(window.innerWidth);
@@ -80,7 +95,7 @@ const MyPage = ({ userObj, handleMypage }) => {
           {isMypage ? (
             <>
               <div style={{ fontSize: "1.6em" }}>
-                <p>학과 : IT대학 - 컴퓨터학부</p>
+                <p>학과 : {userInfoObj.department}</p>
                 <p>이메일 : {userObj.email}</p>
               </div>
               <ActivityRecord handleMyQuestion={handleMyQuestion} />
@@ -90,10 +105,7 @@ const MyPage = ({ userObj, handleMypage }) => {
           )}
         </div>
       </Paper>
-      <PageLogo
-        logoName="MYPAGE"
-        responsive={`${windowWidth <= 410 ? true : false}`}
-      />
+      <PageLogo logoName="MYPAGE" windowWidth={windowWidth} />
     </div>
   );
 };

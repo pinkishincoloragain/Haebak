@@ -5,9 +5,10 @@ import Landing from "./views/Landing";
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import GetRecord from "./components/GetRecord";
-import { authService } from "./firebase";
+import { authService, dbService } from "./firebase";
 import Activity from "./views/Activity";
 import Pending from "./components/common/Pending";
+import { useReducer } from "react";
 
 function App() {
   // initialization for Firebase Firestore
@@ -19,6 +20,8 @@ function App() {
   // User object contains user information like ID, recording .. .
   const [userObj, setUserObj] = useState(null);
 
+  const [userInfoObj, setUserInfoObj] = useState(null);
+
   // activates whenever this component renders
   useEffect(() => {
     // check authentication
@@ -27,6 +30,7 @@ function App() {
       if (user) {
         setIsLoggedIn(true);
         setUserObj(user);
+        fetchUserData(user);
       }
       // user is not logged in
       else {
@@ -37,6 +41,15 @@ function App() {
       setInit(true);
     });
   }, []);
+
+  async function fetchUserData(user) {
+    const data = await dbService
+      .collection("userInfo")
+      .where("email", "==", user.email)
+      .get();
+    setUserInfoObj(data.docs[0].data());
+  }
+
   return (
     <>
       {/* <Activity /> */}
@@ -44,13 +57,17 @@ function App() {
         <div className="App" style={{ height: "100vh" }}>
           <CssBaseline />
           {!isLoggedIn ? (
-            <Landing />
+            <Landing setUserInfoObj={setUserInfoObj} />
           ) : (
-            <Main isLoggedIn={isLoggedIn} userObj={userObj} />
+            <Main
+              isLoggedIn={isLoggedIn}
+              userObj={userObj}
+              userInfoObj={userInfoObj}
+            />
           )}
         </div>
       ) : (
-        <Pending text="로딩중... "/>
+        <Pending text="로딩중... " />
       )}
     </>
   );
