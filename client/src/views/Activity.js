@@ -73,7 +73,7 @@ const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
           <RandomAnswer userInfoObj={userInfoObj} userObj={userObj} />
         )}
       </div>
-      {file && (
+      {file && !pending && (
         <Fade in={true}>
           <Button
             className={classes.submit}
