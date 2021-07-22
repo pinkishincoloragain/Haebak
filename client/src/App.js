@@ -5,7 +5,9 @@ import Landing from "./views/Landing";
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import { authService, dbService } from "./firebase";
+import Activity from "./views/Activity";
 import Pending from "./components/common/Pending";
+import { useReducer } from "react";
 import firebase from "firebase/app";
 
 function App() {
@@ -24,7 +26,6 @@ function App() {
   useEffect(() => {
     // check authentication
 
-    authService.setPersistence(firebase.auth.Auth.Persistence.SESSION);
     authService.onAuthStateChanged((user) => {
       // user is logged in
       console.log(user);
@@ -32,6 +33,11 @@ function App() {
         fetchUserData(user);
         setUserObj(user);
         setIsLoggedIn(true);
+        console.log(user.emailVerified);
+        if (user.emailVerified != true) {
+          alert("check your email!");
+          authService.signOut();
+        }
       }
       // user is not logged in
       else {
