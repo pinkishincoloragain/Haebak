@@ -4,8 +4,10 @@ import Fab from '@material-ui/core/Fab';
 import MicIcon from '@material-ui/icons/Mic';
 import StopIcon from '@material-ui/icons/Stop';
 import MicRecorder from "mic-recorder-to-mp3";
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { green, deepOrange } from '@material-ui/core/colors';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
         display: "flex",
         flexDirection: "column",
@@ -22,8 +24,32 @@ const useStyles = makeStyles({
         display: "flex",
         justifyContent: "center",
         alignItems: "center"
-    }
-  });
+    },
+    wrapper: {
+        margin: theme.spacing(1),
+        position: 'relative',
+    },
+    fab: {
+        backgroundColor: green[500],
+        '&:hover': {
+            backgroundColor: green[700],
+        },
+        zIndex: 1,
+    },
+    fabRecord: {
+        backgroundColor: deepOrange[500],
+        '&:hover': {
+            backgroundColor: deepOrange[700],
+        },
+        zIndex: 1,
+    },
+    fabProgress: {
+        color: deepOrange[800],
+        position: 'absolute',
+        top: -6,
+        left: -6,
+    },
+  }));
 
 function Record() {
     const [isRecording, setIsRecording] = useState(false);
@@ -75,12 +101,16 @@ function Record() {
                 { !isRecording && blobURL && <audio controls src={blobURL}>오디오</audio>}
             </div>
             <div className={classes.record}>
-                <Fab 
-                    color={isRecording ? "secondary" : "primary"}
-                    onClick={isRecording ? handleStopRecord : handleRecord}
-                >
-                    {isRecording ? <StopIcon /> : <MicIcon />}
-                </Fab>
+                <div className={classes.wrapper}>
+                    <Fab 
+                        className={isRecording ? classes.fabRecord : classes.fab}
+                        color={isRecording ? "secondary" : "primary"}
+                        onClick={isRecording ? handleStopRecord : handleRecord}
+                    >
+                        {isRecording ? <StopIcon /> : <MicIcon />}
+                    </Fab>
+                    {isRecording && <CircularProgress size={68} className={classes.fabProgress} />}
+                </div>
             </div>
         </div>
     )
