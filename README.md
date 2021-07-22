@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="#">
     <img src="/client/src/assets/image/AboutpageImage.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -10,7 +10,7 @@
   <p align="center">
     경북대학교 SW 해커톤
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>GO WEBSITE »</strong></a>
+    <a href="#"><strong>GO WEBSITE »</strong></a>
     <br />
     <br />
   </p>
