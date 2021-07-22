@@ -8,7 +8,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ActivityRecord = ({ handleMyQuestion }) => {
+const ActivityRecord = ({ question, answered, handleMyQuestion }) => {
   const classes = useStyles();
 
   return (
@@ -19,9 +19,10 @@ const ActivityRecord = ({ handleMyQuestion }) => {
           type="mypage"
           name="question"
           title="질문"
+          count={question}
           action={handleMyQuestion}
         />
-        <LinkPaper type="mypage" name="answer" title="답변" />
+        <LinkPaper type="mypage" name="answer" title="답변" count={answered} />
       </div>
     </div>
   );

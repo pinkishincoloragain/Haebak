@@ -3,11 +3,12 @@ import { debounce } from "lodash";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 
+import MyRecordList from "./MyRecordList";
+import MypageContent from "./MyPageContent";
 import PageLogo from "./common/PageLogo";
-import ActivityRecord from "./ActivityRecord";
 import BackButton from "./common/BackButton";
 import MypageImage from "../assets/image/MypageImage.png";
-import MyRecordList from "./MyRecordList";
+
 import { dbService } from "../firebase";
 
 const useStyles = makeStyles((theme) => ({
@@ -55,32 +56,36 @@ const MyPage = ({ userObj, handleMypage, userInfoObj }) => {
   const [isMypage, setIsMypage] = useState(true);
   const classes = useStyles(isMypage);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const handleMyQuestion = () => setIsMypage(!isMypage);
+  const [pending, setPending] = useState(true);
+  const [data, setData] = useState([]);
+  const [answered, setAnswered] = useState(0);
 
-  // useEffect(() => {
-  //   getQuestionAnswers;
-  // }, []);
-
-  // const getQuestionAnswers = async () => {
-  //   // filtering = where
-  //   // 내 레코드 다 가져와
-  //   const RecordData = await dbService
-  //     .collection("Record")
-  //     .where("creatorId", "==", userObj.uid)
-  //     .orderBy("createdAt")
-  //     .get();
-  //   console.log(records.docs.map((doc) => doc.data()));
-  // };
   useEffect(() => {
+    fetchData();
     const handleResize = debounce(() => {
       setWindowWidth(window.innerWidth);
     }, 100);
-
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   });
+
+  async function fetchData() {
+    const querySnapshot = await dbService
+      .collection("question")
+      .where("creatorId", "==", userObj.uid)
+      .get();
+    const transformedData = querySnapshot.docs.map((doc) => doc);
+    await dbService
+      .collection("question")
+      .where("answerId", "==", userObj.uid)
+      .get().then((snapshot) => setAnswered(snapshot.size));  
+    setData(transformedData);
+    setPending(false);
+  }
+
+  const handleMyQuestion = () => setIsMypage(!isMypage);
 
   return (
     <div className={classes.mypageRoot}>
@@ -93,15 +98,21 @@ const MyPage = ({ userObj, handleMypage, userInfoObj }) => {
         </div>
         <div className={classes.mypageContent}>
           {isMypage ? (
-            <>
-              <div style={{ fontSize: "1.6em" }}>
-                <p>학과&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;{userInfoObj.department}</p>
-                <p>이메일 : &nbsp;{userObj.email}</p>
-              </div>
-              <ActivityRecord handleMyQuestion={handleMyQuestion} />
-            </>
+            <MypageContent
+              question={data.length}
+              answered={answered}
+              userObj={userObj}
+              userInfoObj={userInfoObj}
+              handleMyQuestion={handleMyQuestion}
+            />
           ) : (
-            <MyRecordList userObj={userObj} />
+            <MyRecordList
+              userObj={userObj}
+              data={data}
+              pending={pending}
+              setData={setData}
+              setPending={setPending}
+            />
           )}
         </div>
       </Paper>

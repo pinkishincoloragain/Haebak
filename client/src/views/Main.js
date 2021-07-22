@@ -8,16 +8,20 @@ import AboutPage from "../components/AboutPage";
 import Activity from "./Activity";
 import HelpButton from "../components/HelpButton";
 import SuccSnackbar from "../components/common/SuccSnackbar";
-import GetRecord from "../components/GetRecord";
-import { dbService } from "../firebase";
+import MainImage from "../assets/image/paper.jpeg"
 
 const useStyles = makeStyles({
   mainFrame: {
+    width:"100%",
     height: "100%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+  },
+  mainBackground: {
+    background: `url(${MainImage}) center center / cover no-repeat`,
+    backgroundAttachment: "fixed",
   },
 });
 
@@ -61,13 +65,13 @@ const Main = ({ userObj, userInfoObj }) => {
   return (
     <div className={classes.mainFrame}>
       {isOtherPage.main && (
-        <>
+        <div className={`${classes.mainFrame} ${classes.mainBackground}`}>
           <MainHeader
             handleMypage={handleMypage}
             handleAboutpage={handleAboutpage}
           />
           <MainPaperList handleActivity={handleActivity} />
-        </>
+        </div>
       )}
       {isOtherPage.mypage && (
         <MyPage
@@ -90,12 +94,6 @@ const Main = ({ userObj, userInfoObj }) => {
       {snackOpen && <SuccSnackbar />}
     </div>
   );
-
-  // return (
-  //   <div>
-  //     <GetRecord userObj={userObj} />
-  //   </div>
-  // );
 };
 
 export default Main;
