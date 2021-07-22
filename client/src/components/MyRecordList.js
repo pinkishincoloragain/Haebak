@@ -37,6 +37,7 @@ const MyRecordList = ({ userObj }) => {
   const handleDeleteRecord = async (id) => {
     setPending(true);
     await dbService.collection('question').doc(id).delete();
+    setData(data.filter((doc) => doc.id !== id));
     setPending(false);
   };
 

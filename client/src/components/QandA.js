@@ -1,6 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
+import AskDialog from "./common/AskDialog";
 
 const useStyles = makeStyles({
   audioRoot: {
@@ -36,17 +37,24 @@ const QandA = ({ doc, handleDeleteRecord }) => {
       <div className={classes.audioRoot}>
         <div style={{ display: "flex", alignItems: "center" }}>
           <h4 style={{ margin: "0" }}>{questionDate}</h4>
-          <IconButton
-            aria-label="delete"
-            color="secondary"
-            onClick={()=>handleDeleteRecord(doc.id)}
-          >
-            <DeleteIcon />
-          </IconButton>
+          <AskDialog
+            btn={
+              <IconButton aria-label="delete" color="secondary">
+                <DeleteIcon />
+              </IconButton>
+            }
+            title="해당 질문 기록을 삭제하시겠습니까?"
+            content="삭제된 기록은 복구할 수 없습니다."
+            action={() => handleDeleteRecord(doc.id)}
+          />
         </div>
         <div className={classes.audioBox}>
           <h3>질문</h3>
-          <audio src={doc.data().recordURL} controls className={classes.audio}></audio>
+          <audio
+            src={doc.data().recordURL}
+            controls
+            className={classes.audio}
+          ></audio>
         </div>
         <div className={classes.audioBox}>
           <h3>답변</h3>{" "}
