@@ -9,6 +9,7 @@ import { authService, dbService } from "./firebase";
 import Activity from "./views/Activity";
 import Pending from "./components/common/Pending";
 import { useReducer } from "react";
+import firebase from "firebase/app";
 
 function App() {
   // initialization for Firebase Firestore
@@ -25,12 +26,15 @@ function App() {
   // activates whenever this component renders
   useEffect(() => {
     // check authentication
+
+    authService.setPersistence(firebase.auth.Auth.Persistence.SESSION);
     authService.onAuthStateChanged((user) => {
       // user is logged in
+      console.log(user);
       if (user) {
-        setIsLoggedIn(true);
-        setUserObj(user);
         fetchUserData(user);
+        setUserObj(user);
+        setIsLoggedIn(true);
       }
       // user is not logged in
       else {
@@ -43,11 +47,10 @@ function App() {
   }, []);
 
   async function fetchUserData(user) {
-    const data = await dbService
+    await dbService
       .collection("userInfo")
       .where("email", "==", user.email)
-      .get();
-    setUserInfoObj(data.docs[0].data());
+      .get().then((d) => setUserInfoObj(d.docs[0].data()));
   }
 
   return (

@@ -95,8 +95,8 @@ const MyPage = ({ userObj, handleMypage, userInfoObj }) => {
           {isMypage ? (
             <>
               <div style={{ fontSize: "1.6em" }}>
-                <p>학과 : {userInfoObj.department}</p>
-                <p>이메일 : {userObj.email}</p>
+                <p>학과&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;{userInfoObj.department}</p>
+                <p>이메일 : &nbsp;{userObj.email}</p>
               </div>
               <ActivityRecord handleMyQuestion={handleMyQuestion} />
             </>

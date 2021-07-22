@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   titleBox: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   title: {
     display: "flex",
@@ -53,8 +53,14 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "FingerPaint",
     backgroundColor: "#fafafa",
     height: "fit-content",
+<<<<<<< HEAD
+    border: "2px solid black",
+    boxShadow: "3px 3px black",
+    padding: "10px",
+=======
     padding: "15px",
     boxShadow: "2px 2px lightgrey"
+>>>>>>> 24b8361548d4551b7e66b594b3a55a334fa3ab6c
   },
 }));
 
@@ -83,27 +89,25 @@ function Landing() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputs);
-    let data;
     try {
-      if (newAccount) {
-        await authService.signInWithEmailAndPassword(
+      if (!newAccount) {
+        const userInfoObj = {
+          department: inputs.department,
+          email: inputs.email,
+          name: inputs.name,
+        };
+        await dbService.collection("userInfo").add(userInfoObj);
+
+        await authService.createUserWithEmailAndPassword(
           inputs.email,
           inputs.password
         );
       } else {
-        data = await authService.createUserWithEmailAndPassword(
+        await authService.signInWithEmailAndPassword(
           inputs.email,
           inputs.password
         );
       }
-
-      const userInfoObj = {
-        department: inputs.department,
-        email: inputs.email,
-        name: inputs.name,
-      };
-      dbService.collection("userInfo").add(userInfoObj);
 
       setInputs(init);
     } catch (err) {
