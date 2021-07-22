@@ -15,6 +15,7 @@ const useStyles = makeStyles({
     },
   },
   headerLogo: {
+    fontFamily: "FingerPaint",
     "@media (max-width:1150px)": {
       fontSize: "1.5em",
     },

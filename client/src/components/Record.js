@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import Fab from '@material-ui/core/Fab';
+import {Fab, CircularProgress} from '@material-ui/core';
 import MicIcon from '@material-ui/icons/Mic';
 import StopIcon from '@material-ui/icons/Stop';
-import MicRecorder from "mic-recorder-to-mp3";
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { green, deepOrange } from '@material-ui/core/colors';
+
+import MicRecorder from "mic-recorder-to-mp3";
 
 const useStyles = makeStyles((theme) => ({
     root: {

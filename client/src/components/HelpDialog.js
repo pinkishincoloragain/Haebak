@@ -51,7 +51,7 @@ export default function CustomizedDialogs(props) {
         open={true}
       >
         <DialogTitle id="customized-dialog-title" onClose={props.func}>
-          HELP
+            <span style={{fontFamily: "FingerPaint"}}>HELP</span>
         </DialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>

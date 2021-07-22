@@ -49,10 +49,10 @@ const MainSideMenu = ({ handleMypage, handleAboutpage }) => {
             />
             <List className={classes.menuList}>
               <MenuItem className={classes.menuItem} onClick={handleMypage}>
-                <Typography variant="h5">MyPage</Typography>
+                <Typography variant="h5" style={{fontFamily: "FingerPaint"}}>MyPage</Typography>
               </MenuItem>
               <MenuItem className={classes.menuItem} onClick={handleAboutpage}>
-                <Typography variant="h5">About</Typography>
+                <Typography variant="h5" style={{fontFamily: "FingerPaint"}}>About</Typography>
               </MenuItem>
             </List>
           </div>
