@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: `${
         props.type === "main"
-          ? "#e6e6e6"
+          ?  (props.name === "question" ? "#fbb9b9" : "#b8fbe4")
           : props.name === "question" && "#ff9d9d"
       }`,
     },
