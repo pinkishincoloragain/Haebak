@@ -15,24 +15,8 @@ const useStyles = makeStyles({
   },
 });
 
-const MyRecordList = ({ userObj }) => {
+const MyRecordList = ({ data, pending, setData, setPending }) => {
   const classes = useStyles();
-  const [pending, setPending] = useState(true);
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  async function fetchData() {
-    const querySnapshot = await dbService
-      .collection("question")
-      .where("creatorId", "==", userObj.uid)
-      .get();
-    const transformedData = querySnapshot.docs.map((doc) => doc);
-    setData(transformedData);
-    setPending(false);
-  }
 
   const handleDeleteRecord = async (id) => {
     setPending(true);

@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     width: `${props.type === "main" ? "480px" : "200px"}`,
     height: `${props.type === "main" ? "500px" : "300px"}`,
     backgroundColor: `${
-      props.type === "mypage" &&
+      props.type === "main" ? "white" :
       (props.name === "question" ? "#fbb9b9" : "#b8fbe4")
     }`,
     "&:hover": {
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const LinkPaper = (props) => {
-  const { type, name, title } = props;
+  const { type, name, title, count } = props;
   const classes = useStyles(props);
 
   return (
@@ -53,7 +53,7 @@ const LinkPaper = (props) => {
         <div className={classes.paperContent}>
           <h2>{title}</h2>
           <LinkPaperImg type={type} name={name} />
-          {type === "mypage" && <h2>3</h2>}
+          {type === "mypage" && <h2>{count}</h2>}
         </div>
       </Paper>
     </div>

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link, Paper, Typography } from "@material-ui/core";
+import { Paper, Typography } from "@material-ui/core";
 
 import { authService, dbService } from "../firebase";
 import LandingLogin from "../components/LandingLogin";
 import LandingRegister from "../components/LandingRegister";
 import SuccSnackbar from "../components/common/SuccSnackbar";
-import LandingImage from "../assets/image/LandingImage.png";
+import LandingImage from "../assets/image/paper.jpeg";
+
 import firebase from "firebase";
 
 const useStyles = makeStyles((theme) => ({
@@ -55,11 +56,10 @@ const useStyles = makeStyles((theme) => ({
     color: "#e53935",
     marginLeft: "50px",
     fontFamily: "FingerPaint",
-    backgroundColor: "#fafafa",
+    // backgroundColor: "#fafafa",
     height: "fit-content",
-    border: "2px solid black",
-    boxShadow: "3px 3px black",
-    padding: "10px",
+    padding: "15px",
+    // boxShadow: "2px 2px lightgrey"
   },
 }));
 
