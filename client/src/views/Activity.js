@@ -9,6 +9,7 @@ import ActivityImage from "../components/common/ActivityImage";
 import BackButton from "../components/common/BackButton";
 import Pending from "../components/common/Pending";
 import { dbService, storageService } from "../firebase.js";
+import ActivityImg from "../assets/image/paper.jpeg";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -17,6 +18,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     flexDirection: "column",
+    background: `url(${ActivityImg}) center center / cover no-repeat`,
+    backgroundAttachment: "fixed",
   },
   submit: {
     background: "rgba(0, 0, 0, 0.4)",

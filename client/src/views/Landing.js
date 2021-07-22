@@ -8,8 +8,6 @@ import LandingRegister from "../components/LandingRegister";
 import SuccSnackbar from "../components/common/SuccSnackbar";
 import LandingImage from "../assets/image/paper.jpeg";
 
-import firebase from "firebase";
-
 const useStyles = makeStyles((theme) => ({
   root: {
     background: `url(${LandingImage}) center center / cover no-repeat`,
@@ -35,8 +33,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     padding: "0 30px 15px 30px",
-    border: "2px solid black",
-    boxShadow: "3px 3px black",
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -56,10 +52,8 @@ const useStyles = makeStyles((theme) => ({
     color: "#e53935",
     marginLeft: "50px",
     fontFamily: "FingerPaint",
-    // backgroundColor: "#fafafa",
     height: "fit-content",
     padding: "15px",
-    // boxShadow: "2px 2px lightgrey"
   },
 }));
 
@@ -75,7 +69,6 @@ function Landing() {
   const [inputs, setInputs] = useState(init);
   const [newAccount, setNewAccount] = useState(true);
   const [snackOpen, setSnackOpen] = useState(false);
-  // const [error, setError] = useState("");
 
   const onChange = (e) => {
     e.preventDefault();

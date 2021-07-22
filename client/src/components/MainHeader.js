@@ -16,9 +16,7 @@ const useStyles = makeStyles({
   },
   headerLogo: {
     fontFamily: "FingerPaint",
-    // backgroundColor: "white",
     padding: "15px",
-    // boxShadow: "3px 3px",
     "@media (max-width:1150px)": {
       fontSize: "1.5em",
     },
