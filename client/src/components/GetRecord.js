@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { dbService } from "../firebase";
-import Record from "./Record";
+import RecordService from "./RecordService";
 import { v4 as uuidv4 } from "uuid";
 import { storageService } from "../firebase";
 
@@ -12,6 +12,20 @@ const GetRecord = ({ userObj }) => {
   // record file
   const [recordData, setRecordData] = useState(null);
 
+  // useEffect(() => {
+  //   // onSnapshot -> detect change from DB
+  //   dbService.collection("records").onSnapshot((snapshot) => {
+  //     // console.log(snapshot.docs);
+
+  //     // create arr of data.
+  //     const recordArr = snapshot.docs.map((doc) => ({
+  //       id: doc,
+  //       ...doc.data(),
+  //     }));
+  //     // console.log(recordArr);
+  //   });
+  // }, []);
+
   useEffect(() => {
     // onSnapshot -> detect change from DB
     dbService.collection("records").onSnapshot((snapshot) => {
@@ -22,6 +36,9 @@ const GetRecord = ({ userObj }) => {
         id: doc,
         ...doc.data(),
       }));
+
+      const data = dbService.collection("record").doc("iZafwEYsl6G5W9XCnbeL");
+      console.log(data);
       // console.log(recordArr);
     });
   }, []);
@@ -33,19 +50,26 @@ const GetRecord = ({ userObj }) => {
     const fileRef = storageService.ref().child(userObj.uid + "/" + uuidv4());
 
     // return uploadtask -> put to response
+    // Uploadtask : UploadTaskSnapshot
     const response = await fileRef.putString(recordData, "data_url");
-    const recordURL = await response.ref.getDownloadURL();
+    const RecordUrl = await response.ref.getDownloadURL();
 
-    // insert data to database
-    await dbService.collection("knuhouse").add({
-      // first record : column name of the data(DB) ------ second record : real data (state)
+    console.log(await response.ref.getDownloadURL());
+    // first record : column name of the data(DB) ------ second record : real data (state)
+    const recordObj = {
+      record: record,
       createdAt: Date.now(),
       creatorId: userObj.uid,
-      recordURL,
-    });
+      RecordUrl,
+    };
+
+    // insert data to database
+    await dbService.collection("knuhouse").add(recordObj);
+    console.log(recordObj.RecordUrl);
 
     // flush inputform
     setRecord("");
+    setRecordData("");
   };
 
   const handleChange = (e) => {
@@ -80,6 +104,7 @@ const GetRecord = ({ userObj }) => {
 
     // read data and make URL
     reader.readAsDataURL(file);
+    console.log(file);
   };
 
   const handleClear = () => {
@@ -90,11 +115,11 @@ const GetRecord = ({ userObj }) => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <input
+        {/* <input
           type="text"
           onChange={handleChange}
           placeholder="text input test"
-        />
+        /> */}
 
         <input
           type="file"
@@ -113,13 +138,14 @@ const GetRecord = ({ userObj }) => {
       <div>
         {/* Show datas using mapping */}
         {records.map((record) => (
-          <Record
+          <RecordService
             // id for each record
             key={record.id}
             // Obj for record
             recordObj={record}
             // check if the user(logged in) is creator of record
-            isOwner={record.creatorId === userObj.uid}></Record>
+            isOwner={record.creatorId === userObj.uid}
+          ></RecordService>
         ))}
       </div>
     </div>

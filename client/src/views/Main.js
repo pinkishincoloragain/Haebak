@@ -8,6 +8,7 @@ import AboutPage from "../components/AboutPage";
 import Activity from "./Activity";
 import HelpButton from "../components/HelpButton";
 import GetRecord from "../components/GetRecord";
+import { dbService } from "../firebase";
 
 const useStyles = makeStyles({
   mainFrame: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Main = ({ isLoggedIn, userObj }) => {
+const Main = ({ isLoggedIn, userObj, userInfoObj }) => {
   const classes = useStyles();
   const [isOtherPage, setIsOtherPage] = useState({
     main: true,
@@ -63,7 +64,11 @@ const Main = ({ isLoggedIn, userObj }) => {
         </>
       )}
       {isOtherPage.mypage && (
-        <MyPage userObj={userObj} handleMypage={handleMypage} />
+        <MyPage
+          userObj={userObj}
+          userInfoObj={userInfoObj}
+          handleMypage={handleMypage}
+        />
       )}
       {isOtherPage.about && <AboutPage handleAboutpage={handleAboutpage} />}
       {isOtherPage.activity && (

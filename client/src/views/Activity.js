@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import Record from "../components/Record";
 import ActivityImage from "../components/common/ActivityImage";
 import BackButton from "../components/common/BackButton";
-import Button from '@material-ui/core/Button';
+import Button from "@material-ui/core/Button";
 
 import { dbService, storageService } from "../firebase.js";
 import Pending from "../components/common/Pending";
@@ -20,8 +20,8 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     background: "rgba(0, 0, 0, 0.4)",
-    '&:hover': {
-      background: "rgba(0, 0, 0, 0.8)"
+    "&:hover": {
+      background: "rgba(0, 0, 0, 0.8)",
     },
     width: "100vw",
     position: "fixed",
@@ -29,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     height: "100px",
     fontSize: "3rem",
-    color: "white"
-  }
+    color: "white",
+  },
 }));
 
 const Activity = ({ userObj, isQuestion, handleActivity }) => {
@@ -51,7 +51,7 @@ const Activity = ({ userObj, isQuestion, handleActivity }) => {
       creatorId: userObj.uid,
       recordURL,
       answered: false,
-      answerId: ""
+      answerId: "",
     });
     setFile(null);
     handleActivity();
@@ -64,19 +64,24 @@ const Activity = ({ userObj, isQuestion, handleActivity }) => {
       <BackButton type="activity" action={handleActivity} />
       <div className={classes.container}>
         <ActivityImage state={isQuestion} />
-        {isQuestion ? 
-        <Record state={isQuestion} setFile={setFile} /> 
-        :
-        <div>
-          <audio controls></audio>
-          <Button></Button>
-        </div>
-        }
+        {isQuestion ? (
+          <Record state={isQuestion} setFile={setFile} />
+        ) : (
+          <div>
+            <audio controls></audio>
+            <Button></Button>
+          </div>
+        )}
       </div>
-      { file && !pending &&
-      <Button className={classes.submit} onClick={handleSubmit} variant="contained">
-        질문하기
-      </Button>}
+      {file && !pending && (
+        <Button
+          className={classes.submit}
+          onClick={handleSubmit}
+          variant="contained"
+        >
+          질문하기
+        </Button>
+      )}
     </div>
   );
 };
