@@ -32,7 +32,7 @@ function App() {
       else {
         setIsLoggedIn(false);
       }
-      
+
       // database not ready
       setInit(true);
     });
@@ -50,7 +50,7 @@ function App() {
           )}
         </div>
       ) : (
-        <Pending />
+        <Pending text="로딩중... "/>
       )}
     </>
   );
