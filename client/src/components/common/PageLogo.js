@@ -17,9 +17,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MyPageLogo = () => {
+const PageLogo = ({ logoName }) => {
   const classes = useStyles();
-  const logoContent = ["M", "Y", "P", "A", "G", "E"];
+  const logoContent = logoName.split("");
 
   return (
     <div className={classes.LogoRoot}>
@@ -32,4 +32,4 @@ const MyPageLogo = () => {
   );
 };
 
-export default MyPageLogo;
+export default PageLogo;

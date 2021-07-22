@@ -17,8 +17,9 @@ const useStyles = makeStyles({
         gridTemplateColumns: "1fr 1fr"
     },
     answer: {
+        marginTop: "20vh",
         width: "80%",
-        height: "45%",
+        height: "360px",
         backgroundImage: `url(${MainAnswer})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "contain",

@@ -85,12 +85,16 @@ function Landing() {
           inputs.department
         );
       }
+      setInputs(init);
     } catch (err) {
       alert(err.message);
     }
   };
 
-  const toggleAccount = () => setNewAccount((prev) => !prev);
+  const toggleAccount = () => {
+    setInputs(init);
+    setNewAccount((prev) => !prev)
+  };
 
   return (
     <Grid container component="main" className={classes.root}>

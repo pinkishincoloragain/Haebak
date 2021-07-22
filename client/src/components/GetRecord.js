@@ -52,6 +52,7 @@ const GetRecord = ({ userObj }) => {
     // return uploadtask -> put to response
     // Uploadtask : UploadTaskSnapshot
     const response = await fileRef.putString(recordData, "data_url");
+<<<<<<< HEAD
     const RecordUrl = await response.ref.getDownloadURL();
 
     console.log(await response.ref.getDownloadURL());
@@ -66,6 +67,17 @@ const GetRecord = ({ userObj }) => {
     // insert data to database
     await dbService.collection("knuhouse").add(recordObj);
     console.log(recordObj.RecordUrl);
+=======
+    const recordURL = await response.ref.getDownloadURL();
+
+    // insert data to database
+    await dbService.collection("knuhouse").add({
+      // first record : column name of the data(DB) ------ second record : real data (state)
+      createdAt: Date.now(),
+      creatorId: userObj.uid,
+      recordURL,
+    });
+>>>>>>> e925ab6b5df4aa893e20d8ad5e2f495a604dec07
 
     // flush inputform
     setRecord("");
