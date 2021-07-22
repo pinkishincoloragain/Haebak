@@ -5,10 +5,12 @@ import { v4 as uuidv4 } from "uuid";
 import Record from "../components/Record";
 import ActivityImage from "../components/common/ActivityImage";
 import BackButton from "../components/common/BackButton";
-import Button from "@material-ui/core/Button";
+import Button from '@material-ui/core/Button';
+import Fade from '@material-ui/core/Fade';
 
 import { dbService, storageService } from "../firebase.js";
 import Pending from "../components/common/Pending";
+import RandomAnswer from "../components/RandomAnswer";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -33,9 +35,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Activity = ({ userObj, isQuestion, handleActivity }) => {
+const Activity = ({ userObj, userInfoObj, isQuestion, handleActivity }) => {
   const [file, setFile] = useState(null);
   const [pending, setPending] = useState(false);
+  const [record, setRecord] = useState(isQuestion);
   const classes = useStyles();
 
   async function handleSubmit() {
@@ -49,6 +52,7 @@ const Activity = ({ userObj, isQuestion, handleActivity }) => {
     await dbService.collection("question").add({
       createdAt: Date.now(),
       creatorId: userObj.uid,
+      creatorDepartment: userInfoObj.department,
       recordURL,
       answered: false,
       answerId: "",
@@ -64,24 +68,18 @@ const Activity = ({ userObj, isQuestion, handleActivity }) => {
       <BackButton type="activity" action={handleActivity} />
       <div className={classes.container}>
         <ActivityImage state={isQuestion} />
-        {isQuestion ? (
-          <Record state={isQuestion} setFile={setFile} />
-        ) : (
-          <div>
-            <audio controls></audio>
-            <Button></Button>
-          </div>
-        )}
+        {record && <Record setFile={setFile} /> }
+        {!isQuestion && 
+          <RandomAnswer userInfoObj={userInfoObj} userObj={userObj} />
+        }
       </div>
-      {file && !pending && (
-        <Button
-          className={classes.submit}
-          onClick={handleSubmit}
-          variant="contained"
-        >
-          질문하기
-        </Button>
-      )}
+      { file && !pending &&
+        <Fade in={true}>
+          <Button className={classes.submit} onClick={handleSubmit} variant="contained">
+            질문하기
+          </Button>
+        </Fade>
+      }
     </div>
   );
 };

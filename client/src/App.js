@@ -47,7 +47,6 @@ function App() {
       .collection("userInfo")
       .where("email", "==", user.email)
       .get();
-    console.log(data.docs[0].data());
     setUserInfoObj(data.docs[0].data());
   }
 
