@@ -2,6 +2,7 @@ import React from 'react';
 import {Snackbar} from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
+import { grey } from '@material-ui/core/colors';
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -11,9 +12,13 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
   },
+  alert: {
+    color: "black",
+    backgroundColor: grey[50],
+  },
 }));
 
-const SuccSnackbar = () => {
+const SuccSnackbar = (props) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
@@ -28,8 +33,8 @@ const SuccSnackbar = () => {
   return (
     <div className={classes.root}>
       <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success">
-          질문 제출이 완료되었습니다!
+        <Alert onClose={handleClose} severity={props.type} className={classes.alert}>
+          {props.content}
         </Alert>
       </Snackbar>
     </div>

@@ -91,7 +91,7 @@ const Main = ({ userObj, userInfoObj }) => {
         />
       )}
       <HelpButton />
-      {snackOpen && <SuccSnackbar />}
+      {snackOpen && <SuccSnackbar content="전송이 완료되었습니다!" type="success"/>}
     </div>
   );
 };

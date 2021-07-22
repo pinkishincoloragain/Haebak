@@ -5,7 +5,10 @@ import { Paper, Typography } from "@material-ui/core";
 import { authService, dbService } from "../firebase";
 import LandingLogin from "../components/LandingLogin";
 import LandingRegister from "../components/LandingRegister";
+import SuccSnackbar from "../components/common/SuccSnackbar";
 import LandingImage from "../assets/image/paper.jpeg";
+
+import firebase from "firebase";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +35,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     padding: "0 30px 15px 30px",
+    border: "2px solid black",
+    boxShadow: "3px 3px black",
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -69,6 +74,7 @@ function Landing() {
 
   const [inputs, setInputs] = useState(init);
   const [newAccount, setNewAccount] = useState(true);
+  const [snackOpen, setSnackOpen] = useState(false);
   // const [error, setError] = useState("");
 
   const onChange = (e) => {
@@ -85,21 +91,42 @@ function Landing() {
     e.preventDefault();
     try {
       if (!newAccount) {
-        await authService.createUserWithEmailAndPassword(
-          inputs.email,
-          inputs.password
-        );
+        await authService
+          .setPersistence("session")
+          .then(() =>
+            authService
+              .createUserWithEmailAndPassword(inputs.email, inputs.password)
+              .then((userCredential) => {
+                // send verification mail.
+                userCredential.user.sendEmailVerification();
+                authService.signOut();
+                alert("Email sent");
+              })
+          )
+          .catch(alert);
         const userInfoObj = {
           department: inputs.department,
           email: inputs.email,
           name: inputs.name,
         };
+
         await dbService.collection("userInfo").add(userInfoObj);
       } else {
-        await authService.signInWithEmailAndPassword(
-          inputs.email,
-          inputs.password
-        );
+        await authService
+          .setPersistence("session")
+          .then(() => {
+            authService
+              .signInWithEmailAndPassword(inputs.email, inputs.password)
+              .catch((error) => {
+                // Handle Errors here.
+                setSnackOpen(true);
+                // alert(error);
+              });
+          })
+          .catch((error) => {
+            // Handle Errors here.
+            alert(error);
+          });
       }
 
       setInputs(init);
@@ -129,9 +156,10 @@ function Landing() {
             submit={handleSubmit}
           />
         )}
-        <span style={{color:"blue", cursor: "pointer"}} onClick={toggleAccount}>
+        <span style={{color:"black", cursor:"pointer"}} onClick={toggleAccount}>
           {!newAccount ? "계정이 있어요" : "계정이 없어요"}
         </span>
+        <span onClick={toggleAccount}></span>
       </Paper>
       <div className={classes.titleBox}>
         <Typography component="h1" variant="h2" className={classes.title}>
@@ -139,6 +167,12 @@ function Landing() {
           <span style={{ color: "black" }}>HOUSE</span>
         </Typography>
       </div>
+      {snackOpen && (
+        <SuccSnackbar
+          content="너 뭔가 잘못 친 거 같은데 ? 다시 한번 확인해줘"
+          type="error"
+        />
+      )}
     </div>
   );
 }
