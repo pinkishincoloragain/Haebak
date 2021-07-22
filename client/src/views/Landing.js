@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link, Paper, Typography } from "@material-ui/core";
+import { Paper, Typography } from "@material-ui/core";
 
 import { authService, dbService } from "../firebase";
 import LandingLogin from "../components/LandingLogin";
@@ -156,7 +156,7 @@ function Landing() {
             submit={handleSubmit}
           />
         )}
-        <span style={{color:"black", cursor:"pointer"}} onClick={toggleAccount}>
+        <span style={{color:"blue", cursor:"pointer"}} onClick={toggleAccount}>
           {!newAccount ? "계정이 있어요" : "계정이 없어요"}
         </span>
         <span onClick={toggleAccount}></span>
