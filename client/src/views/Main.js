@@ -7,6 +7,7 @@ import MyPage from "../components/MyPage";
 import AboutPage from "../components/AboutPage";
 import Activity from "./Activity";
 import HelpButton from "../components/HelpButton";
+import SuccSnackbar from "../components/common/SuccSnackbar";
 import GetRecord from "../components/GetRecord";
 import { dbService } from "../firebase";
 
@@ -20,7 +21,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Main = ({ isLoggedIn, userObj, userInfoObj }) => {
+const Main = ({ userObj, userInfoObj }) => {
   const classes = useStyles();
   const [isOtherPage, setIsOtherPage] = useState({
     main: true,
@@ -29,6 +30,7 @@ const Main = ({ isLoggedIn, userObj, userInfoObj }) => {
     activity: false,
     isQuestion: true,
   });
+  const [snackOpen, setSnackOpen] = useState(false);
 
   const handleMypage = () =>
     setIsOtherPage({
@@ -44,13 +46,17 @@ const Main = ({ isLoggedIn, userObj, userInfoObj }) => {
       about: !isOtherPage.about,
     });
 
-  const handleActivity = (isQ) =>
+  const handleActivity = (isQ) => 
     setIsOtherPage({
       ...isOtherPage,
       main: !isOtherPage.main,
       activity: !isOtherPage.activity,
       isQuestion: isQ,
     });
+
+  const handleSnack = () => {
+    setSnackOpen(true);
+  }
 
   return (
     <div className={classes.mainFrame}>
@@ -77,9 +83,11 @@ const Main = ({ isLoggedIn, userObj, userInfoObj }) => {
           userObj={userObj}
           isQuestion={isOtherPage.isQuestion}
           handleActivity={handleActivity}
+          handleSnack={handleSnack}
         />
       )}
       <HelpButton />
+      {snackOpen && <SuccSnackbar />}
     </div>
   );
 
