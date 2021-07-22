@@ -8,11 +8,12 @@ import HelpDialog from "./HelpDialog";
 const useStyles = makeStyles((theme) => ({
   Helpbtn: {
     position: "absolute",
-    right: "4%",
-    bottom: "0%",
+    right: "4.5%",
+    bottom: "4%",
     color: "black",
-    "@media (max-width:520px)": {
-      bottom: "-1% !important",
+    backgroundColor: "#e6e6e6",
+    "&:hover": {
+      backgroundColor: "darkgray",
     },
   },
 }));
@@ -31,7 +32,11 @@ const HelpButton = () => {
 
   return (
     <>
-      <IconButton size="medium" className={classes.Helpbtn} onClick={openDialog}>
+      <IconButton
+        size="medium"
+        className={classes.Helpbtn}
+        onClick={openDialog}
+      >
         <HelpOutlineIcon fontSize="large" />
       </IconButton>
       {show ? <HelpDialog func={closeDialog} /> : ""}

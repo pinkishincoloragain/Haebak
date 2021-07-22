@@ -4,15 +4,18 @@ import { Paper } from "@material-ui/core";
 import PageLogo from "./common/PageLogo";
 import BackButton from "./common/BackButton";
 import AboutList from "./common/AboutList";
-import AboutpageImage from "../image/AboutpageImage.png";
+import MypageImage from "../image/MypageImage.png";
 
 const useStyles = makeStyles((theme) => ({
   aboutpageRoot: {
-    background: `url(${AboutpageImage}) center center / cover no-repeat`,
+    width: "100%",
+    height: "100%",
+    background: `url(${MypageImage}) center center / cover no-repeat`,
     backgroundAttachment: "fixed",
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",
+    alignItems: "center",
     "& > *": {
       margin: theme.spacing(1),
       width: theme.spacing(16),
